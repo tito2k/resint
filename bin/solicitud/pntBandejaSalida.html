@@ -1,0 +1,129 @@
+<div id="filtro"></div>
+<table id="list" class="scroll"></table>
+<div id="pager" class="scroll" style="text-align:center;"></div>
+
+<script type="text/javascript">
+
+var lastsel;
+
+jQuery(document).ready(function(){
+
+   jQuery("#list").jqGrid({
+		url:'../solicitud/datBandejaSalida.php?idSesion={idSesion}',
+		datatype: "json",
+		colNames:['N&uacute;mero','Fecha','Fecha','IdEstado','Estado','Secci&oacute;n','Almac&eacute;n','',''],
+		colModel:[
+			{name:'_key_N_idtransaccion', search:false, index:'_key_N_idtransaccion', width:55,editable:false},
+			{name:'_field_D_fechainicio', search:false, index:'_field_D_fechainicio', width:80,editable:true,editoptions:{size:40,maxlength:45}}, 
+			{name:'_field_D_fechaactual', search:false, index:'_field_D_fechaactual', width:80,editable:true,editoptions:{size:40,maxlength:45}}, 
+			{name:'_field_D_idestado', hidden:true, search:false, index:'_field_D_idestado', width:80,editable:true,edittype:'select',editoptions:{value:"{_-ESTADOS-_}"}}, 
+			{name:'_field_D_descestado', index:'_field_D_descestado', width:80,editable:true,edittype:'select',editoptions:{value:"{_-ESTADOS-_}"}}, 
+			{name:'_field_D_idseccion', search:false, index:'_field_D_idseccion', width:80,editable:true,editoptions:{size:40,maxlength:45}}, 
+			{name:'_field_D_idalmacen', search:false, index:'_field_D_idalmacen', width:80,editable:true,editoptions:{size:40,maxlength:45}},
+			{name:'edit', search:false, index:'edit',width:12,sortable:false},
+			{name:'view', search:false, index:'view',width:12,sortable:false}
+		],		
+		rowNum: 40,
+		rowList: [40,80],
+		height: $('#center').height(),
+		width: $('#center').width(),
+		pager: '#pager',
+		sortname: '_key_N_idtransaccion',
+		viewrecords: true,
+		sortorder: "asc",
+ 		shrinkToFit: true,
+		editurl:"../../lib/generica.php?tabla={_-TABLE-_}",
+		caption:"{_-CAPTION-_}",
+	  	gridComplete: function() { 
+		 	var ids = jQuery("#list").jqGrid('getDataIDs'); 
+			var array = jQuery("#list").jqGrid('getRowData');
+			var largo = array.length;
+
+			for (var i=0;i<largo;i++)
+			{
+				var linea = array[i];
+				var idEstado = linea._field_D_idestado;
+				var idTransaccion = linea._key_N_idtransaccion;
+
+				ed = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -64px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"editRow("+idEstado+","+idTransaccion+");\" />"; 
+				vi = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -128px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"viewRow("+idEstado+","+idTransaccion+");\" />"; 
+				jQuery("#list").jqGrid('setRowData',ids[i],{edit:ed,view:vi});
+				 
+			}
+	  	},
+	  	loadComplete: function(xhr) { 
+	  		var mids = jQuery("#list").getDataIDs();
+	  		for (var i=0;i<mids.length;i=i+1) {
+	  			var cl=mids[i];
+	  			var state=jQuery("#list").getCell(cl,'_field_D_idestado');
+				for (var l=0;l<7;l=l+1) { 
+					jQuery("#list").setCell(cl,l,'',{'background-color':estadoTransaccion[state]}); 
+				}
+	  		}
+	  	}	  	
+   });
+
+	jQuery("#list").jqGrid('navGrid','#pager', 
+		{edit:false,del:false,add:false,search:false,height:400,width:600,reloadAfterSubmit:false,view:true}, //options 
+		{}, // edit options 
+		{}, // add options 
+		{}, // del options 
+		{multipleSearch:false}, // search options 
+		{navkeys: [true,38,40], height:250,jqModal:false,closeOnEscape:true} // view options 
+
+	);
+	
+	jQuery("#filtro").filterGrid("#list",{
+			gridModel:true,
+			gridNames:true,
+			formtype:"vertical",
+			enableSearch: false,
+			enableClear: false,
+			autosearch: true
+	});
+
+});
+
+function callBack(response,postData) {
+
+	var success = true;
+	var message = "";
+	var json = eval('(' + response.responseText + ')');
+	
+	if(json.errors) {
+		success = false;
+		for(i=0; i < json.errors.length; i++) {
+		message += json.errors[i] + '<br/>';
+		}
+	}
+	return [success,message];
+
+}
+
+function changeImage(obj,opt){
+    
+    if (opt==1)
+        obj.style.border= "solid 1px #cccccc";
+    else
+        obj.style.border= "none";
+    
+}
+
+function editRow(idEstado,idTransaccion) { 
+	$.getJSON("../solicitud/getSiguiente.php",{idSesion:idSesion,idEstado:idEstado}, function(json) {
+		var func = json.url;
+		var tarea = json.idTarea;
+		var llamada = func.substr(0,func.length-2) + "("+idTransaccion+","+tarea+")";
+		eval(llamada);
+	});   
+		
+} 
+
+function viewRow(gr) { 
+
+	alert('view:'+gr);
+   //$('#center').load('View.php?id='+gr);
+   
+} 
+
+</script>

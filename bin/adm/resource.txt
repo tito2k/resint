@@ -1,0 +1,433 @@
+Aca:SELECT 'admin' AS idusuario,a.descripcion AS idaplicacion, n.descripcion AS idnivel,
+					concat('idaplicacion=',char(39),a.idaplicacion,char(39),' AND idusuario=',char(39),'admin',char(39)) AS id 
+					FROM usuarioaplicacion ua
+					INNER JOIN aplicacion a ON a.idaplicacion = ua.idaplicacion AND ua.idusuario='admin'
+					INNER JOIN nivel n ON n.idnivel = ua.idnivel 
+Array
+(
+    [_] => 1286830311254
+    [_search] => false
+    [nd] => 1286830311254
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idnivel
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830315844
+    [_search] => false
+    [nd] => 1286830315844
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830318526
+    [_search] => false
+    [nd] => 1286830318526
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idfamilia
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830320521
+    [_search] => false
+    [nd] => 1286830320520
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idsector
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830322802
+    [_search] => false
+    [nd] => 1286830322802
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830324841
+    [_search] => false
+    [nd] => 1286830324840
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idarticulo
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830375717
+    [_search] => false
+    [nd] => 1286830375716
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830425499
+    [_search] => false
+    [nd] => 1286830425498
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286830454445
+    [_search] => false
+    [nd] => 1286830454444
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1286995690449
+    [_search] => false
+    [nd] => 1286995690448
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1286995743685
+    [_search] => false
+    [nd] => 1286995743684
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1286995810680
+    [_search] => false
+    [nd] => 1286995810679
+    [rows] => 80
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+Array
+(
+    [_] => 1287229756070
+    [_search] => false
+    [nd] => 1287229756069
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idarticulo
+    [sord] => asc
+)
+
+SELECT a.idarticulo, a.nombre, f.nombre AS idfamilia, stock, stockminimo, 
+                m.nombre as idmagnitud,concat('idarticulo=',a.idarticulo) AS id 
+                FROM articulo a
+                LEFT JOIN magnitud m ON m.idmagnitud = a.idmagnitud 
+				LEFT JOIN familia f ON f.idfamilia = a.idfamilia  ORDER BY idarticulo asc;
+Array
+(
+    [_] => 1287230023474
+    [_search] => false
+    [nd] => 1287230023474
+    [rows] => 40
+    [page] => 1
+    [sidx] => _field_S_nombre
+    [sord] => asc
+)
+
+SELECT a.idarticulo, a.nombre, f.nombre AS idfamilia, stock, stockminimo, 
+                m.nombre as idmagnitud,concat('idarticulo=',a.idarticulo) AS id 
+                FROM articulo a
+                LEFT JOIN magnitud m ON m.idmagnitud = a.idmagnitud 
+				LEFT JOIN familia f ON f.idfamilia = a.idfamilia  ORDER BY nombre asc;
+Array
+(
+    [_] => 1287230026612
+    [_search] => false
+    [nd] => 1287230026612
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idarticulo
+    [sord] => asc
+)
+
+SELECT a.idarticulo, a.nombre, f.nombre AS idfamilia, stock, stockminimo, 
+                m.nombre as idmagnitud,concat('idarticulo=',a.idarticulo) AS id 
+                FROM articulo a
+                LEFT JOIN magnitud m ON m.idmagnitud = a.idmagnitud 
+				LEFT JOIN familia f ON f.idfamilia = a.idfamilia  ORDER BY idarticulo asc;
+Array
+(
+    [_] => 1287235207381
+    [_search] => false
+    [nd] => 1287235207380
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1287236228830
+    [_search] => false
+    [nd] => 1287236228829
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1287236264767
+    [_search] => false
+    [nd] => 1287236264766
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+Array
+(
+    [_] => 1288726268370
+    [_search] => false
+    [nd] => 1288726268369
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+SELECT idproveedor, nombre, direccion, telefono, 
+					mail, contacto, concat('idproveedor=',idproveedor) AS id 
+                FROM proveedor  ORDER BY idproveedor asc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+SELECT idusuario,nombres,apellidos,documento,clave,
+    			s.descripcion AS idseccion
+                ,concat('idusuario=',char(39),u.idusuario,char(39)) AS id 
+                FROM usuario u
+                INNER JOIN seccion s ON s.idseccion = u.idseccion  ORDER BY idusuario desc;
+Array
+(
+    [_] => 1289058824085
+    [_search] => false
+    [nd] => 1289058824076
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre 
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1289059695595
+    [_search] => false
+    [nd] => 1289059695594
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idnivel
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.descripcion AS idtarea, n.descripcion AS idnivel,
+					concat('idtarea=',tn.idtarea,' AND idnivel=',tn.idnivel) AS id 
+                FROM tareanivel tn
+				INNER JOIN tarea t ON t.idtarea = tn.idtarea
+				INNER JOIN talos.nivel n ON n.idnivel = tn.idnivel 
+SELECT t.descripcion AS idtarea, n.descripcion AS idnivel,
+					concat('idtarea=',tn.idtarea,' AND idnivel=',tn.idnivel) AS id 
+                FROM tareanivel tn
+				INNER JOIN tarea t ON t.idtarea = tn.idtarea
+				INNER JOIN talos.nivel n ON n.idnivel = tn.idnivel  ORDER BY idnivel asc;
+Array
+(
+    [_] => 1289059810565
+    [_search] => false
+    [nd] => 1289059810564
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre 
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1289059967298
+    [_search] => false
+    [nd] => 1289059967297
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre 
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1289059980435
+    [_search] => false
+    [nd] => 1289059980434
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idnivel
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.descripcion AS idtarea, n.descripcion AS idnivel,
+					concat('idtarea=',tn.idtarea,' AND idnivel=',tn.idnivel) AS id 
+                FROM tareanivel tn
+				INNER JOIN tarea t ON t.idtarea = tn.idtarea
+				INNER JOIN talos.nivel n ON n.idnivel = tn.idnivel 
+SELECT t.descripcion AS idtarea, n.descripcion AS idnivel,
+					concat('idtarea=',tn.idtarea,' AND idnivel=',tn.idnivel) AS id 
+                FROM tareanivel tn
+				INNER JOIN tarea t ON t.idtarea = tn.idtarea
+				INNER JOIN talos.nivel n ON n.idnivel = tn.idnivel  ORDER BY idnivel asc;
+Array
+(
+    [_] => 1289060007506
+    [_search] => false
+    [nd] => 1289060007505
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre 
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1289209739107
+    [_search] => false
+    [nd] => 1289209739097
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre 
+SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia, 
+                t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
+                FROM tarea t
+                INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;

@@ -1,0 +1,112 @@
+<script type="text/javascript">
+/*
+var currencyFmatter = function(el, cellval, opts){
+   $(el).html(formatCurrency(cellval));
+}
+*/      
+
+var lastsel;
+       
+jQuery(document).ready(function(){
+
+   jQuery("#list").jqGrid({
+      url:'../adm/datusuarioseccion.php?q=1',
+      datatype: "json",
+      colNames:['Usuario','Nombre','Apellido'],
+      colModel:[
+         {name:'_key_S_idusuario',index:'_key_S_idusuario', width:50,editable:false},
+         {name:'_field_S_nombres',index:'_field_S_nombres', width:50,editable:false}, 
+         {name:'_field_S_apellidos',index:'_field_S_apellidos', width:50,editable:false}
+      ],
+      rowNum: 20,
+      rowList: [20,40],
+		height: $('#center').height() / 3,
+		width: $('#center').width(),
+      pager: '#pager',
+      hoverrows: false,
+      sortname: '_key_S_idusuario',
+      viewrecords: true,
+      sortorder: "asc",
+      editurl:"../../lib/generica.php?tabla={_-TABLA-_}",
+      caption:"{_-CAPTION-_}",
+      onSelectRow: function(id) {
+      	
+             if (id == null) { 
+            	
+                id=0; 
+                if (jQuery("#detail").getRecords()>0) { 
+                    jQuery("#detail").setGridParam({url:"../adm/datusuarioseccion.php?q=2&id="+id,page:1,caption:"Funcion:"+id}).trigger("reloadGrid"); 
+                } 
+            } else { 
+                jQuery("#detail").setGridParam({url:"../adm/datusuarioseccion.php?q=2&id="+id,page:1,caption:"Funcion:"+id}).trigger("reloadGrid"); 
+            } 
+      }
+      
+   });
+   
+    jQuery("#detail").jqGrid({
+		url:'',
+		datatype: "json",
+		colNames:['Usuario','Secci&oacute;n'],
+		colModel:[
+			{name:'_field_S_idusuario',index:'_field_S_idusuario', width:60,editable:true,edittype:"select",editoptions:{value:"{_-USUARIOS-_}"}},
+			{name:'_field_N_idseccion',index:'_field_N_idseccion', width:45,editable:true,edittype:"select",editoptions:{value:"{_-SECCIONES-_}"}}
+		],
+		rowNum: 400,
+		height: $('#center').height() / 3,
+		width: $('#center').width(),
+        pager: '#pagersec',
+		sortname: '_field_N_idseccion',
+		viewrecords: true,
+		sortorder: "asc",
+ 		shrinkToFit: true,
+		editurl:"../../lib/generica.php?tabla={_-TABLA_SECCION-_}",
+		caption:"{_-CAPTION-SECCIONES-_}"
+		/*
+		,
+		//multiselect: true,
+		afterInsertRow: function(rowid,rowdata,rowelem) {
+			if (rowdata.existe != null) {
+				//alert(rowdata.existe);
+			}
+		},
+		onSelectRow: function(id){
+			if(id && id!==lastsel){
+				jQuery('#detail').jqGrid('restoreRow',lastsel);
+				jQuery('#detail').jqGrid('editRow',id,true);
+				lastsel=id;
+			}
+		}
+		*/
+                           
+   }); 
+
+	jQuery("#list").jqGrid('navGrid','#pager', 
+   {edit:false,add:false,del:false,height:300,reloadAfterSubmit:false,cloneToTop:true}, //options 
+	{}, // edit options 
+	{}, // add options 
+	{}, // del options 
+	{} // search options 
+	);
+
+	jQuery("#detail").jqGrid('navGrid','#pagersec', 
+   {edit:false,add:true,del:true,height:300,reloadAfterSubmit:false,cloneToTop:true}, //options 
+	{}, // edit options 
+	{}, // add options 
+	{}, // del options 
+	{} // search options 
+	);
+
+
+});
+
+
+
+</script>
+<div>
+<table id="list" class="scroll"  ></table>
+<div id="pager" class="scroll" style="text-align:center;"></div>
+<br />
+<table id="detail" class="scroll"></table> 
+<div id="pagersec" class="scroll" style="text-align:center;"></div>
+</div>

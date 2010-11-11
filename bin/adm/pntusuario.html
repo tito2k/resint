@@ -1,0 +1,119 @@
+<script type="text/javascript">
+/*
+var currencyFmatter = function(el, cellval, opts){
+   $(el).html(formatCurrency(cellval));
+}
+*/      
+
+var lastsel;
+       
+jQuery(document).ready(function(){
+
+   jQuery("#list").jqGrid({
+      url:'../adm/datusuario.php',
+      datatype: "json",
+      colNames:['Usuario','Nombres','Apellidos','Documento','Clave','Secci&oacute;n'],
+      colModel:[
+         {name:'_key_S_idusuario',index:'_key_S_idusuario', width:50,editable:true,editoptions:{size:15,maxlength:20}},
+         {name:'_field_S_nombres',index:'_field_S_nombres', width:50,editable:true,editoptions:{size:40,maxlength:50},editrules:{required:true}},
+         {name:'_field_S_apellidos',index:'_field_S_apellidos', width:50,editable:true,editoptions:{size:40,maxlength:50},editrules:{required:true}},
+         {name:'_field_S_documento',index:'_field_S_documento', width:50,editable:true,editoptions:{size:20,maxlength:50}},
+         {name:'_field_S_clave',index:'_field_S_clave', width:50,editable:true,edittype:"password",editoptions:{size:20,maxlength:50}},
+         {name:'_field_S_idseccion',index:'_field_S_idseccion',width:60,editable:true,edittype:"select",editoptions:{value:"{_-SECCIONES-_}"}}
+         /*{name:'act',index:'act',width:15,sortable:false},
+         {name:'',formatoptions:{keys:false,editbutton:true,delbutton:true},
+			   width:50,search:true,searchoptions:{},index:''}*/
+      ],
+      rowNum: 20,
+      rowList: [20,40],
+		height: $('#center').height(),
+		width: $('#center').width(),
+      pager: '#pager',
+      hoverrows: false,
+      sortname: '_key_S_idusuario',
+      viewrecords: true,
+      sortorder: "desc",
+      editurl:"../../lib/generica.php?tabla={_-TABLA-_}",
+      caption:"{_-CAPTION-_}",
+		onSelectRow: function(id){
+			if(id && id!==lastsel){
+				jQuery('#list').jqGrid('restoreRow',lastsel);
+				jQuery('#list').jqGrid('editRow',id,true);
+				lastsel=id;
+			}
+		},
+      gridComplete: function() { 
+         var ids = jQuery("#list").jqGrid('getDataIDs'); 
+         for(var i=0;i < ids.length;i++){ 
+             var cl = ids[i];
+             be = "<input style='background-image: url(../../css/images/ui-icons_70b2e1_256x240.png);background-position: -64px -112px;height:22px;width:20px; border:none; cursor:hand; background-color: transparent;' type='button' onclick=\"editRow('"+cl+"');\" />"; 
+             jQuery("#list").jqGrid('setRowData',ids[i],{act:be}); 
+         } 
+      } 
+      
+      
+   });
+
+	jQuery("#list").jqGrid('navGrid','#pager', 
+   {edit:false,height:300,reloadAfterSubmit:false,cloneToTop:true}, //options 
+	{height:350,width:550,reloadAfterSubmit:true,closeAfterEdit:true,afterSubmit:processCallBack}, // edit options 
+	{height:350,width:550,reloadAfterSubmit:true,closeAfterAdd:true,afterSubmit:processCallBack}, // add options 
+	{height:150,width:400,reloadAfterSubmit:true,afterSubmit:processCallBack}, // del options 
+	{} // search options 
+	);
+
+});
+
+function processCallBack(response, postdata) { 
+    
+    var success = true;
+    var message = "";
+    var json = eval('(' + response.responseText + ')');
+
+    if(json.errors) {
+        success = false;
+        for(i=0; i < json.errors.length; i++) {
+            message += json.errors[i] + '<br/>';
+        }
+    }
+    return [success,message];
+
+}
+
+/*
+function formatCurrency(num) {
+    if(!num) return;
+    num = num.toString().replace(/\$|\,/g,'');
+    if(isNaN(num))
+        num = "0";
+    sign = (num == (num = Math.abs(num)));
+    num = Math.floor(num*100+0.50000000001);
+    cents = num%100;
+    num = Math.floor(num/100).toString();
+    if(cents<10)
+        cents = "0" + cents;
+    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+        num = num.substring(0,num.length-(4*i+3))+','+
+              num.substring(num.length-(4*i+3));
+    return (((sign)?'':'-') + '$' + num + '.' + cents);
+    
+    $('#center').load(pnt);
+    
+}
+*/
+
+function editRow(gr) { 
+
+//alert('../adm/editusuario.php?'+gr);
+   $('#center').load('../adm/pnteditusuario.php?'+gr);
+
+   //$('#center').empty();
+   
+} 
+
+
+</script>
+<div>
+<table id="list" class="scroll"  ></table>
+<div id="pager" class="scroll" style="text-align:center;"></div>
+</div>

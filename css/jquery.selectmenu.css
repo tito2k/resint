@@ -1,0 +1,72 @@
+.ui-selectmenu {
+	DISPLAY: block; OVERFLOW: hidden; POSITION: relative; HEIGHT: 2em; TEXT-DECORATION: none; font-size:10px; font-family: Verdana;
+}
+.ui-selectmenu-icon {
+	MARGIN-TOP: -8px; RIGHT: 6px; POSITION: absolute; TOP: 50%
+}
+.ui-selectmenu-menu {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; VISIBILITY: hidden; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: auto; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; POSITION: absolute; TOP: 0px
+}
+.ui-selectmenu-open {
+	VISIBILITY: visible
+}
+.ui-selectmenu-menu-popup {
+	MARGIN-TOP: -1px
+}
+.ui-selectmenu-menu-dropdown {
+	font-size:10px; font-family: Verdana
+}
+.ui-selectmenu-menu LI {
+	PADDING-RIGHT: 0px; BORDER-TOP: transparent 1px dotted; DISPLAY: block; PADDING-LEFT: 0px; FONT-WEIGHT: normal! important; BORDER-LEFT-WIDTH: 0px! important; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; BORDER-BOTTOM: transparent 1px dotted; BORDER-RIGHT-WIDTH: 0px! important
+}
+.ui-selectmenu-menu LI A {
+	PADDING-RIGHT: 1em; DISPLAY: block; PADDING-LEFT: 1em; PADDING-BOTTOM: 0.3em; LINE-HEIGHT: 1.4em; PADDING-TOP: 0.3em; TEXT-DECORATION: none; outline: none
+}
+.ui-selectmenu-status {
+	PADDING-RIGHT: 1em; DISPLAY: block; PADDING-LEFT: 1em; PADDING-BOTTOM: 0.3em; LINE-HEIGHT: 1.4em; PADDING-TOP: 0.3em; TEXT-DECORATION: none; outline: none
+}
+.ui-selectmenu-menu LI.ui-selectmenu-hasIcon A {
+	PADDING-LEFT: 20px; MARGIN-LEFT: 5px; POSITION: relative
+}
+.ui-selectmenu-hasIcon .ui-selectmenu-status {
+	PADDING-LEFT: 20px; MARGIN-LEFT: 5px; POSITION: relative
+}
+.ui-selectmenu-menu LI .ui-icon {
+	MARGIN-TOP: -8px; LEFT: 0px; POSITION: absolute; TOP: 1em
+}
+.ui-selectmenu-status .ui-icon {
+	MARGIN-TOP: -8px; LEFT: 0px; POSITION: absolute; TOP: 1em
+}
+.ui-selectmenu-status {
+	LINE-HEIGHT: 1.4em
+}
+.ui-selectmenu-open LI.ui-selectmenu-item-focus A {
+	
+}
+.ui-selectmenu-open LI.ui-selectmenu-item-selected {
+	
+}
+.ui-selectmenu-menu LI SPAN {
+	DISPLAY: block; MARGIN-BOTTOM: 0.2em
+}
+.ui-selectmenu-status SPAN {
+	DISPLAY: block; MARGIN-BOTTOM: 0.2em
+}
+.ui-selectmenu-menu LI .ui-selectmenu-item-header {
+	FONT-WEIGHT: bold
+}
+.ui-selectmenu-menu LI .ui-selectmenu-item-content {
+	
+}
+.ui-selectmenu-menu LI .ui-selectmenu-item-footer {
+	opacity: .8
+}
+.ui-selectmenu-menu .ui-selectmenu-group {
+	FONT-SIZE: 1em
+}
+.ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label {
+	PADDING-RIGHT: 0.5em; DISPLAY: block; PADDING-LEFT: 0.5em; FONT-WEIGHT: bold; PADDING-BOTTOM: 0px; LINE-HEIGHT: 1.4em; PADDING-TOP: 0.6em
+}
+.ui-selectmenu-menu .ui-selectmenu-group UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}

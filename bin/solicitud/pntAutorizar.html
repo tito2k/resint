@@ -1,0 +1,83 @@
+<html>
+<head>
+
+<script type="text/javascript">
+
+
+jQuery(document).ready(function(){
+
+   jQuery("#list").jqGrid({
+		url:'http://localhost/resint/bin/solicitud/editsolicitud.php?idsolicitud=1',
+		datatype: "json",
+		colNames:['C&oacute;digo','Art&iacute;culo','Cantidad'],
+		colModel:[
+			{name:'idarticulo',index:'idarticulo', width:20 },
+			{name:'nombre',index:'nombre', width:80 },
+			{name:'cantidad',index:'cantidad', width:40 } 
+		],
+		//rowNum: 40,
+		//rowList: [40,80],
+		height: $('#center').height(),
+		width: $('#center').width(),
+		pager: '#pager',
+		sortname: 'idarticulo',
+		viewrecords: true,
+		sortorder: "asc"
+ 		//shrinkToFit: true
+		//editurl:"../solicitud/editsolicitud.php?idsolicitud=1",
+		//caption:"titulo"
+   });
+
+});
+</script>
+</head>
+<body>
+	<!-- =========================================================== -->
+	<!-- ==           Pantalla Autorizar Solicitud                == -->
+	<!-- =========================================================== -->
+	<div id="autorizarSolicitud">
+	  <form id="frmSolicitud" action="../solicitud/prcAutorizar.php" method="POST">
+	  <table width="100%" cellspacing="20" border="0" cellpadding="0">
+		<tr>
+		   <td align="right"><span>Solicitud Nro.:</span></td>
+		   <td align="left"><span>{idsolicitud}</span></td>
+		</tr>
+		<tr>
+		   <td align="right"><span>Fecha:</span></td>
+		   <td align="left"><span>{fecha}</span></td>
+		</tr>
+		<tr>
+		   <td align="right"><span>Secci&oacute;n:</span></td>
+		   <td align="left"><span>{seccion}</span></td>
+		</tr>
+		<tr>
+		   <td align="right"><span>Almac&eacute;n:</span></td>
+		   <td align="left"><span>{almacen}</span></td>
+		</tr>
+		<tr>
+		   <td align="right"><span>Operador:</span></td>
+		   <td align="left"><span>{operador}</span></td>
+		</tr>
+		<tr>
+		   <td align="right"><span>Observaciones Anteriores:</span></td>
+		   <td align="left"><span>{obsanteriores}</span></td>
+		</tr>
+		<tr align="center">
+				<td colspan="2">
+						<table id="list" class="scroll"></table>
+						<div id="pager" class="scroll" style="text-align:center;"></div>
+				</td>
+		</tr>
+		<tr>
+		   <td colspan="2" align="center"><label for="observaciones">Observaciones:</label><br>
+		   <textarea name="observaciones" id="observaciones" rows="10" cols="80" tabindex="50" class="tinymce">{observaciones}</textarea></td>																	
+		</tr>
+		<tr>
+		   <td colspan="2" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
+		</tr>
+	  </table>
+	  </form>
+	</div>
+
+</body>
+</html>

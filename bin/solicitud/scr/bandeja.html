@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>{_-CAPTION-_}</title>
+<script type="text/javascript">
+
+var lastsel;
+
+jQuery(document).ready(function(){
+
+   jQuery("#list").jqGrid({
+		url:'../solicitud/load/bandeja.php',
+		datatype: "json",
+		colNames:['Codigo','Nombre'],
+		colModel:[
+			{name:'_key_N_idfamilia',index:'_key_N_idfamilia', width:55,editable:false},
+			{name:'_field_S_nombre',index:'_field_S_nombre', width:80,editable:true,editoptions:{size:40,maxlength:45}}, 
+		],
+		rowNum: 40,
+		rowList: [40,80],
+		height: $('#center').height(),
+		width: $('#center').width(),
+		pager: '#pager',
+		sortname: '_key_N_idfamilia',
+		viewrecords: true,
+		sortorder: "asc",
+ 		shrinkToFit: true,
+		editurl:"../solicitud/edit/generica.php?tabla={_-TABLE-_}",
+		caption:"{_-CAPTION-_}",
+		onSelectRow: function(id){
+			if(id && id!==lastsel){
+				jQuery('#list').jqGrid('restoreRow',lastsel);
+				jQuery('#list').jqGrid('editRow',id,true);
+				lastsel=id;
+			}
+		}
+
+   });
+
+	jQuery("#list").jqGrid('navGrid','#pager', 
+		{edit:false,height:400,width:600,reloadAfterSubmit:false}, //options 
+		{reloadAfterSubmit:true,closeAfterEdit:true,afterSubmit:callBack}, // edit options 
+		{reloadAfterSubmit:true,closeAfterAdd:true,editData:{_key_N_idfamilia:"_new"}}, // add options 
+		{reloadAfterSubmit:false}, // del options 
+		{} // search options 
+	);
+
+	function callBack(response,postData) {
+
+		var success = true;
+		var message = "";
+		var json = eval('(' + response.responseText + ')');
+		
+		if(json.errors) {
+			success = false;
+			for(i=0; i < json.errors.length; i++) {
+			message += json.errors[i] + '<br/>';
+			}
+		}
+		return [success,message];
+
+	}
+});
+</script>
+</head>
+<body>
+<table id="list" class="scroll"></table>
+<div id="pager" class="scroll" style="text-align:center;"></div>
+</body>
+</html>

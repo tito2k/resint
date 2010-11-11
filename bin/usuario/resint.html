@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="../../css/resint.css" rel="stylesheet" type="text/css"> 
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/jquery-ui-1.8.4.custom.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/ui.jqgrid.css" />
+	<link rel="stylesheet" href="../../css/jquery.jdMenu.css" type="text/css" />	
+	<link rel="stylesheet" href="../../css/jquery.selectmenu.css" type="text/css" /> 
+	<link rel="shortcut icon" href="../../favicon.ico">
+	<script src="../../js/jquery-1.4.2.min.js" type="text/javascript"></script>
+	<script src="../../js/tiny_mce/jquery.tinymce.js" type="text/javascript"></script>
+	<script src="../../js/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+	<script src="../../js/i18n/grid.locale-es.js" type="text/javascript"></script>
+	<script src="../../js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	<script src="../../js/jquery.form.js" type="text/javascript"></script>
+	<script src="../../js/jquery.hotkeys.js" type="text/javascript"></script>
+<!--	<script type="text/javascript" src="../../js/jquery.dimensions.js"></script>	-->
+	<script type="text/javascript" src="../../js/jquery.positionBy.js"></script>
+	<script type="text/javascript" src="../../js/jquery.bgiframe.js"></script> 
+	<script type="text/javascript" src="../../js/jquery.jdMenu.js"></script>	
+	<script type="text/javascript" src="../../js/jquery.selectmenu.js"></script> 
+	<script type="text/javascript" src="../../js/jquery.tooltip.min.js"></script> 
+	<script src="../../js/init_resint.js" type="text/javascript"></script>
+</head>
+<body>
+
+<center>
+<div id="container">
+
+   <!-- Imagenes superiores -->
+   <div id="head">
+      <img id="RESINT" src="../../img/resint.png" width="94" height="100" border="0">
+   </div>
+
+   <!-- Banner superior -->
+   <div id="banner">
+
+      <!-- Menu descolgable del usuario/nivel -->
+      <table id="menu_horizontal" cellpadding="0" cellspacing="0" border="0"><tr><td>
+      {menuUsuario}
+      </td></tr></table>
+
+   </div>
+
+   <!-- Contenido central -->
+   <div id="content">
+
+      <table width="100%" cellspacing="0" border="0" cellpadding="2">
+      <tbody>
+         <tr>
+            <td width="0" height="0" rowspan="5"></td>
+            <td width="700" height="0"></td>
+            <td width="0" height="0" rowspan="5"></td>
+         </tr>
+         <tr>
+            <td>
+               <table width="100%" cellspacing="0" border="0" cellpadding="2">
+               <tbody>
+                  <tr>
+                     <td id="topleft" width="50%" height="50">
+                        <!-- =========================================================== -->
+                        <!-- ==                       Top Left                        == -->
+                        <!-- =========================================================== -->
+                        <p>&nbsp;
+                     </td>
+                     <td id ="topright" width="50%">
+                        <!-- =========================================================== -->
+                        <!-- ==                       Top Right                       == -->
+                        <!-- =========================================================== -->
+                        <p>&nbsp;
+                     </td>
+                  </tr>
+               </tbody>
+               </table>
+            </td>
+         </tr>
+         <tr>
+            <td id="center" width="700" height="250">
+               <!-- =========================================================== -->
+               <!-- ==                        Center                         == -->
+               <!-- =========================================================== -->
+               <p>&nbsp;
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <table width="100%" cellspacing="0" border="0" cellpadding="2">
+               <tbody>
+                  <tr>
+                     <td id="bottomleft" width="20%" height="50">
+                        <!-- =========================================================== -->
+                        <!-- ==                     Bottom Left                       == -->
+                        <!-- =========================================================== -->
+                        <table id="infosesion" cellpadding="0" cellspacing="1" border="0">
+                           <tr>
+                              <td align="right">Usuario:&nbsp;</td><td><b>{usuario}</b></td>
+                           </tr>
+                           <tr>
+                              <td align="right">Acceso:&nbsp;</td><td><b>{acceso}</b></td>
+                           </tr>
+                           <tr>
+                              <td align="right">Inicio:&nbsp;</td><td><b>{inicio}</b></td>
+                           </tr>
+                           <tr>
+                              <td align="center" colspan="2"><a href="#" id="logoff" ><img src="../../img/logOff.png" width="32" height="32" border="0"></a></td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td id="bottomright" width="80%">
+                        <!-- =========================================================== -->
+                        <!-- ==                     Bottom Right                      == -->
+                        <!-- =========================================================== -->
+                        <p>&nbsp;
+                     </td>
+                  </tr>
+               </tbody>
+               </table>
+            </td>
+         </tr>
+         <tr>
+            <td></td>
+         </tr>
+      </tbody>
+      </table>
+
+      </div>
+
+   <!-- Pie del area de contenido -->
+   <div id="footer"></div>
+
+   <!-- Imagenes inferiores -->
+   <div id="foot">
+      <img id="DI" src="../../img/logoytexto.png" width="110" height="24" border="0">
+      <img id="JPC" src="../../img/JPC.png" alt="Jefatura de Canelones" width="226" height="53" border="0">
+   </div>
+
+</div>
+</center>
+   <!-- =========================================================== -->
+   <!-- ==           Identificación de Sesión                    == -->
+   <!-- =========================================================== -->
+   <input type="hidden" id="idSesion" name="idSesion" value="{idSesion}">
+</body>
+</html>

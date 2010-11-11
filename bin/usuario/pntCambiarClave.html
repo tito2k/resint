@@ -1,0 +1,26 @@
+               <!-- =========================================================== -->
+               <!-- ==              Pantalla Cambiar Clave                   == -->
+               <!-- =========================================================== -->
+						   <script type="text/javascript" src="../../js/init_cambiarClave.js"></script>    
+               <div id="cambiarClave">
+                  <form id="frmCambiarClave" action="prcCambiarClave.php" method="POST">
+                  <table width="100%" cellspacing="20" border="0" cellpadding="0">
+                    <tr>
+                       <td align="right"><label for="claveVieja">Clave Anterior:</label></td>
+                       <td align="left"><input type="password" name="claveVieja" id="claveVieja" size="20" maxlength="20" tabindex="10"></td>
+                    </tr>
+                    <tr>
+                       <td align="right"><label for="claveNueva">Clave Nueva:</label></td>
+                       <td align="left"><input type="password" name="claveNueva" id="claveNueva" size="20" maxlength="20" tabindex="20"></td>
+                    </tr>
+                    <tr>
+                       <td align="right"><label for="claveNuevaConfirmacion">Repita la Clave Nueva:</label></td>
+                       <td align="left"><input type="password" name="claveNuevaConfirmacion" id="claveNuevaConfirmacion" size="20" maxlength="20" tabindex="20"></td>
+                    </tr>
+                    <tr>
+                       <td colspan="2" align="right"><br><input type="submit" name="aceptarClaveNueva" id="aceptarClaveNueva" value="ACEPTAR" size="10" tabindex="30"></td>
+                    </tr>
+                  </table>
+                  </form>
+               </div>
+							<div id="mensaje"></div>

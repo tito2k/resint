@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>{_-CAPTION-_}</title>
+<script type="text/javascript">
+
+var lastsel;
+
+jQuery(document).ready(function(){
+
+   jQuery("#list").jqGrid({
+		url:'../adm/datarticulo.php',
+		datatype: "json",
+		colNames:['C&oacute;digo','Nombre', 'Nivel', 'Stock','Stock m&iacute;nimo','Magnitud'],
+		colModel:[
+			{name:'_key_N_idarticulo',index:'_key_N_idarticulo', width:55,editable:false},
+			{name:'_field_S_nombre',index:'_field_S_nombre', width:80,editable:true,editoptions:{size:40,maxlength:200}}, 
+			{name:'_field_N_idfamilia',index:'_field_N_idfamilia', width:60,editable:true,edittype:"select",editoptions:{value:"{_-FAMILIAS-_}"}},
+			{name:'_field_N_stock',index:'_field_N_stock', width:60,editable:true,editoptions:{size:10},editrules:{required:true, number:true}}, 
+			{name:'_field_N_stockminimo',index:'_field_N_stockminimo', width:60,editable:true,editoptions:{size:10},editrules:{required:true, number:true}}, 
+			{name:'_field_N_idmagnitud',index:'_field_N_idmagnitud', width:60,editable:true,edittype:"select",editoptions:{value:"{_-MAGNITUDES-_}"}}
+		],
+		rowNum: 40,
+		rowList: [40,80],
+		height: $('#center').height(),
+		width: $('#center').width(),
+		pager: '#pager',
+		sortname: '_key_N_idarticulo',
+		viewrecords: true,
+		sortorder: "asc",
+ 		shrinkToFit: true,
+		editurl:"../../lib/generica.php?tabla={_-TABLE-_}",
+		caption:"{_-CAPTION-_}",
+		onSelectRow: function(id){
+			if(id && id!==lastsel){
+				jQuery('#list').jqGrid('restoreRow',lastsel);
+				jQuery('#list').jqGrid('editRow',id,true);
+				lastsel=id;
+			}
+		}
+
+   });
+
+	jQuery("#list").jqGrid('navGrid','#pager', 
+		{edit:false,height:400,width:600,reloadAfterSubmit:false}, //options 
+		{reloadAfterSubmit:true,closeAfterEdit:true,afterSubmit:callBack}, // edit options 
+		{reloadAfterSubmit:true,closeAfterAdd:true,editData:{_key_N_idarticulo:"_new"}}, // add options 
+		{reloadAfterSubmit:false}, // del options 
+		{} // search options 
+	);
+
+	function callBack(response,postData) {
+
+		var success = true;
+		var message = "";
+		var json = eval('(' + response.responseText + ')');
+		
+		if(json.errors) {
+			success = false;
+			for(i=0; i < json.errors.length; i++) {
+			message += json.errors[i] + '<br/>';
+			}
+		}
+		return [success,message];
+
+	}
+});
+</script>
+</head>
+<body>
+<table id="list" class="scroll"></table>
+<div id="pager" class="scroll" style="text-align:center;"></div>
+</body>
+</html>

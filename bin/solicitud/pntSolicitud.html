@@ -1,0 +1,35 @@
+               <!-- =========================================================== -->
+               <!-- ==              Pantalla Solicitud                       == -->
+               <!-- =========================================================== -->
+						   <script type="text/javascript" src="../../js/init_solicitud.js"></script>    
+
+               <div id="solicitud">
+                  <form id="frmSolicitud" action="../solicitud/prcSolicitud.php" method="POST">
+                  <table width="100%" cellspacing="20" border="0" cellpadding="0">
+                    <tr>
+                       <td align="right"><label for="fecha">Fecha:</label></td>
+                       <td align="left"><input type="text" name="fecha" id="fecha" size="10" maxlength="10" tabindex="10"></td>
+                    </tr>
+                    <tr>
+                       <td align="right"><label for="seccion">Secci&oacute;n:</label></td>
+                       <td align="left"><input type="text" name="seccion" id="seccion" size="20" maxlength="20" tabindex="20"></td>
+                    </tr>
+                    <tr>
+                       <td align="right"><label for="almacen">Almac&eacute;n:</label></td>
+                       <td align="left"><input type="text" name="almacen" id="almacen" size="20" maxlength="20" tabindex="20"></td>
+                    </tr>
+										<tr align="center">
+											<td colspan="2">
+												<table id="list" class="scroll"></table>
+											</td>
+										</tr>
+										<tr>
+                       <td align="right"><label for="observaciones">Observaciones:</label></td>
+                       <td align="left"><input type="text" name="observaciones" id="observaciones" size="20" maxlength="20" tabindex="20"></td>
+										</tr>
+                    <tr>
+                       <td colspan="2" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="30"></td>
+                    </tr>
+                  </table>
+                  </form>
+               </div>

@@ -1,0 +1,113 @@
+/*
+
+:::::
+::::
+::  ***     resint.css
+::  *****
+::  ***     Define los estilos para la pagina principal y todos sus elementos.
+::::        Clases e identificadores
+:::::
+
+*/
+
+/* El cuerpo principal y los elementos basicos */
+html,body { margin:0; padding:0; background: #2D507E }
+body      { font: 10pt Arial, "Bitstream Vera Sans", sans-serif }
+form      { margin: 10px 10px }
+p         { margin:10px 10px; text-align: justify; line-height:1.4 }
+
+/* Contenedor global */
+div#container { width:720px; text-align: justify; margin-top: 0px; margin-bottom: 20px; }
+
+/* Contenedor del cuerpo y cuerpo */
+div#head    { top: 0; position: absolute; }
+div#banner  { margin-top: 25px; background: url(../img/topbanner.png); height: 100px; z-index:1000; }
+div#content { margin: 0px; padding: 10px; }
+div#content { background: white url(../img/bottomwatermark.png) bottom no-repeat; }
+div#footer  { background: url(../img/thinfooter.png); height: 24px; }
+div#foot    { margin-top: 10px; padding: 0px; }
+
+/* Titulo y subtitulo de cada tarea */
+#titulo { font: 16pt "Times New Roman", serif; color: gray }
+#subtitulo { font: 9pt Arial; color: gray }
+.subtitulo { font: 9pt Arial; color: gray }
+
+/* Bloque con informacion de la Sesion */
+#infosesion { font: 9pt Arial; color: gray;  }
+#infosesion button { font: 8pt "Courier New"; color: #2D507E; border: solid 1px gray;}
+
+/* Imagenes y logos principales */
+img#RESINT { display: inline; margin-top: 0px; margin-left: 550px; padding: 0px; }
+img#DI { display: inline; margin-bottom: 25px; margin-left: 35px; padding: 0px; }
+img#JPC { display: inline; margin-top: 0px; margin-left: 320px; padding: 0px; }
+
+/* Elementos que al inicio estan ocultos */
+.oculta {display: none;}
+
+/*
+
+  :::::
+  ::::
+  ::  ***     login.css
+  ::  *****
+  ::  ***     Define los estilos para el formulario de login.
+  ::::        Identificadores y clases.
+  :::::
+
+*/
+#ingreso { background: url(../img/loginback.png) no-repeat; width: 355px; height: 207px; }
+#ingreso { padding-top: 30px; }
+#ingreso label { font: 10pt "Arial Narrow"; color: gray; }
+#ingreso input { font: 10pt "Courier New"; color: #2D507E; border: solid 1px gray;}
+#ingreso h2 { font: bold 16pt Arial, sans-serif; color: gray;  }
+#ingreso h3 { font: bold 12pt Arial, sans-serif; color: gray;  }
+
+
+/*
+
+:::::
+::::
+::  ***     pulldown.css
+::  *****
+::  ***     Define los estilos para la barra de menu y los pulldown; asi como el contenedor.
+::::        Identificadores.
+:::::
+
+*/
+
+/* Contenedor */
+table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
+
+/*
+
+:::::
+::::
+::  ***     tooltip.css
+::  *****
+::  ***     Define los estilos para los tooltips.
+::::        
+:::::
+
+*/
+
+#tooltip {
+	background-color: #CCCCCC;
+	border: 1px solid #888888;
+    color: #333333;
+    padding: 4px;
+    -moz-border-radius-bottomleft: 7px;
+    -moz-border-radius-bottomright: 7px;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-topright: 7px;
+}
+#tooltip h3 {
+	font-size: 1.1em;
+	margin: 0;
+	padding: 0 3px;
+	text-align: left !important;
+}
+#tooltip p {
+	font-size: 0.95em;
+	margin: 5px 0 0 5px;
+	text-align: left;
+}

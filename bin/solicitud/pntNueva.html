@@ -1,0 +1,106 @@
+               <!-- =========================================================== -->
+               <!-- ==              Pantalla Solicitud                       == -->
+               <!-- =========================================================== -->
+               <script type="text/javascript" src="../../js/init_solicitud.js"></script>
+               <div id="solicitud">
+                  <form id="frmSolicitud" action="../solicitud/prcNueva.php" method="POST">
+                  <table border="1" width="100%" cellspacing="20" border="0" cellpadding="0">
+                    <tr>
+                       <td align="left"><label for="fecha">Fecha:</label></td>
+                       <td align="left"><input type="text" name="fecha" id="fecha" size="10" maxlength="10" tabindex="10" value="{fechaactual}"></td>
+                       <td align="left"><label for="destino">Destino:</label></td>
+                       <td align="left"><select name="destino" id="destino" tabindex="20">
+											<option value="S">Unidad Organizativa</option>
+											<option value="F">Funcionario</option>
+											<option value="V">Veh&iacute;culo</option>
+                       					</select>
+                       </td>
+					</tr>
+					<tr><td colspan="4">
+						<div id="seccion" class="oculta">
+							<table border="1" width="100%">
+							    <tr>
+								   <td align="left" width="105px"><label for="idseccion">Secci&oacute;n:</label></td>
+								   <td align="left"><select name="idSeccion" id="idseccion" tabindex="30">{secciones}</select></td>
+							    </tr>
+							</table>
+						</div>
+						<div id ="funcionario" class="oculta">
+							<table border="1" width="100%">
+							    <tr>
+								   <td align="left" width="105px"><label for="idfuncionario">Funcionario:</label></td>
+								   <td align="left"><input type="text" name="idFuncionario" id="idfuncionario" size="10" maxlength="10" tabindex="30"></td>
+								   <td align="left"><div id="ci" class="subtitulo"></div></td>
+							    </tr>
+							</table>
+	                    </div>
+						<div id="vehiculo" class="oculta">
+							<table border="1" width="100%">
+							    <tr>
+								   <td align="left" width="105px"><label for="idvehiculo">Veh&iacute;culo:</label></td>
+								   <td align="left"><input type="text" name="idVehiculo" id="idvehiculo" size="10" maxlength="10" tabindex="30"></td>
+								   <td align="left"><div id="matricula" class="subtitulo"></div></td>
+							    </tr>
+							</table>
+	                    </div>
+					</td></tr>
+					<tr>
+                       <td align="left"><label for="almacen">Almac&eacute;n:</label></td>
+                       <td colspan="3" align="left"><select name="almacen" id="almacen" tabindex="30">{almacenes}</select></td>
+					</tr>
+					<tr align="center">
+							<td colspan="4">
+									<table id="list" class="scroll"></table>
+									<div id="pager" class="scroll" style="text-align:center;"></div>
+							</td>
+					</tr>
+                    <tr align="center">
+                       <td colspan="4"><label for="observaciones">Observaciones:</label><br>
+                       <textarea align="center" name="observaciones" id="observaciones" rows="10" cols="80" tabindex="50" class="tinymce"></textarea></td>
+                    </tr>
+                    <tr>
+                       <td colspan="6" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
+                    </tr>
+                  </table>
+                  </form>
+               </div>
+
+
+ <script type="text/javascript">
+$(document).ready(function() { 
+ 	var lastsel;
+   jQuery("#list").jqGrid({
+		datatype: "local",
+		colNames:['#','Art&iacute;culo','Cantidad'],
+		colModel:[
+			{name:'idarticulo',index:'idarticulo', width:6,editable:true,editoptions:{readonly:true}},
+			{name:'nombre',index:'nombre', width:40,editable:true,editoptions:{dataInit:editarFila,size:20,maxlength:10}} ,
+			{name:'cantidad',index:'cantidad', width:40,editable:true,editoptions:{size:10,maxlength:10}/*,editrules:{number:true}*/} 
+		],
+		rowNum: 40,
+		rowList: [40,80],
+		height: $('#center').height()*0.3,
+		width: $('#center').width()*0.8,
+		pager: '#pager',
+		sortname: 'idart',
+		viewrecords: true,
+		sortorder: "asc",
+ 		shrinkToFit: true,
+		editurl:"#",
+		cellsubmit:'clientArray'
+   });
+
+	jQuery("#list").jqGrid('navGrid','#pager', 
+		{height:400,width:600,reloadAfterSubmit:false}, //options 
+		{reloadAfterSubmit:true,closeAfterEdit:true,afterSubmit:callBack}, // edit options 
+		{reloadAfterSubmit:true,closeAfterAdd:false, afterShowForm:function(formid){$('#nombre').focus();}}, // add options 
+		{reloadAfterSubmit:false}, // del options 
+		{} // search options 
+	);
+
+// Hotkeys ////////////////////////////////////////////////////////////////////////
+	$(document).bind('keydown','F9',function() {$('#add_list').trigger('click');});
+///////////////////////////////////////////////////////////////////////////////////
+	
+});
+ </script>
