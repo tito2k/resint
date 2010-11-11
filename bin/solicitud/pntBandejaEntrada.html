@@ -50,22 +50,16 @@ jQuery(document).ready(function(){
 				jQuery("#list").jqGrid('setRowData',ids[i],{edit:ed,view:vi});
 			}
 			
-/*			
+      
 $('.jqgrow').mouseover(function(e) {
-var rowId = $(this).attr('id');
-alert("You rolled over " + rowId.Id);
-});
-*/
-jQuery("#list").setCell('idtransaccion=20100014', '_field_D_descestado', '', '',{ title: "vamos que ahora funciona!"});
-
-$('.jqgrow').tooltip({ 
-    track: true, 
-    delay: 0, 
-    showURL: false, 
-    showBody: " - ", 
-    fade: 250 
+  var rowId = $(this).attr('id');
+  var row = $('#list').jqGrid('getRowData',rowId);
+  $('#topright').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_idestado});
 });
 			
+
+jQuery("#list").setCell('idtransaccion=20100014', '_field_D_descestado', '', '',{ title: "vamos que ahora funciona!"});
+
 	  	},
 	  	loadComplete: function(xhr) { 
 	  		var mids = jQuery("#list").getDataIDs();

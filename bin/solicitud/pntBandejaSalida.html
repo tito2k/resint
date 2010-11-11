@@ -47,9 +47,15 @@ jQuery(document).ready(function(){
 
 				ed = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -64px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"editRow("+idEstado+","+idTransaccion+");\" />"; 
 				vi = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -128px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"viewRow("+idEstado+","+idTransaccion+");\" />"; 
-				jQuery("#list").jqGrid('setRowData',ids[i],{edit:ed,view:vi});
-				 
+				jQuery("#list").jqGrid('setRowData',ids[i],{edit:ed,view:vi});				 
 			}
+
+$('.jqgrow').mouseover(function(e) {
+  var rowId = $(this).attr('id');
+  var row = $('#list').jqGrid('getRowData',rowId);
+  $('#topright').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_idestado});
+});
+			
 	  	},
 	  	loadComplete: function(xhr) { 
 	  		var mids = jQuery("#list").getDataIDs();

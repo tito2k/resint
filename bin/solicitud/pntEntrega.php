@@ -13,6 +13,7 @@
 ::          $idSolicitud         Numero de la solicitud a ratificar
 ::
 ::          $row['fchInicio']    Fecha de Inicio de la Transaccion
+::          $row['desOrigen']    Seccion donde se origino la solicitud
 ::          $row['tipoDestino']  Tipo del destino S | F | V
 ::          $row['idDestino']    idSeccion | CI | Matreicula
 ::          $row['desAlmacen']   Seccion Proveedora
@@ -39,21 +40,20 @@ $idSolicitud = $_POST['idSolicitud'];
 // De no haber sesion, adios ...
 if ( !sesionValida($idSesion) ) return;
 
-// Obtener datos del Usuario
-$datosUsuario = datosUsuario($idSesion);
-
 // Obtener las los datos de la Solicitud
 $db  = dbConnect("resint");
 $qs  = "SELECT t.fechainicio AS fchInicio, t.destino AS tipoDestino,
                t.iddestino AS idDestino, t.observaciones AS Observaciones,
-               a.descripcion AS desAlmacen,
+               o.descripcion AS desOrigen, a.descripcion AS desAlmacen,
                e.idestado AS idEstado, e.descripcion AS desEstado,
                s.fecha AS fchActual, s.idusuario AS idUsuario
          FROM transaccion t
+         INNER JOIN seccion o ON t.idorigen=o.idseccion
          INNER JOIN seccion a ON t.idalmacen=a.idseccion
          INNER JOIN estadotransaccion e ON t.idestado=e.idestado
          INNER JOIN seguimiento s ON t.idtransaccion=s.idtransaccion AND t.idestado=s.idestado
          WHERE t.idtransaccion=$idSolicitud";
+
 $rs  = $db->query($qs);
 $row = $rs->fetch(PDO::FETCH_ASSOC);
 
@@ -92,10 +92,11 @@ switch($row['tipoDestino'])
 
 // Procesar el template y desplegar
 $pntNuevaSol = new fxl_template("pntEntrega.html");
-$pntNuevaSol->assign("idSesion"  	, $idSesion);
+$pntNuevaSol->assign("idSesion"     , $idSesion);
 $pntNuevaSol->assign("idSolicitud"  , $idSolicitud);
 $pntNuevaSol->assign("nroSolicitud" , $nroSolicitud);
 $pntNuevaSol->assign("fchInicio"    , $fchInicio);
+$pntNuevaSol->assign("idOrigen"     , $row['desOrigen']);
 $pntNuevaSol->assign("tipoDestino"  , $row['tipoDestino']);
 $pntNuevaSol->assign("idDestino"    , $row['idDestino']);
 $pntNuevaSol->assign("desAlmacen"   , $row['desAlmacen']);
@@ -103,7 +104,7 @@ $pntNuevaSol->assign("idEstado"     , $row['idEstado']);
 $pntNuevaSol->assign("desEstado"    , $row['desEstado']);
 $pntNuevaSol->assign("fchActual"    , $fchActual);
 $pntNuevaSol->assign("idUsuario"    , $row['idUsuario']);
-$pntNuevaSol->assign("observaciones", $row['Obseraviones']);
+$pntNuevaSol->assign("observaciones", $row['Observaciones']);
 $pntNuevaSol->display();
 
 ?>

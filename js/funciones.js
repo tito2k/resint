@@ -5,7 +5,7 @@ estadoTransaccion['2'] = "efdb01";		// Ratificada
 estadoTransaccion['3'] = "d08c20";		// Autorizada
 estadoTransaccion['4'] = "ededed";		// Denegada
 estadoTransaccion['5'] = "3bb597";		// Parcialmente Entregada
-estadoTransaccion['6'] = "3965a2";		// Totalmente Entregada
+estadoTransaccion['6'] = "d9d9d9";		// Totalmente Entregada
 
 
 function mensajeError(texto)

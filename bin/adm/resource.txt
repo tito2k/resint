@@ -431,3 +431,24 @@ SELECT t.idtarea, t.descripcion, t.url, p.descripcion AS padre, t.secuencia,
                 t.titulo, t.subtitulo, t.icono ,concat('idtarea=',t.idtarea) AS id 
                 FROM tarea t
                 INNER JOIN tarea p ON p.idtarea = t.padre  ORDER BY idtarea asc;
+Array
+(
+    [_] => 1289509020166
+    [_search] => false
+    [nd] => 1289509020165
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idarticulo
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT a.idarticulo, a.nombre, f.nombre AS idfamilia, stock, stockminimo, 
+                m.nombre as idmagnitud,concat('idarticulo=',a.idarticulo) AS id 
+                FROM articulo a
+                LEFT JOIN magnitud m ON m.idmagnitud = a.idmagnitud 
+				LEFT JOIN familia f ON f.idfamilia = a.idfamilia 
+SELECT a.idarticulo, a.nombre, f.nombre AS idfamilia, stock, stockminimo, 
+                m.nombre as idmagnitud,concat('idarticulo=',a.idarticulo) AS id 
+                FROM articulo a
+                LEFT JOIN magnitud m ON m.idmagnitud = a.idmagnitud 
+				LEFT JOIN familia f ON f.idfamilia = a.idfamilia  ORDER BY idarticulo asc;

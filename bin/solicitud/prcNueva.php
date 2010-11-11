@@ -14,6 +14,7 @@
 ::
 ::          $idSesion         Identificador de sesion
 ::          $fecha            Fecha de la solicitud
+::          $idOrigen         Donde se origina la solicitud
 ::          $destino          A donde van los articulos S | F | V
 ::                            S -> Unidad Organisativa (Seccion)
 ::                            F -> Funcionario
@@ -41,6 +42,7 @@ require_once("../../etc/globales.php");
 // Recuperar los datos
 $idSesion      = $_POST['idSesion'];
 $fecha         = $_POST['fecha'];
+$idOrigen      = $_POST['idOrigen'];
 $destino       = $_POST['destino'];
 $idSeccion     = $_POST['idSeccion'];
 $idFuncionario = $_POST['idFuncionario'];
@@ -121,7 +123,7 @@ $db->exec($qs);
 
 // Grabar datos del cabezal
 $qs = "INSERT INTO transaccion
-       VALUES ($idSolicitud,$estado,$tipo,'$idDestino',$almacen,'$fecha','$fecha','$observaciones','$destino')";
+       VALUES ($idSolicitud,$estado,$tipo,$idOrigen,'$idDestino',$almacen,'$fecha','$fecha','$observaciones','$destino')";
 $db->exec($qs);
 
 // Grabar la lista de articulos
