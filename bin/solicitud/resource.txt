@@ -710,3 +710,29 @@ SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.
                 INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idorigen IN (1,2) ORDER BY idtransaccion asc;
 ESTOY EN GENERICA ******************* SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100021 AND au.idestado = 3
 SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100021 AND au.idestado = 3 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 57818b4e-3f9e-102e-b85e-001f29ae8127
+    [_] => 1289560534230
+    [_search] => false
+    [nd] => 1289560534229
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => asc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion asc;
