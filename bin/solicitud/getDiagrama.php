@@ -13,14 +13,17 @@
 ::          estado. En caso de estar denegada, todo ediagrama esta grisado,
 ::          en los otros casos segun el estado es la secuencia de iconos color.
 ::
-::          $idSesion                   Identificador de sesion
-::          $idEstado                   Identificador del estado
+::          $idSesion            Identificador de sesion
+::          $idEstado            Identificador del estado
+::          $idSolicitud         Numero de la solicitud a ratificar
 ::
-::          $icnInicio                  Icono para ETR_BORRADOR
-::          $icnRatificada              Icono para ETR_RATIFICADA
-::          $icnAutorizada              Icono para ETR_AUTORIZADA
-::          $icnEstado                  Icono para ETR_ENTREGA_PARCIAL
-::          $icnFinal                   Icono para ETR_ENTREGA_TOTAL
+::          $icnInicio           Icono para ETR_BORRADOR
+::          $icnRatificada       Icono para ETR_RATIFICADA
+::          $icnAutorizada       Icono para ETR_AUTORIZADA
+::          $icnEstado           Icono para ETR_ENTREGA_PARCIAL
+::          $icnFinal            Icono para ETR_ENTREGA_TOTAL
+::
+::          $nroSolicitud        El idSolicitud en formato ####/AAAA
 ::
 ::::
   :::::
@@ -31,8 +34,9 @@
 require_once("../../etc/globales.php");
 
 // Recuperar los datos del formulario
-$idSesion = $_POST["idSesion"];
-$idEstado = $_POST["idEstado"];
+$idSesion    = $_POST["idSesion"];
+$idEstado    = $_POST["idEstado"];
+$idSolicitud = $_POST["idSolicitud"];
 
 // De no haber sesion, adios ...
 if ( !sesionValida($idSesion) ) return;
@@ -54,6 +58,11 @@ if ( $idEstado != ETR_DENEGADA )               // Si es Denegada ya esta.
    if( $idEstado == ETR_ENTREGA_TOTAL ) $icnFinal = "colorFinal";
 }
 
+// El numero de Solicitud
+$anio = floor($idSolicitud / 10000);
+$numero = $idSolicitud - ($anio * 10000);
+$nroSolicitud = sprintf("%04d/%d",$numero,$anio);
+
 // Desplegar
 $pntDiagrama = new fxl_template("pntDiagrama.html");
 $pntDiagrama->assign("Inicio",$icnInicio);
@@ -61,6 +70,7 @@ $pntDiagrama->assign("Ratificada",$icnRatificada);
 $pntDiagrama->assign("Autorizada",$icnAutorizada);
 $pntDiagrama->assign("Entregada",$icnEntregada);
 $pntDiagrama->assign("Final",$icnFinal);
+$pntDiagrama->assign("nroSolicitud" ,$nroSolicitud);
 $pntDiagrama->display();
 
 ?>

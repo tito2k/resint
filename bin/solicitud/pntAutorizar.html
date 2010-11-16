@@ -13,7 +13,8 @@ jQuery(document).ready(function(){
 		colModel:[
 			{name:'idarticulo',index:'idarticulo', width:20 },
 			{name:'nombre',index:'nombre', width:80 },
-			{name:'cantidad',index:'cantidad', width:40 } 
+			{name:'cantidad',index:'cantidad', width:40 }, 
+      {name:'info', search:false, index:'info',width:12,sortable:false}
 		],
 		//rowNum: 40,
 		//rowList: [40,80],
@@ -22,11 +23,27 @@ jQuery(document).ready(function(){
 		pager: '#pager',
 		sortname: 'idarticulo',
 		viewrecords: true,
-		sortorder: "asc"
- 		//shrinkToFit: true
-		//editurl:"../solicitud/editsolicitud.php?idsolicitud=1",
-		//caption:"titulo"
+		sortorder: "asc",
+    gridComplete: function() { 
+          var ids = jQuery("#list").jqGrid('getDataIDs'); 
+          var array = jQuery("#list").jqGrid('getRowData');
+          var largo = array.length;
+          
+          for (var i=0;i<largo;i++)
+          {
+            var linea = array[i];
+            var idArticulo = linea.idarticulo;
+          
+            info = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"infoRow("+idArticulo+");\" />"; 
+            jQuery("#list").jqGrid('setRowData',ids[i],{info:info});
+          }
+    }
+
    });
+
+function infoRow(idArticulo) { 
+  ('#bottomright').load("../tips/getArticulo.php",{idArticulo:idArticulo}); 
+} 
 
 });
 </script>

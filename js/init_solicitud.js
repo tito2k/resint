@@ -11,11 +11,13 @@
 	});
 }( jQuery ));	
 
+// Variables globales
+var cantTuplas = 0;
 
 $(document).ready(function() {
 
 	$('#idSesion').clone().appendTo('#frmSolicitud');	
-	$('#frmSolicitud').append('<input type="hidden" id="datos" name="datos" value=/>');
+	$('#frmSolicitud').append('<input type="hidden" id="datos" name="datos" value="">');
 	$('#destino').change(mostrarCampo);
 	mostrarCampo();
 
@@ -102,10 +104,7 @@ function callBack(response,postData) {
 
 function validaForm()
 {
-	if (jQuery("#list").getGridParam("records")==0)
-		return false;
-	else
-		return true;
+	return (cantTuplas>0);
 };
 
 function formSuccess(responseText, statusText, xhr, $form)
@@ -137,7 +136,7 @@ function procesaGrilla()
 	var array = jQuery("#list").jqGrid('getRowData');
 	var datos = "[";
 	var largo = array.length;
-
+	
 	for (var i=0;i<largo;i++)
 	{
 		var linea = array[i];
@@ -148,21 +147,29 @@ function procesaGrilla()
 			var primero = true;
 			for (var indice in linea)
 			{
-				if (!primero) {
-					datos += ",";
-				}
-				else
+				if (indice != 'info')
 				{
-					primero = false;
+					if (!primero) {
+						datos += ",";
+					}
+					else
+					{
+						primero = false;
+					}
+					datos += '"'+indice+'":"'+linea[indice]+'"';
 				}
-				datos += '"'+indice+'":"'+linea[indice]+'"';
-			}				
+			}
 			datos += '}';			
+			cantTuplas++;
 		}
 	}
 
 	datos += "]";
-	$('#datos').attr("value",datos);	
+	$('#datos').attr("value",datos);
+	console.info(datos);
+	console.info(cantTuplas);
+//	console.info($('#datos').attr("value"));
+	return (cantTuplas>0);
 };
 
 function mostrarCampo()

@@ -26,7 +26,7 @@ $datosUsuario = datosUsuario($idSesion);
 // Obtener las Secciones que puede representar este usuario
 $sql_count  = "SELECT COUNT(*) AS count FROM transaccionarticulo ";
 $sql_count .= "WHERE idtransaccion = " . $idSolicitud;
-$sql_count .= " AND idestado = 3 AND idestado = 5 ";
+$sql_count .= " AND (idestado = ".ETR_AUTORIZADA." OR idestado = ".ETR_ENTREGA_PARCIAL.") ";
 
 $qs  = "SELECT au.idarticulo,a.nombre, ";
 $qs .= "au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, ";

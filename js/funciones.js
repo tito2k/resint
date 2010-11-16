@@ -1,10 +1,10 @@
 // Tabla de colores para cada estado de una transacción
 var estadoTransaccion = new Array();
-estadoTransaccion['1'] = "939393";		// Borrador
-estadoTransaccion['2'] = "efdb01";		// Ratificada
-estadoTransaccion['3'] = "d08c20";		// Autorizada
+estadoTransaccion['1'] = "c7d6eb";		// Borrador
+estadoTransaccion['2'] = "f7ed80";		// Ratificada
+estadoTransaccion['3'] = "e7c58f";		// Autorizada
 estadoTransaccion['4'] = "ededed";		// Denegada
-estadoTransaccion['5'] = "3bb597";		// Parcialmente Entregada
+estadoTransaccion['5'] = "9ddacb";		// Parcialmente Entregada
 estadoTransaccion['6'] = "d9d9d9";		// Totalmente Entregada
 
 

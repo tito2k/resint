@@ -42,7 +42,7 @@
 	 
 	require_once ("../../lib/generica.class.php");
 
-    $sql_count = "SELECT COUNT(*) AS count FROM transaccion";
+    $sql_count = "SELECT COUNT(*) AS count FROM transaccion t ".$filtro;
     $sql_data = "SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
     			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
     			concat('idtransaccion=',t.idtransaccion) AS id 
@@ -50,9 +50,6 @@
                 INNER JOIN seccion a ON a.idseccion = t.idalmacen 
                 INNER JOIN seccion s ON s.idseccion = t.idorigen 
                 INNER JOIN estadotransaccion e ON e.idestado = t.idestado ".$filtro;
-
-
-// die($sql_data);
 
     $generica = new Generica();
     if ($generica->_search == "false"){

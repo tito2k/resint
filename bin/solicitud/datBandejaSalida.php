@@ -42,7 +42,7 @@
 	 
 	require_once ("../../lib/generica.class.php");
 
-    $sql_count = "SELECT COUNT(*) AS count FROM transaccion";
+    $sql_count = "SELECT COUNT(*) AS count FROM transaccion t ".$filtro;
     $sql_data = "SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
     			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
     			concat('idtransaccion=',t.idtransaccion) AS id 

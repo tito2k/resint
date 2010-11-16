@@ -6,6 +6,10 @@
                   <form id="frmSolicitud" action="../solicitud/prcNueva.php" method="POST">
                   <table border="1" width="100%" cellspacing="20" border="0" cellpadding="0">
                     <tr>
+                       <td align="left"><label for="idorigen">Unidad Org.:</label></td>
+                       <td align="left" colspan="3"><select name="idOrigen" id="idorigen" tabindex="30">{secciones}</select></td>
+                    </tr>
+                    <tr>
                        <td align="left"><label for="fecha">Fecha:</label></td>
                        <td align="left"><input type="text" name="fecha" id="fecha" size="10" maxlength="10" tabindex="10" value="{fechaactual}"></td>
                        <td align="left"><label for="destino">Destino:</label></td>

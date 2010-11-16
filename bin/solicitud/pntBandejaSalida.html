@@ -30,7 +30,7 @@ jQuery(document).ready(function(){
 		pager: '#pager',
 		sortname: '_key_N_idtransaccion',
 		viewrecords: true,
-		sortorder: "asc",
+		sortorder: "desc",
  		shrinkToFit: true,
 		editurl:"../../lib/generica.php?tabla={_-TABLE-_}",
 		caption:"{_-CAPTION-_}",
@@ -53,7 +53,7 @@ jQuery(document).ready(function(){
 $('.jqgrow').mouseover(function(e) {
   var rowId = $(this).attr('id');
   var row = $('#list').jqGrid('getRowData',rowId);
-  $('#topright').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_idestado});
+  $('#topright').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_idestado,idSolicitud:row._key_N_idtransaccion});
 });
 			
 	  	},

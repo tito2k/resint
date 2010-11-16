@@ -5,6 +5,10 @@
 	<div id="autorizarsolicitud">
 		  <form id="frmSolicitud" action="../solicitud/prcAutoriza.php" method="POST">
 		  <table width="100%" cellspacing="20" border="0" cellpadding="0">
+      <tr>
+         <td align="left"><span>Unidad Org.:</span></td>
+         <td align="left" colspan="3"><span>{desOrigen}</span></td>
+      </tr>
 			<tr>
 			   <td align="left"><span>Fecha:</span></td>
 			   <td colspan="3" align="left"><span>{fchInicio}</span></td>
@@ -47,13 +51,14 @@ jQuery(document).ready(function(){
    jQuery("#list").jqGrid({
 		url:'../solicitud/datAutoriza.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
 		datatype: "json",
-		colNames:['C&oacute;digo','Art&iacute;culo','Cantidad','Aprueba','Autoriza'],
+		colNames:['C&oacute;digo','Art&iacute;culo','Cantidad','Aprueba','Autoriza',''],
 		colModel:[
 			{name:'idarticulo',index:'idarticulo', width:20,editable:false },
 			{name:'nombre',index:'nombre', width:80,editable:false },
 			{name:'cantidad',index:'cantidad', width:40,editable:false },
 			{name:'aprueba',index:'aprueba', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true} },
-			{name:'autoriza',index:'autoriza', width:15,sortable:false,editoptions:{value:"SI:NO"},formatter: "checkbox", formatoptions: {disabled : false}, editable: true, edittype:"checkbox"}
+			{name:'autoriza',index:'autoriza', width:15,sortable:false,editoptions:{value:"SI:NO"},formatter: "checkbox", formatoptions: {disabled : false}, editable: true, edittype:"checkbox"},
+      {name:'info', search:false, index:'info',width:12,sortable:false}
 		],
 		rowNum: 40,
 		//rowList: [40,80],
@@ -70,11 +75,41 @@ jQuery(document).ready(function(){
 				jQuery('#list').jqGrid('editRow',id,true);
 				lastsel=id;
 			}
-		}
+		},
+    gridComplete: function() { 
+          var ids = jQuery("#list").jqGrid('getDataIDs'); 
+          var array = jQuery("#list").jqGrid('getRowData');
+          var largo = array.length;
+          
+          for (var i=0;i<largo;i++)
+          {
+            var linea = array[i];
+            var idArticulo = linea.idarticulo;
+          
+            info = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' class='tootip_trigger' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"infoRow("+idArticulo+");\" />"; 
+            jQuery("#list").jqGrid('setRowData',ids[i],{info:info});
+          }
+    }
+		
 		
    });
-
-
+      
 });
+
+$('.tootip_trigger').mouseover(function(){
+  var pos = $(this).offset();  
+  var width = $(this).width();  
+
+  $('#xtooltip').css({(pos.left + width) + 'px', top: pos.top - 5 + 'px'});
+  $('#xtooltip').load('../tips/getArticulo.php',{idSesion:idSesion,idArticulo:idArticulo});
+  $('#xtooltip').show();
+  $('#xtooltip').click(function(){$('#xtooltip').hide();});
+});
+
+function infoRow(boton,idArticulo) { 
+  var pos = $(this).offset();  
+  var width = $(this).width();  
+
+} 
 
 </script>
