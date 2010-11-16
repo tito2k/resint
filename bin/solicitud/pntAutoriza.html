@@ -86,7 +86,8 @@ jQuery(document).ready(function(){
             var linea = array[i];
             var idArticulo = linea.idarticulo;
           
-            info = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' class='tootip_trigger' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"infoRow("+idArticulo+");\" />"; 
+            info = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' "+ 
+                   "onclick=\"infoRow(event,"+idArticulo+");\" />"; 
             jQuery("#list").jqGrid('setRowData',ids[i],{info:info});
           }
     }
@@ -96,20 +97,15 @@ jQuery(document).ready(function(){
       
 });
 
-$('.tootip_trigger').mouseover(function(){
-  var pos = $(this).offset();  
-  var width = $(this).width();  
-
-  $('#xtooltip').css({(pos.left + width) + 'px', top: pos.top - 5 + 'px'});
+function infoRow(event,idArticulo) {
+  var posX = event.clientX;
+  var posY = event.clientY;
+  
+  $('#xtooltip').css({left: posX + 'px', top: posY + 'px'});
   $('#xtooltip').load('../tips/getArticulo.php',{idSesion:idSesion,idArticulo:idArticulo});
-  $('#xtooltip').show();
-  $('#xtooltip').click(function(){$('#xtooltip').hide();});
-});
-
-function infoRow(boton,idArticulo) { 
-  var pos = $(this).offset();  
-  var width = $(this).width();  
-
+  $('#xtooltip').fadeIn(1500);
+  $('#xtooltip').click(function(){$('#xtooltip').fadeOut(1000);});
+  $('#xtooltip').empty();  
 } 
 
 </script>

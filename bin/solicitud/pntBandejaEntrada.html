@@ -35,32 +35,20 @@ jQuery(document).ready(function(){
 		editurl:"../../lib/generica.php?tabla={_-TABLE-_}",
 		caption:"{_-CAPTION-_}",
 	  	gridComplete: function() { 
-		 	var ids = jQuery("#list").jqGrid('getDataIDs'); 
-			var array = jQuery("#list").jqGrid('getRowData');
-			var largo = array.length;
-
-			for (var i=0;i<largo;i++)
-			{
-				var linea = array[i];
-				var idEstado = linea._field_D_idestado;
-				var idTransaccion = linea._key_N_idtransaccion;
-
-				ed = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -64px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"editRow("+idEstado+","+idTransaccion+");\" />"; 
-				vi = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -128px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"viewRow("+idEstado+","+idTransaccion+");\" />"; 
-				jQuery("#list").jqGrid('setRowData',ids[i],{edit:ed,view:vi});
-			}
-			
-      
-$('.jqgrow').mouseover(function(e) {
-  var rowId = $(this).attr('id');
-  var row = $('#list').jqGrid('getRowData',rowId);
-
-  $('#topright').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_idestado,idSolicitud:row._key_N_idtransaccion});
-});
-			
-
-jQuery("#list").setCell('idtransaccion=20100014', '_field_D_descestado', '', '',{ title: "vamos que ahora funciona!"});
-
+  		 	var ids = jQuery("#list").jqGrid('getDataIDs'); 
+  			var array = jQuery("#list").jqGrid('getRowData');
+  			var largo = array.length;
+  
+  			for (var i=0;i<largo;i++)
+  			{
+  				var linea = array[i];
+  				var idEstado = linea._field_D_idestado;
+  				var idTransaccion = linea._key_N_idtransaccion;
+  
+  				ed = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -64px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"editRow("+idEstado+","+idTransaccion+");\" />"; 
+  				vi = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -128px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"viewRow("+idEstado+","+idTransaccion+");\" />"; 
+  				jQuery("#list").jqGrid('setRowData',ids[i],{edit:ed,view:vi});
+  			}
 	  	},
 	  	loadComplete: function(xhr) { 
 	  		var mids = jQuery("#list").getDataIDs();
@@ -68,9 +56,9 @@ jQuery("#list").setCell('idtransaccion=20100014', '_field_D_descestado', '', '',
 	  			var cl=mids[i];
 	  			var state=jQuery("#list").getCell(cl,'_field_D_idestado');
 
-				for (var l=0;l<7;l=l+1) { 
-					jQuery("#list").setCell(cl,l,'',{'background-color':estadoTransaccion[state]}); 
-				}
+  				for (var l=0;l<7;l=l+1) { 
+  					jQuery("#list").setCell(cl,l,'',{'background-color':estadoTransaccion[state]}); 
+  				}
 	  		}
 	  	}	  	
    });

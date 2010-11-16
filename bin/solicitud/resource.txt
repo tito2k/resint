@@ -4037,3 +4037,643 @@ SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.
                 INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
 ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
 SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935170418
+    [_search] => false
+    [nd] => 1289935170410
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935226778
+    [_search] => false
+    [nd] => 1289935226770
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935332391
+    [_search] => false
+    [nd] => 1289935332383
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935398154
+    [_search] => false
+    [nd] => 1289935398143
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935421253
+    [_search] => false
+    [nd] => 1289935421244
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935564829
+    [_search] => false
+    [nd] => 1289935564821
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935638027
+    [_search] => false
+    [nd] => 1289935638018
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935670684
+    [_search] => false
+    [nd] => 1289935670675
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935700717
+    [_search] => false
+    [nd] => 1289935700708
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935797897
+    [_search] => false
+    [nd] => 1289935797887
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289935946387
+    [_search] => false
+    [nd] => 1289935946378
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289936015773
+    [_search] => false
+    [nd] => 1289936015764
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289936271455
+    [_search] => false
+    [nd] => 1289936271446
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289941176017
+    [_search] => false
+    [nd] => 1289941176007
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289941248212
+    [_search] => false
+    [nd] => 1289941248202
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289941291372
+    [_search] => false
+    [nd] => 1289941291361
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289941455670
+    [_search] => false
+    [nd] => 1289941455654
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289941516473
+    [_search] => false
+    [nd] => 1289941516462
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289941958627
+    [_search] => false
+    [nd] => 1289941958626
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9aec60fa-4306-102e-9add-001f29ae8127
+    [_] => 1289942028340
+    [_search] => false
+    [nd] => 1289942028339
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => 9d7d1c3c-4316-102e-9add-001f29ae8127
+    [_] => 1289942044446
+    [_search] => false
+    [nd] => 1289942044445
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => e0defbc6-4316-102e-9add-001f29ae8127
+    [_] => 1289942182002
+    [_search] => false
+    [nd] => 1289942182001
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
+Array
+(
+    [idSesion] => e0defbc6-4316-102e-9add-001f29ae8127
+    [_] => 1289942212438
+    [_search] => false
+    [nd] => 1289942212438
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtransaccion
+    [sord] => desc
+)
+
+ESTOY EN GENERICA ******************* SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1
+SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
+    			concat('idtransaccion=',t.idtransaccion) AS id 
+                FROM transaccion t
+                INNER JOIN seccion a ON a.idseccion = t.idalmacen 
+                INNER JOIN seccion s ON s.idseccion = t.idorigen 
+                INNER JOIN estadotransaccion e ON e.idestado = t.idestado  WHERE t.idalmacen IN (32,52,53) AND t.idestado > 1 ORDER BY idtransaccion desc;
+ESTOY EN GENERICA ******************* SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100028 AND ta.idestado = 2 ORDER BY 1 asc;
