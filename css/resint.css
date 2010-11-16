@@ -88,7 +88,7 @@ table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
 :::::
 
 */
-#xtooltip { position: absolute; }
+#xtooltip { position: absolute; margin: 0px -0px;}
 #fchArticulo { background: #ededed; width: 300px; border: solid 1px gray; }
 #fchArticulo { padding: 5px }
 .fchEtiqueta { text-align: left; font: bold 9pt Arial; color: gray; padding-right: 3px }

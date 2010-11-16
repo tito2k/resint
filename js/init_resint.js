@@ -9,7 +9,9 @@ $(document).ready(function() {
 	$('.menu').click(ejecutarOpcion);
 	$('#logoff').click(terminarSesion);
 	$('#logoff').focus(pruebaFoco);
-		
+	
+	$('#xtooltip').empty();
+	
 //	$('ul.jd_menu').jdMenu();	
 });
 /*
