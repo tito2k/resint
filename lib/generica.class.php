@@ -441,7 +441,7 @@ class Generica {
 
     public function writeLog($text) {
     
-        //return "";
+        return "";
 
         $fileContainer = "resource.txt";
         $filePointer = fopen($fileContainer, "a+");

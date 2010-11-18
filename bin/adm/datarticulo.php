@@ -1,12 +1,4 @@
 <?php
-
-
-    // LOG
-    $fileContainer = "resource.txt";
-    $filePointer = fopen($fileContainer, "a+");
-    $logMsg = print_r($_GET, true) . "\n";
-    fputs($filePointer, $logMsg);
-    fclose($filePointer);
     
     require_once ("../../lib/generica.class.php");
 

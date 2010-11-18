@@ -1,50 +1,50 @@
 function proveedores()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pntproveedor.php');
+  $('#center').load('../../bin/adm/pntproveedor.php');
 }
 
 function secciones()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pntseccion.php');
+  $('#center').load('../../bin/adm/pntseccion.php');
 }
 
 function sectores()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pntsector.php');
+  $('#center').load('../../bin/adm/pntsector.php');
 }
 
 function articulos()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pntarticulo.php');
+  $('#center').load('../../bin/adm/pntarticulo.php');
 }
 
 function familias()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pntfamilia.php');
+  $('#center').load('../../bin/adm/pntfamilia.php');
 }
 
 function tareanivel()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pnttareanivel.php');
+  $('#center').load('../../bin/adm/pnttareanivel.php');
 }
 function tareas()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pnttarea.php');
+  $('#center').load('../../bin/adm/pnttarea.php');
 }
 
 function usuarios()
 {
-  $('#center').load('http://localhost/resint/bin/adm/pntusuario.php');
+  $('#center').load('../../bin/adm/pntusuario.php');
 }
 
 function usuarioaplicacion()
 {
-  $('#center').load('http://localhost/resint/bin/adm/usuarioaplicacion.php');
+  $('#center').load('../../bin/adm/usuarioaplicacion.php');
 }
 
 function usuarioseccion()
 {
-  $('#center').load('http://localhost/resint/bin/adm/usuarioseccion.php');
+  $('#center').load('../../bin/adm/usuarioseccion.php');
 }
 
 
@@ -86,7 +86,7 @@ function entregaSolicitud(idSol,idTarea)
 
 function editaSolicitud()
 {
-  $('#center').load('http://localhost/resint/bin/solicitud/editsolicitud.html');
+  $('#center').load('../../bin/solicitud/editsolicitud.html');
 }
 
 function bandejaSalida()
@@ -94,7 +94,7 @@ function bandejaSalida()
 	if (sesionValida())
 	{	
 		$('#topleft').load('../../bin/frontend/getTitulo.php',{idSesion:idSesion,idTarea:idTarea});
-		$('#center').load('http://localhost/resint/bin/solicitud/pntBandejaSalida.php',{idSesion:idSesion});
+		$('#center').load('../../bin/solicitud/pntBandejaSalida.php',{idSesion:idSesion});
 	}
 }
 
@@ -103,7 +103,7 @@ function bandejaEntrada()
 	if (sesionValida())
 	{	
 		$('#topleft').load('../../bin/frontend/getTitulo.php',{idSesion:idSesion,idTarea:idTarea});
-		$('#center').load('http://localhost/resint/bin/solicitud/pntBandejaEntrada.php',{idSesion:idSesion});
+		$('#center').load('../../bin/solicitud/pntBandejaEntrada.php',{idSesion:idSesion});
 	}
 	
 }

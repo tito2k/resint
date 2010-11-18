@@ -6,7 +6,7 @@
 		  <form id="frmSolicitud" action="../solicitud/prcAutoriza.php" method="POST">
 		  <table width="100%" cellspacing="20" border="0" cellpadding="0">
       <tr>
-         <td align="left"><span>Unidad Org.:</span></td>
+         <td align="left"><span>Unidad Org. solicitante:</span></td>
          <td align="left" colspan="3"><span>{desOrigen}</span></td>
       </tr>
 			<tr>
@@ -14,7 +14,7 @@
 			   <td colspan="3" align="left"><span>{fchInicio}</span></td>
 			</tr>
 			<tr>
-			   <td align="left"><span>{tipoDestino}:</span></td>
+			   <td align="left"><span>Receptor: {tipoDestino}</span></td>
 			   <td colspan="3" align="left"><span>{idDestino}</span></td>
 			</tr>
 			<tr>
@@ -98,13 +98,14 @@ jQuery(document).ready(function(){
 });
 
 function infoRow(event,idArticulo) {
-  var posX = event.clientX;
-  var posY = event.clientY;
+  var posX = event.clientX - 330;
+  var posY = event.clientY - 100;
   
   $('#xtooltip').css({left: posX + 'px', top: posY + 'px'});
   $('#xtooltip').load('../tips/getArticulo.php',{idSesion:idSesion,idArticulo:idArticulo});
   $('#xtooltip').fadeIn(1500);
-  $('#xtooltip').click(function(){$('#xtooltip').fadeOut(1000);});
+  $('#xtooltip').click(function(){$('#xtooltip').fadeOut(1000);
+                         });                         
   $('#xtooltip').empty();  
 } 
 

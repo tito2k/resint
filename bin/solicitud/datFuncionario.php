@@ -23,8 +23,8 @@ $Cedula   = $_POST["Cedula"];
 if ( !sesionValida($idSesion) ) return;
 
 // Obtener los datos
-$db = dbConnect("serv222");
-$rs = $db->query( "CALL serv222.datosFuncionario('$Cedula')" );
+$db = dbConnect("personal");
+$rs = $db->query( "CALL personal.datosFuncionario('$Cedula')" );
 $row = $rs->fetchObject();
 
 $datosFuncionario['Legajo']    = $row->legajo;

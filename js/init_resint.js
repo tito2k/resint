@@ -32,7 +32,7 @@ function pruebaFoco()
 function terminarSesion()
 {
 	$('#logoff').load('prcTerminarSesion.php',{idSesion:$('#idSesion').val()});
-	window.location = 'http://localhost/resint/index.html';
+	window.location = '../../index.html';
 };
 
 function ejecutarOpcion()

@@ -2,13 +2,6 @@
 	// Bibliotecas y Globales
 	require_once("../../etc/globales.php");
 
-    // LOG
-    $fileContainer = "resource.txt";
-    $filePointer = fopen($fileContainer, "a+");
-    $logMsg = print_r($_GET, true) . "\n";
-    fputs($filePointer, $logMsg);
-    fclose($filePointer);
-
 	$buscar = $_GET['_search'];
 	$idSesion = $_GET['idSesion'];
 	$estado = $_GET['_field_D_descestado'];
@@ -43,7 +36,8 @@
 	require_once ("../../lib/generica.class.php");
 
     $sql_count = "SELECT COUNT(*) AS count FROM transaccion t ".$filtro;
-    $sql_data = "SELECT t.idtransaccion, t.fechainicio, t.fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
+    $sql_data = "SELECT t.idtransaccion, date_format(t.fechainicio,'%d/%m/%Y') as fechainicio, 
+    			date_format(t.fechaactual,'%d/%m/%Y') as fechaactual, e.idestado AS idestado, e.descripcion AS descestado, 
     			s.descripcion AS idseccion, a.descripcion AS idalmacen, '' as edit, '' as view,
     			concat('idtransaccion=',t.idtransaccion) AS id 
                 FROM transaccion t
