@@ -452,3 +452,25 @@ SELECT a.idarticulo, a.nombre, f.nombre AS idfamilia, stock, stockminimo,
                 FROM articulo a
                 LEFT JOIN magnitud m ON m.idmagnitud = a.idmagnitud 
 				LEFT JOIN familia f ON f.idfamilia = a.idfamilia  ORDER BY idarticulo asc;
+Array
+(
+    [_] => 1290278248876
+    [_search] => false
+    [nd] => 1290278248875
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idfamilia
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290278254062
+    [_search] => false
+    [nd] => 1290278254061
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idnivel
+    [sord] => asc
+)
+

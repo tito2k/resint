@@ -13,6 +13,7 @@
 
 // Variables globales
 var cantTuplas = 0;
+var idAlmacen;
 
 $(document).ready(function() {
 
@@ -20,7 +21,8 @@ $(document).ready(function() {
 	$('#frmSolicitud').append('<input type="hidden" id="datos" name="datos" value="">');
 	$('#destino').change(mostrarCampo);
 	mostrarCampo();
-
+	setAlmacen();
+	
 	$('#idfuncionario').focusout(function(){var idFuncionario = $('#idfuncionario').val();$('#ci').load("../solicitud/datFuncionario.php",{idSesion:idSesion,Cedula:idFuncionario});});		
 	$('#idvehiculo').focusout(function(){var mat = $('#idvehiculo').val();$('#matricula').load("../solicitud/datVehiculo.php",{idSesion:idSesion,Matricula:mat});});
 		
@@ -47,7 +49,6 @@ $(document).ready(function() {
 
 			// General options
 			theme : "advanced",
-//			plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
 
 			// Theme options
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,cut,copy,paste,pastetext,pasteword,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,insertdate,inserttime,|,forecolor,backcolor",
@@ -59,12 +60,16 @@ $(document).ready(function() {
 		});
 // //////////////////////////////////////////////////////////////
 	
-
-
-	$('select#seccion').selectmenu({style:'dropdown'});
-	$('select#almacen').selectmenu({style:'dropdown'});
 	
+$('select#almacen').bind("change",null,setAlmacen);
+
 });
+
+function setAlmacen()
+{
+	idAlmacen = $('#almacen').val();
+//	console.info(JQuery('#list').clearGridData());
+}
 
 function setHotKeys()
 {
@@ -77,8 +82,9 @@ function editarFila(elem)
 }
 	
 function autocompletar(elem){
+	console.info(idAlmacen);
 	$(elem).autocomplete({
-		source: "../frontend/prcAutocompletar.php?idSesion="+idSesion+"&tabla=articulo&buscar=descripcion&campoClave=idArticulo&campoDesc=nombre",
+		source: "../frontend/prcAutocompletar.php?idSesion="+idSesion+"&tabla=articulo&buscar=descripcion&campoClave=idArticulo&campoDesc=nombre&campoFiltro=idseccion&valorFiltro=" + idAlmacen,
 		width: 20,
 		max: 4,
 		highlight: false,
@@ -140,6 +146,7 @@ function procesaGrilla()
 	for (var i=0;i<largo;i++)
 	{
 		var linea = array[i];
+		
 		if (linea.idarticulo) 
 		{
 			if (i > 0) datos += ",";
@@ -165,10 +172,15 @@ function procesaGrilla()
 	}
 
 	datos += "]";
+	
+	// controlo que no tengo una fila en modo edición
+	var pat = /.*<.*>.*/;
+	if (pat.test(datos))
+	{
+		mensajeError("Tiene una línea de la grilla en edición");
+		return false;
+	}
 	$('#datos').attr("value",datos);
-	console.info(datos);
-	console.info(cantTuplas);
-//	console.info($('#datos').attr("value"));
 	return (cantTuplas>0);
 };
 

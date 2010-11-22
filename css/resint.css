@@ -33,6 +33,9 @@ div#foot    { margin-top: 10px; padding: 0px; }
 .subtitulo { font: 9pt Arial; color: gray }
 
 /* Bloque con informacion de la Sesion */
+.nroTransaccion { font: 9pt Arial; color: gray }
+
+/* Bloque con informacion de la Sesion */
 #infosesion { font: 9pt Arial; color: gray;  }
 #infosesion button { font: 8pt "Courier New"; color: #2D507E; border: solid 1px gray;}
 
@@ -88,7 +91,7 @@ table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
 :::::
 
 */
-#xtooltip { position: absolute; margin: 0px -0px;}
+#xtooltip    { position: absolute; margin: 0px -0px;}
 .roundTip    { width: 324px; }
 .tipTop      { height: 35px; background: url(../img/tips/marcoTransTipTop.png); }
 .tipMiddle   { padding-left: 20px; background: url(../img/tips/marcoTransTipMiddle.png); }

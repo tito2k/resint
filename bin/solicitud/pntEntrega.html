@@ -71,9 +71,9 @@ jQuery(document).ready(function(){
 		onSelectRow: function(id){
 			if(id && id!==lastsel){
 				jQuery('#list').jqGrid('restoreRow',lastsel);
-				jQuery('#list').jqGrid('editRow',id,true);
 				lastsel=id;
 			}
+      jQuery('#list').jqGrid('editRow',id,true);
 		}
 		
    });

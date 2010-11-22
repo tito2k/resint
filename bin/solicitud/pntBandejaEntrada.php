@@ -17,10 +17,11 @@
 	$db  = dbConnect("resint");
  
 	// Obtener los tipos de servicio
-	$qs  = "SELECT idestado, descripcion FROM estadotransaccion;";
+	$qs  = "SELECT idestado, descripcion FROM estadotransaccion ORDER BY descripcion;";
 	$rs  = $db->query($qs);
 	$row = $rs->fetchAll(PDO::FETCH_ASSOC);
 	// Generar los datos para jqgrid
+	$opEstados = '0:Todos;';
 	foreach ( $row as $tpla )
 	{
 		$opEstados .= $tpla['idestado'] .':'. utf8_encode($tpla['descripcion']) .';'; 

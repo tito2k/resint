@@ -4,9 +4,9 @@
 
   :::::
 ::::
-::  ***     Incluciones y definiciones.
-::  *****
-::  ***     Funciones requeridas y variables globales necesarias.
+::  000     Incluciones y definiciones.
+::  00000
+::  000     Funciones requeridas y variables globales necesarias.
 ::::
   :::::
 
@@ -70,6 +70,7 @@ require_once("../../lib/template.php");
 require_once("../../lib/database.php");
 require_once("../../lib/sesion.php");
 require_once("../../lib/titulo.php");
+require_once("../../lib/formato.php");
 require_once("../../lib/autocompletar.php");
 require_once("../../lib/log.php");
 

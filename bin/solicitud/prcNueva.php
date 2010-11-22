@@ -144,9 +144,7 @@ $db->commit();
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
-$anio = floor($idSolicitud / 10000);
-$numero = $idSolicitud - ($anio * 10000);
-$msgNumSol = sprintf("%s %04d/%d",MSG_NRO_SOLICITUD,$numero,$anio);
+$msgNumSol = sprintf("%s %s",MSG_NRO_SOLICITUD,nroSolicitud($idSolicitud));
 
 // Devolver el resultado
 $dataSet['resultadoOperacion'] = TAREA_OK;

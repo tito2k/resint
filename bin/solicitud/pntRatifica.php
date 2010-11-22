@@ -23,7 +23,6 @@
 ::          $row['idUsuario']    El usuario que la puso en este estado
 ::
 ::          $pntNuevaSol         El template para la pantalla
-::          $nroSolicitud        El idSolicitud en formato ####/AAAA
 ::::
   :::::
 
@@ -67,9 +66,7 @@ ereg( "([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})", $fchActual, $regs );
 $fchActual = "$regs[3]/$regs[2]/$regs[1]";
 
 // El numero de Solicitud
-$anio = floor($idSolicitud / 10000);
-$numero = $idSolicitud - ($anio * 10000);
-$nroSolicitud = sprintf("%04d/%d",$numero,$anio);
+$nroSolicitud = nroSolicitud($idSolicitud);
 
 // Resolución del destino
 switch($row['tipoDestino'])
@@ -96,7 +93,7 @@ $pntNuevaSol->assign("idSesion"     , $idSesion);
 $pntNuevaSol->assign("idSolicitud"  , $idSolicitud);
 $pntNuevaSol->assign("nroSolicitud" , $nroSolicitud);
 $pntNuevaSol->assign("fchInicio"    , $fchInicio);
-$pntNuevaSol->assign("desOrigen"     , $row['desOrigen']);
+$pntNuevaSol->assign("idOrigen"     , $row['desOrigen']);
 $pntNuevaSol->assign("tipoDestino"  , $row['tipoDestino']);
 $pntNuevaSol->assign("idDestino"    , $row['idDestino']);
 $pntNuevaSol->assign("desAlmacen"   , $row['desAlmacen']);

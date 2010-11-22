@@ -23,8 +23,6 @@
 ::          $icnEstado           Icono para ETR_ENTREGA_PARCIAL
 ::          $icnFinal            Icono para ETR_ENTREGA_TOTAL
 ::
-::          $nroSolicitud        El idSolicitud en formato ####/AAAA
-::
 ::::
   :::::
 
@@ -58,11 +56,6 @@ if ( $idEstado != ETR_DENEGADA )               // Si es Denegada ya esta.
    if( $idEstado == ETR_ENTREGA_TOTAL ) $icnFinal = "colorFinal";
 }
 
-// El numero de Solicitud
-$anio = floor($idSolicitud / 10000);
-$numero = $idSolicitud - ($anio * 10000);
-$nroSolicitud = sprintf("%04d/%d",$numero,$anio);
-
 // Desplegar
 $pntDiagrama = new fxl_template("pntDiagrama.html");
 $pntDiagrama->assign("Inicio",$icnInicio);
@@ -70,7 +63,7 @@ $pntDiagrama->assign("Ratificada",$icnRatificada);
 $pntDiagrama->assign("Autorizada",$icnAutorizada);
 $pntDiagrama->assign("Entregada",$icnEntregada);
 $pntDiagrama->assign("Final",$icnFinal);
-$pntDiagrama->assign("nroSolicitud" ,$nroSolicitud);
+$pntDiagrama->assign("nroSolicitud" ,nroSolicitud($idSolicitud));
 $pntDiagrama->display();
 
 ?>
