@@ -53,19 +53,21 @@ function loadSincronico(pagina,datos)
 
 function sesionValida()
 {
-/*
-	var resultado;
-	$.ajax({
-               type: "POST",
-               async: false,
-               dataType: "json",
-               url: "../frontend/valSesion.php",
-               data: {"idSesion":idSesion},
-               success: function(available_json){
-										resultado = available_json.estadoSesion;
-               }
-             });
-*/
 	var resultado = loadSincronico("../frontend/valSesion.php",{"idSesion":idSesion});
 	return (resultado.estadoSesion == "SESION_OK");
+}
+
+
+function addEventSimple(obj,evt,fn) {
+	if (obj.addEventListener)
+		obj.addEventListener(evt,fn,false);
+	else if (obj.attachEvent)
+		obj.attachEvent('on'+evt,fn);
+}
+
+function removeEventSimple(obj,evt,fn) {
+	if (obj.removeEventListener)
+		obj.removeEventListener(evt,fn,false);
+	else if (obj.detachEvent)
+		obj.detachEvent('on'+evt,fn);
 }

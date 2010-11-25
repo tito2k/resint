@@ -38,7 +38,6 @@ $(document).ready(function() {
 		};
 
 	$('#fecha').datepicker(opcDate);
-//	$('#fecha').focus();
 
 	$('#aceptarSolicitud').click(procesaGrilla);
 
@@ -68,7 +67,6 @@ $('select#almacen').bind("change",null,setAlmacen);
 function setAlmacen()
 {
 	idAlmacen = $('#almacen').val();
-//	console.info(JQuery('#list').clearGridData());
 }
 
 function setHotKeys()
@@ -82,7 +80,6 @@ function editarFila(elem)
 }
 	
 function autocompletar(elem){
-	console.info(idAlmacen);
 	$(elem).autocomplete({
 		source: "../frontend/prcAutocompletar.php?idSesion="+idSesion+"&tabla=articulo&buscar=descripcion&campoClave=idArticulo&campoDesc=nombre&campoFiltro=idseccion&valorFiltro=" + idAlmacen,
 		width: 20,
@@ -108,9 +105,11 @@ function callBack(response,postData) {
 	return [success,message];
 }
 
-function validaForm()
+function validaForm(formData, jqForm, options)
 {
-	return (cantTuplas>0);
+//	if (validate(formData, jqForm, options))
+//		return (cantTuplas>0);
+	return(validate(formData, jqForm, options));
 };
 
 function formSuccess(responseText, statusText, xhr, $form)
@@ -190,19 +189,28 @@ function mostrarCampo()
 	
 	switch(destino) {
 		case "S":
+			$('#idseccion').attr('validation','required');
 			$('#seccion').show();
+			$('#idfuncionario').attr('validation','');
 			$('#funcionario').hide();
+			$('#idvehiculo').attr('validation','');
 			$('#vehiculo').hide();
 			break;
 		case "F":
 			$('#seccion').hide();
+			$('#idseccion').attr('validation','');
 			$('#funcionario').show();
+			$('#idfuncionario').attr('validation','required');
 			$('#vehiculo').hide();
+			$('#idvehiculo').attr('validation','');
 			break;
 		case "V":
 			$('#seccion').hide();
+			$('#idseccion').attr('validation','');
 			$('#funcionario').hide();
+			$('#idfuncionario').attr('validation','');
 			$('#vehiculo').show();
+			$('#idvehiculo').attr('validation','required');
 			break;			
-	}
+	}	
 }
