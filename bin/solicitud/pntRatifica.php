@@ -16,6 +16,7 @@
 ::          $row['desOrigen']    Seccion donde se origino la solicitud
 ::          $row['tipoDestino']  Tipo del destino S | F | V
 ::          $row['idDestino']    idSeccion | CI | Matreicula
+::          $row['idAlmacen']    Identificador de la Seccion Proveedora
 ::          $row['desAlmacen']   Seccion Proveedora
 ::          $row['idEstado']     idEstado de la transaccion
 ::          $row['desEstado']    Descripcion del Estado
@@ -43,7 +44,8 @@ if ( !sesionValida($idSesion) ) return;
 $db  = dbConnect("resint");
 $qs  = "SELECT t.fechainicio AS fchInicio, t.destino AS tipoDestino,
                t.iddestino AS idDestino, t.observaciones AS Observaciones,
-               o.descripcion AS desOrigen, a.descripcion AS desAlmacen,
+               o.descripcion AS desOrigen, t.idalmacen AS idAlmacen, 
+               a.descripcion AS desAlmacen,
                e.idestado AS idEstado, e.descripcion AS desEstado,
                s.fecha AS fchActual, s.idusuario AS idUsuario
          FROM transaccion t
@@ -96,6 +98,7 @@ $pntNuevaSol->assign("fchInicio"    , $fchInicio);
 $pntNuevaSol->assign("idOrigen"     , $row['desOrigen']);
 $pntNuevaSol->assign("tipoDestino"  , $row['tipoDestino']);
 $pntNuevaSol->assign("idDestino"    , $row['idDestino']);
+$pntNuevaSol->assign("idAlmacen"    , $row['idAlmacen']);
 $pntNuevaSol->assign("desAlmacen"   , $row['desAlmacen']);
 $pntNuevaSol->assign("idEstado"     , $row['idEstado']);
 $pntNuevaSol->assign("desEstado"    , $row['desEstado']);

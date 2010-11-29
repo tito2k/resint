@@ -39,6 +39,7 @@
 	  </table>
 	  	<input type="hidden" name="idsolicitud" id="idsolicitud" value="{idSolicitud}">
 	  	<input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
+      <input type="hidden" name="almacen" id="almacen" value="{idAlmacen}">
 	  </form>
 	</div>
 
@@ -88,8 +89,9 @@ $(document).ready(function() {
 	);
 
 // Hotkeys ////////////////////////////////////////////////////////////////////////
-	$(document).bind('keydown','F9',function() {console.info('hola2');$('#add_list').trigger('click');});
+  $(document).bind('keyup','F9',function() {$('#add_list').trigger('click');});
 ///////////////////////////////////////////////////////////////////////////////////
 	
+	setAlmacen();
 });
  </script>

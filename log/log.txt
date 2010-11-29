@@ -1,11 +1,11 @@
 Array
 (
-    [idSesion] => d56c8eb8-4b9d-102e-bae5-001f29ae8127
+    [idSesion] => d2db86ea-4cf6-102e-a383-001f29ae8127
     [idsolicitud] => 20100060
     [idestado] => 1
-    [_] => 1290881088596
+    [_] => 1291027907681
     [_search] => false
-    [nd] => 1290881088586
+    [nd] => 1291027907672
     [rows] => 40
     [page] => 1
     [sidx] => idarticulo
