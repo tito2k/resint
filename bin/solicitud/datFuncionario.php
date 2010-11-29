@@ -43,6 +43,6 @@ if ( $rs->rowCount() )
    printf("%s: %s, %s",$datosFuncionario['Grado'],$datosFuncionario['pApellido'],$datosFuncionario['pNombre']);
 }
 else
-   printf('<span class="errorMessage" style="color: red;">%s</span>',MSG_NO_DOCUMENTO);
+   printf('<span class="errorMessage">%s</span>',MSG_NO_DOCUMENTO);
 
 ?>
