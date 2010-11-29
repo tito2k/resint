@@ -56,17 +56,16 @@ jQuery(document).ready(function(){
 			{name:'idarticulo',index:'idarticulo', width:20,editable:false },
 			{name:'nombre',index:'nombre', width:80,editable:false },
 			{name:'cantidad',index:'cantidad', width:40,editable:false },
-			{name:'aprueba',index:'aprueba', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true} },
+			{name:'aprueba',index:'aprueba', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{required:true,number:true}},
 			{name:'autoriza',index:'autoriza', width:15,sortable:false,editoptions:{value:"SI:NO"},formatter: "checkbox", formatoptions: {disabled : false}, editable: true, edittype:"checkbox"},
       {name:'info', search:false, index:'info',width:12,sortable:false}
 		],
 		rowNum: 40,
-		//rowList: [40,80],
+    cellEdit: true,
 		height: $('#center').height()*0.3,
 		width: $('#center').width()*0.8,
-		//sortname: 'ta.idarticulo',
 		viewrecords: true,
-		//sortorder: "asc",
+    cellsubmit:'clientArray',
 		editurl:"#",
 		caption:"Art&iacute;culos solicitados",
 		onSelectRow: function(id){
@@ -90,9 +89,23 @@ jQuery(document).ready(function(){
                    "onclick=\"infoRow(event,"+idArticulo+");\" />"; 
             jQuery("#list").jqGrid('setRowData',ids[i],{info:info});
           }
-    }
-		
-		
+    },
+    afterSaveCell : function(rowid,name,val,iRow,iCol) {
+          if(name == 'aprueba') {
+            var cant = jQuery("#list").jqGrid('getCell',rowid,iCol-1);
+            if (val > cant)
+            {
+              alert("La cantidad autorizada no puede superar la cantidad solicitada");
+              jQuery("#list").jqGrid('setRowData',rowid,{aprueba:cant});              
+            }
+            else if (val < 0)
+            {
+              alert("No puede autorizar cantidades negativas");
+              jQuery("#list").jqGrid('setRowData',rowid,{aprueba:0});              
+            }
+            
+          }
+    }		
    });
       
 });
@@ -108,5 +121,23 @@ function infoRow(event,idArticulo) {
                          });                         
   $('#xtooltip').empty();  
 } 
+/*
+function validaAprueba(value, colname)
+{
+  var rowid = jQuery("#list").jqGrid('getGridParam','selrow'); 
+  var row = jQuery("#list").jqGrid('getRowData',rowid);
 
+  if (value > row.cantidad)
+  {
+    return [false,"No puede autorizar una cantidad mayor a la solicitada",""];
+  }
+
+  if (value < 0)
+  {
+    return [false,"No puede autorizar una cantidad menor a 0",""];
+  }
+  
+  return [true,"",""];
+};
+*/ 
 </script>

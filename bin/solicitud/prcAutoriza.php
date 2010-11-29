@@ -10,7 +10,7 @@
 ::          grabando el seguimiento y los articulos recibidos.
 ::
 ::          $idSesion         Identificador de sesion
-;;          $idSolicitud      Numero de la Transaccion
+::          $idSolicitud      Numero de la Transaccion
 ::          $datos            Articulos autorizados {id:valor,cant:valor}, ...
 ::          $observaciones    Observaciones ;-)
 ::
@@ -57,8 +57,11 @@ $nivelAcceso = $datosUsuario['idNivel'];
 // El tipo de Transaccion
 $tipo = TRS_SOLICITUD;
 
-// El estado
-$estado = ETR_AUTORIZADA;
+// El estado depende de que haya al menos un articulo autorizado
+$estado = ETR_DENEGADA;
+foreach ( $articulos as $renglon )
+   if ($renglon->autoriza == 'SI')
+      $estado = ETR_AUTORIZADA;
 
 
           /*     ::::::::::::::::::::::::::::::::::::::::
@@ -85,12 +88,12 @@ $db->exec($qs);
 // Grabar la lista de articulos
 foreach ( $articulos as $renglon )
 {
-	if ($renglon->autoriza == 'SI')
-	{
-	   $qs = "INSERT INTO transaccionarticulo
-			  VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->aprueba)";
-	   $db->exec($qs);
-	}
+   if ($renglon->autoriza == 'SI')
+   {
+      $qs = "INSERT INTO transaccionarticulo
+           VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->aprueba)";
+      $db->exec($qs);
+   }
 }
 
 // Finalizar Transaccion

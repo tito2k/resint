@@ -15,7 +15,11 @@ function sectores()
 
 function articulos()
 {
-  $('#center').load('../../bin/adm/pntarticulo.php');
+	if (sesionValida())
+	{	
+		$('#topleft').load('../../bin/frontend/getTitulo.php',{idSesion:idSesion,idTarea:idTarea});
+		$('#center').load('../../bin/adm/pntarticulo.php',{idSesion:idSesion});
+	}
 }
 
 function familias()
@@ -44,7 +48,12 @@ function usuarioaplicacion()
 
 function usuarioseccion()
 {
-  $('#center').load('../../bin/adm/usuarioseccion.php');
+  $('#center').load('../../bin/adm/pntusuarioseccion.php');
+}
+
+function usuarioalmacen()
+{
+  $('#center').load('../../bin/adm/pntusuarioalmacen.php');
 }
 
 

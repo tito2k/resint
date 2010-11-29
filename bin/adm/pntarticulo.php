@@ -1,12 +1,19 @@
 <?php
 
 	require_once ("../../etc/configPHP.inc"); // Conexi�n as servidor SQL
-	require_once ("../../lib/template.php");
+	// Bibliotecas y Globales
+	require_once("../../etc/globales.php");
 
-	showPage('');
+	$idSesion      = $_POST['idSesion'];
+	
+
+	// De no haber sesion, adios ...
+	if ( !sesionValida($idSesion) ) return;
+
+	showPage('',$idSesion);
 
 
-function showPage($msg){
+function showPage($msg,$idSesion){
 
 	global $conn;
     mysql_select_db("resint",$conn);
@@ -33,16 +40,21 @@ function showPage($msg){
 		$json .= $row["idfamilia"] .':'. utf8_encode($row["nombre"]) .';'; 
 	} 
 	$json = substr($json,0,strlen($json)-1);
-/*
-	$sql = "SELECT idnivel, descripcion FROM talos.nivel;";
+	$fxlt->assign('_-FAMILIAS-_', $json);
+	
+	$json = '';
+	$sql = "SELECT idseccion, descripcion FROM seccion WHERE idtipo=1 ORDER BY descripcion;";
 	$res = mysql_query($sql, $conn);
 	while ($row = mysql_fetch_assoc($res)){
-		$json .= $row["idnivel"].':'.$row["descripcion"].';'; 
+		$json .= $row["idseccion"].':'.$row["descripcion"].';'; 
 	} 
-*/
+	$json = substr($json,0,strlen($json)-1);
+	$fxlt->assign('_-SECCIONES-_', $json);	
 
 	mysql_free_result($res);
-	$fxlt->assign('_-FAMILIAS-_', $json);
+
+	$fxlt->assign('idSesion', $idSesion);
+
 	
 	$fxlt->display();
 

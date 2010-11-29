@@ -50,9 +50,9 @@ $(document).ready(function() {
 		datatype: "json",
 		colNames:['#','Art&iacute;culo','Cantidad'],
 		colModel:[
-			{name:'idarticulo',index:'idarticulo', width:6,editable:true,editoptions:{readonly:true}},
+			{name:'idarticulo',index:'idarticulo', width:6,editable:true,editrules:{required:true},editoptions:{readonly:true}},
 			{name:'nombre',index:'nombre', width:40,editable:true,editoptions:{dataInit:editarFila,size:20,maxlength:10}} ,
-			{name:'cantidad',index:'cantidad', width:40,editable:true,editoptions:{size:10,maxlength:10}/*,editrules:{number:true}*/} 
+			{name:'cantidad',index:'cantidad', width:40,editable:true,editrules:{required:true,number:true},editoptions:{size:10,maxlength:10}} 
 		],
 		rowNum: 40,
 		rowList: [40,80],
@@ -64,7 +64,19 @@ $(document).ready(function() {
 		sortorder: "asc" ,
 	 	shrinkToFit: true,
 		editurl:"#",
-		cellsubmit:'clientArray'
+    cellEdit: true,
+		cellsubmit:'clientArray',
+    afterSaveCell : function(rowid,name,val,iRow,iCol) {
+          if(name == 'cantidad') {
+            if (val < 0)
+            {
+              alert("No puede solicitar cantidades negativas");
+              jQuery("#list").jqGrid('setRowData',rowid,{cantidad:val});              
+            }
+            
+          }
+    }   
+		
    });
 
 	jQuery("#list").jqGrid('navGrid','#pager', 

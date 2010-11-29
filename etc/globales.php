@@ -32,6 +32,10 @@ define("MSG_CAMBIO_OK","Se realizó el cambio");
 define("MSG_CAMBIO_ERROR","La clave actual es incorrecta.");
 define("MSG_NRO_SOLICITUD","SE HA CREADO LA SOLICITUD NUMERO: ");
 define("MSG_ERROR_SOLICITUD","NO SE PUDO CREAR LA SOLICITUD");
+define("MSG_RATIFICADA","SE HA RATIFICADO LA SOLICITUD NUMERO: ");
+define("MSG_NO_DOCUMENTO","Documento Inexistente");
+define("MSG_NO_MATRICULA","Matr&iacute;cula Inexistente");
+define("MSG_DISTINTAS_ALMACENES","HAY ARTICULOS DE DISTINTAS ALMACENES");
 
 // Tipos de Seccion
 define("SEC_ALMACEN",1);

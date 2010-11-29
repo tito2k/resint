@@ -90,12 +90,6 @@ $datosUsuario = datosUsuario($idSesion);
 $idUsuario   = $datosUsuario['idUsuario'];
 $nivelAcceso = $datosUsuario['idNivel'];
 
-// Obtener un idUnico para esta transaccion de tipo solicitud
-$db = dbConnect("resint");
-$rs = $db->query( "CALL resint.nuevaSolicitud()" );
-$row = $rs->fetchObject();
-$idSolicitud = $row->idSolicitud;
-
 // El tipo de Transaccion
 $tipo = TRS_SOLICITUD;
 
@@ -108,9 +102,46 @@ else
 
           /*     ::::::::::::::::::::::::::::::::::::::::
                ::::                                    ::::
+             ::::            VALIDAR LOS DATOS          ::::
+               ::::                                    ::::
+                 ::::::::::::::::::::::::::::::::::::::::     */
+
+// Lista de articulos solicitados
+$articulosSolicitados = "";
+foreach ( $articulos as $row )
+{
+   if ( $articulosSolicitados ) $articulosSolicitados .= ", ";
+   $articulosSolicitados .= "$row->idarticulo";
+}
+
+// Todos los articulos deben pertenecer al mismo Almacen
+$db = dbConnect("resint");
+$rs = $db->query("SELECT COUNT(*) AS Almacenes
+                   FROM ( SELECT idarticulo, idseccion FROM articulo
+                          WHERE idarticulo in ($articulosSolicitados)
+                          GROUP BY idseccion ) a");
+$row = $rs->fetchObject();
+if ( $row->Almacenes > 1 )
+{
+   // Devolver el resultado
+   $dataSet['resultadoOperacion'] = TAREA_ERROR;
+   $dataSet['mensaje'] = MSG_DISTINTAS_ALMACENES;
+   echo json_encode($dataSet);
+   exit;
+}
+
+
+          /*     ::::::::::::::::::::::::::::::::::::::::
+               ::::                                    ::::
              ::::         GRABADO DE LAS TABLAS          ::::
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
+
+// Obtener un idUnico para esta solicitud
+$db = dbConnect("resint");
+$rs = $db->query( "CALL resint.nuevaSolicitud()" );
+$row = $rs->fetchObject();
+$idSolicitud = $row->idSolicitud;
 
 // Iniciar la Transaccion
 $db = dbConnect("resint");

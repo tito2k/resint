@@ -2,7 +2,7 @@
 
 
     // LOG
-    $fileContainer = "resource.txt";
+    $fileContainer = SITE_ROOT . "/log/log.txt";
     $filePointer = fopen($fileContainer, "w+");
     $logMsg = print_r($_GET, true) . "\n";
     fputs($filePointer, $logMsg);
@@ -29,7 +29,7 @@
     echo $generica->select($sql_count,$sql_data,'json');
     $generica = null;
 
-	$fileContainer = "resource.txt";
+	$fileContainer = SITE_ROOT . "/log/log.txt";
     $filePointer = fopen($fileContainer, "w+");
     fputs($filePointer, $sql_data);
     fclose($filePointer);

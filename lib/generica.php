@@ -8,7 +8,7 @@
     fclose($filePointer);
     */
 
-    require_once ("../../lib/generica.class.php");
+    require_once (SITE_ROOT . "/lib/generica.class.php");
 
     $generica = new Generica();
     echo $generica->execute(); // ATENCI�N: No sabemos como capturar el resultado en la interfase

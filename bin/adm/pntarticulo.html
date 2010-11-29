@@ -8,12 +8,13 @@ var lastsel;
 jQuery(document).ready(function(){
 
    jQuery("#list").jqGrid({
-		url:'../adm/datarticulo.php',
+		url:'../adm/datarticulo.php?idSesion={idSesion}',
 		datatype: "json",
-		colNames:['C&oacute;digo','Nombre', 'Nivel', 'Stock','Stock m&iacute;nimo','Magnitud'],
+		colNames:['C&oacute;digo','Nombre', 'Almac&eacute;n', 'Familia', 'Stock','Stock m&iacute;nimo','Magnitud'],
 		colModel:[
 			{name:'_key_N_idarticulo',index:'_key_N_idarticulo', width:55,editable:false},
 			{name:'_field_S_nombre',index:'_field_S_nombre', width:80,editable:true,editoptions:{size:40,maxlength:200}}, 
+			{name:'_field_S_idseccion',index:'_field_S_idseccion', width:80,editable:true,edittype:"select",editoptions:{value:"{_-SECCIONES-_}"}},
 			{name:'_field_N_idfamilia',index:'_field_N_idfamilia', width:60,editable:true,edittype:"select",editoptions:{value:"{_-FAMILIAS-_}"}},
 			{name:'_field_N_stock',index:'_field_N_stock', width:60,editable:true,editoptions:{size:10},editrules:{required:true, number:true}}, 
 			{name:'_field_N_stockminimo',index:'_field_N_stockminimo', width:60,editable:true,editoptions:{size:10},editrules:{required:true, number:true}}, 

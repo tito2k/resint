@@ -1,7 +1,7 @@
 <?php
 
 //require_once ("../../../etc/configPHP.inc");
-require_once ("../../etc/configPHP.inc");
+require_once (SITE_ROOT . "/etc/configPHP.inc");
 
 
 class Generica {
@@ -87,7 +87,7 @@ class Generica {
     public function select($sql_count,$sql_data,$datatype='json') {
         
         global $conn;
-        $this->writeLog("ESTOY EN GENERICA ******************* ".$sql_data);
+
         
         $page = $this->page; // get the requested page
         $limit = $this->rows; // get how many rows we want to have into the grid
@@ -114,7 +114,11 @@ class Generica {
         
         if ($sidx != "" && $sidx != "id" && $sord != "")
             $sql_data .= " ORDER BY ".$this->getFieldName($sidx)." ".$sord;
+        
+        $sql_data .= " LIMIT $start,$limit ";   
 
+        
+        
         $sql_data .= ";";
         
         $this->writeLog($sql_data);
@@ -441,9 +445,9 @@ class Generica {
 
     public function writeLog($text) {
     
-        return "";
+        //return "";
 
-        $fileContainer = "resource.txt";
+        $fileContainer = SITE_ROOT . "/log/log.txt";
         $filePointer = fopen($fileContainer, "a+");
         $logMsg = $text . "\n";
         fputs($filePointer, $logMsg);

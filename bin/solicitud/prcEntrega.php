@@ -46,6 +46,10 @@ $observaciones = $_POST['observaciones'];
 // De no haber sesion, adios ...
 if ( !sesionValida($idSesion) ) return;
 
+// Si el nivelAcceso es inadecuado, sorry ...
+$datosUsuario = datosUsuario($idSesion);
+if ( $datosUsuario['nivelAcceso'] < NA_OPERADOR_ALMACEN ) return;
+
 
           /*     ::::::::::::::::::::::::::::::::::::::::
                ::::                                    ::::
@@ -58,7 +62,6 @@ if ( !sesionValida($idSesion) ) return;
 $articulos = json_decode(stripcslashes($datos));
 
 // Obtener los datos del Usuario
-$datosUsuario = datosUsuario($idSesion);
 $idUsuario   = $datosUsuario['idUsuario'];
 $nivelAcceso = $datosUsuario['idNivel'];
 
@@ -95,7 +98,11 @@ foreach ( $articulos as $renglon )
 {
    $qs = "INSERT INTO transaccionarticulo
           VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->entrega)";
+   $db->exec($qs);
 
+   // Debita el Stock
+   $qs = "UPDATE articulo SET stock = stock - $renglon->entrega
+          WHERE idarticulo = $renglon->idarticulo";
    $db->exec($qs);
 }
 
@@ -110,28 +117,6 @@ $db->commit();
                  ::::::::::::::::::::::::::::::::::::::::     */
 
 // Cantidades autorizadas para Entregar
-
-/*
- * 
-SELECT SUM(entregar) AS pendientes
-FROM
-(SELECT au.idtransaccion,au.idarticulo,
-au.cantidad - ifnull(en.cantidad,0) AS entregar 
-FROM transaccionarticulo au 
-LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad 
-	FROM transaccionarticulo
-	WHERE idestado = 5
-	GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion 
-AND au.idarticulo = en.idarticulo -- AND en.idestado = 5
-INNER JOIN articulo a ON a.idarticulo = au.idarticulo 
-WHERE au.idtransaccion = 20100028
-AND au.idestado = 3 
-) t
-GROUP BY idtransaccion,idarticulo
-* 
-*/
-
-
 $qs = "SELECT idarticulo, cantidad FROM transaccionarticulo
        WHERE idtransaccion=$idSolicitud AND idestado=" . ETR_AUTORIZADA;
 foreach ( $db->query($qs) as $row)

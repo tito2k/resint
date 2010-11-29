@@ -59,23 +59,34 @@ jQuery(document).ready(function(){
 			{name:'entregado',index:'entregado', width:40,editable:false },
 			{name:'entrega',index:'entrega', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true} }
 		],
+    cellEdit: true,
 		rowNum: 40,
-		//rowList: [40,80],
 		height: $('#center').height()*0.3,
 		width: $('#center').width()*0.8,
-		//sortname: 'ta.idarticulo',
 		viewrecords: true,
-		//sortorder: "asc",
+    cellsubmit:'clientArray',
 		editurl:"#",
 		caption:"Art&iacute;culos solicitados",
-		onSelectRow: function(id){
+    afterSaveCell : function(rowid,name,val,iRow,iCol) {
+          if(name == 'entrega') {
+            var cant = jQuery("#list").jqGrid('getCell',rowid,iCol-2);
+            var entr = jQuery("#list").jqGrid('getCell',rowid,iCol-1);
+            if (val > (cant-entr))
+            {
+              alert("La entrega no puede superar el saldo");
+              jQuery("#list").jqGrid('setRowData',rowid,{entrega:(cant-entr)});
+            }
+
+          }
+    }
+/*		onSelectRow: function(id){
 			if(id && id!==lastsel){
 				jQuery('#list').jqGrid('restoreRow',lastsel);
 				lastsel=id;
 			}
       jQuery('#list').jqGrid('editRow',id,true);
 		}
-		
+*/		
    });
 
 

@@ -101,9 +101,12 @@ $db->commit();
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
+$mensaje = sprintf("%s %s",MSG_RATIFICADA,nroSolicitud($idSolicitud));
 
 // Devolver el resultado
 $dataSet['resultadoOperacion'] = TAREA_OK;
+$dataSet['mensaje'] = $mensaje;
+
 echo json_encode($dataSet);
 
 ?>

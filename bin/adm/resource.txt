@@ -474,3 +474,261 @@ Array
     [sord] => asc
 )
 
+Array
+(
+    [_] => 1290871914640
+    [_search] => false
+    [nd] => 1290871914632
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290871934885
+    [_search] => false
+    [nd] => 1290871934873
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290871978822
+    [_search] => false
+    [nd] => 1290871978814
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290872357424
+    [_search] => false
+    [nd] => 1290872357412
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290872366060
+    [_search] => false
+    [nd] => 1290872366052
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290872374630
+    [_search] => false
+    [nd] => 1290872374622
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290872632656
+    [_search] => false
+    [nd] => 1290872632655
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idsector
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290872643392
+    [_search] => false
+    [nd] => 1290872643391
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idfamilia
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290872669927
+    [_search] => false
+    [nd] => 1290872669926
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin","admin","admin"]},{"id":"computos","cell":["computos","computos","computos","computos"]},{"id":"pepe","cell":["pepe","pepe","pepe","pepe"]},{"id":"pepito","cell":["pepito","pepito","pepito","pepito"]}]}
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'computos' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'computos',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='computos'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepito' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepito',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='pepito'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'computos' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'computos',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='computos'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='admin'
+Array
+(
+    [_] => 1290873448178
+    [_search] => false
+    [nd] => 1290873448177
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1290874048764
+    [_search] => false
+    [nd] => 1290874048763
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin","admin","admin"]},{"id":"computos","cell":["computos","computos","computos","computos"]},{"id":"pepe","cell":["pepe","pepe","pepe","pepe"]},{"id":"pepito","cell":["pepito","pepito","pepito","pepito"]}]}
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'computos' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'computos',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='computos'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'computos' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'computos',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='computos'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin","admin","admin"]},{"id":"computos","cell":["computos","computos","computos","computos"]},{"id":"pepe","cell":["pepe","pepe","pepe","pepe"]},{"id":"pepito","cell":["pepito","pepito","pepito","pepito"]}]}
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepito' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepito',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepito'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin","admin","admin"]},{"id":"computos","cell":["computos","computos","computos","computos"]},{"id":"pepe","cell":["pepe","pepe","pepe","pepe"]},{"id":"pepito","cell":["pepito","pepito","pepito","pepito"]}]}
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepe' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepe',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepe'
+Aca:SELECT 'pepito' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepito',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepito'
+Aca:SELECT 'pepito' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepito',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='pepito'
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin","admin","admin"]},{"id":"computos","cell":["computos","computos","computos","computos"]},{"id":"pepe","cell":["pepe","pepe","pepe","pepe"]},{"id":"pepito","cell":["pepito","pepito","pepito","pepito"]}]}
+Aca:SELECT 'pepito' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepito',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='pepito'
+Aca:SELECT 'pepito' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idseccion IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'pepito',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioseccion us
+					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='pepito'

@@ -19,23 +19,30 @@ require_once("../../etc/globales.php");
 $idSesion = $_POST["idSesion"];
 $Cedula   = $_POST["Cedula"];
 
+
 // De no haber sesion, adios ...
 if ( !sesionValida($idSesion) ) return;
 
 // Obtener los datos
 $db = dbConnect("personal");
 $rs = $db->query( "CALL personal.datosFuncionario('$Cedula')" );
-$row = $rs->fetchObject();
 
-$datosFuncionario['Legajo']    = $row->legajo;
-$datosFuncionario['pNombre']   = $row->pNombre;
-$datosFuncionario['sNombre']   = $row->sNombre;
-$datosFuncionario['pApellido'] = $row->pApellido;
-$datosFuncionario['sApellido'] = $row->sApellido;
-$datosFuncionario['Grado']     = $row->grado;
+// Hay info ?
+if ( $rs->rowCount() )
+{
+   // Obtener los datos
+   $row = $rs->fetchObject();
+   $datosFuncionario['Legajo']    = $row->legajo;
+   $datosFuncionario['pNombre']   = $row->pNombre;
+   $datosFuncionario['sNombre']   = $row->sNombre;
+   $datosFuncionario['pApellido'] = $row->pApellido;
+   $datosFuncionario['sApellido'] = $row->sApellido;
+   $datosFuncionario['Grado']     = $row->grado;
 
-// Devolver los datos
-//echo json_encode($datosFuncionario);
-printf("%s: %s, %s",$datosFuncionario['Grado'],$datosFuncionario['pApellido'],$datosFuncionario['pNombre']);
-//echo "Sargento Garcia";
+   // Devolver los datos
+   printf("%s: %s, %s",$datosFuncionario['Grado'],$datosFuncionario['pApellido'],$datosFuncionario['pNombre']);
+}
+else
+   printf('<span class="errorMessage" style="color: red;">%s</span>',MSG_NO_DOCUMENTO);
+
 ?>

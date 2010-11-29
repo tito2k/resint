@@ -77,9 +77,9 @@ $(document).ready(function() {
 		datatype: "local",
 		colNames:['#','Art&iacute;culo','Cantidad'],
 		colModel:[
-			{name:'idarticulo',index:'idarticulo', width:6,editable:true,editoptions:{readonly:true}},
+			{name:'idarticulo',index:'idarticulo', width:6,editable:true,editrules:{required:true},editoptions:{readonly:true}},
 			{name:'nombre',index:'nombre', width:40,editable:true,editoptions:{size:20,maxlength:10}} ,
-			{name:'cantidad',index:'cantidad', width:40,editable:true,editoptions:{size:10,maxlength:10}/*,editrules:{number:true}*/} 
+			{name:'cantidad',index:'cantidad', width:40,editrules:{required:true,number:true,minValue:1},editable:true,editoptions:{size:10,maxlength:10}} 
 		],
 		rowNum: 40,
 		rowList: [40,80],
@@ -97,14 +97,19 @@ $(document).ready(function() {
 	jQuery("#list").jqGrid('navGrid','#pager', 
 		{height:400,width:600,reloadAfterSubmit:false}, //options 
 		{reloadAfterSubmit:true,closeAfterEdit:true,afterSubmit:callBack, afterShowForm:function(formid){$('#nombre').focus();autocompletar('input#nombre');}}, // edit options 
-		{reloadAfterSubmit:true,closeAfterAdd:false, afterShowForm:function(formid){$('#nombre').focus();autocompletar('input#nombre');}}, // add options 
+		{reloadAfterSubmit:true,closeAfterAdd:false, afterShowForm: formConfig}, // add options 
 		{reloadAfterSubmit:false}, // del options 
 		{} // search options 
 	);
 
 // Hotkeys ////////////////////////////////////////////////////////////////////////
-	$(document).bind('keydown','F9',function() {$('#add_list').trigger('click');});
+	$(document).bind('keyup','F9',function() {$('#add_list').trigger('click');});
 ///////////////////////////////////////////////////////////////////////////////////
-	
+
+  function formConfig(formid)
+  {
+    $('#nombre').focus();
+    autocompletar('input#nombre');
+  }
 });
  </script>

@@ -22,16 +22,23 @@ $Matricula = $_POST["Matricula"];
 // De no haber sesion, adios ...
 if ( !sesionValida($idSesion) ) return;
 
-// Obtener los datos
+// Consulta
 $db = dbConnect("resint");
 $rs = $db->query( "CALL resint.datosVehiculo('$Matricula')" );
-$row = $rs->fetchObject();
 
-$datosVehiculo['Tipo']   = $row->tipo;
-$datosVehiculo['Marca']  = $row->marca;
-$datosVehiculo['Modelo'] = $row->modelo;
+// Hay info ?
+if ( $rs->rowCount() )
+{
+   // Obtener los datos
+   $row = $rs->fetchObject();
+   $datosVehiculo['Tipo']   = $row->tipo;
+   $datosVehiculo['Marca']  = $row->marca;
+   $datosVehiculo['Modelo'] = $row->modelo;
 
-// Devolver los datos
-//echo json_encode($datosVehiculo);
-printf("%s: %s, %s", $datosVehiculo['Tipo'], $datosVehiculo['Marca'], $datosVehiculo['Modelo']);
+   // Devolver los datos
+   printf("%s: %s, %s", $datosVehiculo['Tipo'], $datosVehiculo['Marca'], $datosVehiculo['Modelo']);
+}
+else
+   printf('<span class="errorMessage" style="color: red;">%s</span>',MSG_NO_MATRICULA);
+
 ?>
