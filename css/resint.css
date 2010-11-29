@@ -105,3 +105,23 @@ table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
 /* Los datos */
 .tipEtiqueta { text-align: left; font: bold 9pt Arial; color: #2D507E; padding-right: 3px }
 .tipDato     { font: 9pt Arial; color: black }
+
+/* --------- Errores --------- */
+
+span.errorMessage {
+  display: block;
+  float: left;
+  margin-left: 10px;
+  color: #cc0000;
+  font-size: .8em;
+}
+
+input.errorMessage {
+  border: 1px solid #cc0000;
+  background-color: #ffffff;
+}
+
+select.errorMessage {
+  border: 1px solid #cc0000;
+  background-color: #ffffff;
+}
