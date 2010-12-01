@@ -48,7 +48,7 @@ if ( !sesionValida($idSesion) ) return;
 
 // Si el nivelAcceso es inadecuado, sorry ...
 $datosUsuario = datosUsuario($idSesion);
-if ( $datosUsuario['nivelAcceso'] < NA_OPERADOR_ALMACEN ) return;
+if ( $datosUsuario['idNivel'] < NA_OPERADOR_ALMACEN ) return;
 
 
           /*     ::::::::::::::::::::::::::::::::::::::::
@@ -165,9 +165,12 @@ if ( $solTerminada )
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
+$msgNumSol = sprintf("%s %s",MSG_ENTREGA,nroSolicitud($idSolicitud));
 
 // Devolver el resultado
 $dataSet['resultadoOperacion'] = TAREA_OK;
+$dataSet['mensaje'] = $msgNumSol;
+
 echo json_encode($dataSet);
 
 ?>

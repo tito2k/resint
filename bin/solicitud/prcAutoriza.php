@@ -88,7 +88,7 @@ $db->exec($qs);
 // Grabar la lista de articulos
 foreach ( $articulos as $renglon )
 {
-   if ($renglon->autoriza == 'SI')
+   if ($renglon->autoriza == 'SI' && $renglon->aprueba)
    {
       $qs = "INSERT INTO transaccionarticulo
            VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->aprueba)";
@@ -106,9 +106,12 @@ $db->commit();
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
+$mensaje = sprintf("%s %s",MSG_AUTORIZADA,nroSolicitud($idSolicitud));
 
 // Devolver el resultado
 $dataSet['resultadoOperacion'] = TAREA_OK;
+$dataSet['mensaje'] = $mensaje;
+
 echo json_encode($dataSet);
 
 ?>

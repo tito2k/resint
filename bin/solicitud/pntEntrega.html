@@ -2,45 +2,45 @@
                <!-- ==              Pantalla Entrega Solicitud               == -->
                <!-- =========================================================== -->
 
-	<script type="text/javascript" src="../../js/init_solicitud.js"></script>
-	<div id="entregarsolicitud">
-		  <form id="frmSolicitud" action="../solicitud/prcEntrega.php" method="POST">
-		  <table width="100%" cellspacing="20" border="0" cellpadding="0">
+   <script type="text/javascript" src="../../js/init_solicitud.js"></script>
+   <div id="entregarsolicitud">
+        <form id="frmSolicitud" action="../solicitud/prcEntrega.php" method="POST">
+        <table width="100%" cellspacing="20" border="0" cellpadding="0">
       <tr>
          <td align="left"><span>Unidad Org.:</span></td>
          <td align="left" colspan="3"><span>{desOrigen}</span></td>
       </tr>
-			<tr>
-			   <td align="left"><span>Fecha:</span></td>
-			   <td colspan="3" align="left"><span>{fchInicio}</span></td>
-			</tr>
-			<tr>
-			   <td align="left"><span>{tipoDestino}:</span></td>
-			   <td colspan="3" align="left"><span>{idDestino}</span></td>
-			</tr>
-			<tr>
-			   <td align="left"><span>Almac&eacute;n:</span></td>
-			   <td align="left"><span>{desAlmacen}</span></td>
-			   <td align="left"><span>Operador:</span></td>
-			   <td align="left"><span>{idUsuario}</span></td>
-			</tr>
-			<tr align="center">
-					<td colspan="4">
-							<table id="list" class="scroll"></table>
-					</td>
-			</tr>
-			<tr>
-			   <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
-			   <textarea name="observaciones" id="observaciones" rows="10" cols="80" tabindex="50" class="tinymce">{observaciones}</textarea></td>
-			</tr>
-			<tr>
-			   <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
-			</tr>
-		  </table>
-		  <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
-		  <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
+         <tr>
+            <td align="left"><span>Fecha:</span></td>
+            <td colspan="3" align="left"><span>{fchInicio}</span></td>
+         </tr>
+         <tr>
+            <td align="left"><span>{tipoDestino}:</span></td>
+            <td colspan="3" align="left"><span>{idDestino}</span></td>
+         </tr>
+         <tr>
+            <td align="left"><span>Almac&eacute;n:</span></td>
+            <td align="left"><span>{desAlmacen}</span></td>
+            <td align="left"><span>Operador:</span></td>
+            <td align="left"><span>{idUsuario}</span></td>
+         </tr>
+         <tr align="center">
+               <td colspan="4">
+                     <table id="list" class="scroll"></table>
+               </td>
+         </tr>
+         <tr>
+            <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
+            <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
+         </tr>
+         <tr>
+            <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
+         </tr>
+        </table>
+        <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
+        <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
       </form>
-	</div>
+   </div>
 
 <script type="text/javascript">
 
@@ -49,24 +49,24 @@ var lastsel;
 jQuery(document).ready(function(){
 
    jQuery("#list").jqGrid({
-		url:'../solicitud/datEntrega.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
-		datatype: "json",
-		colNames:['C&oacute;digo','Art&iacute;culo','Autorizado','Entregado','Entrega'],
-		colModel:[
-			{name:'idarticulo',index:'idarticulo', width:20,editable:false },
-			{name:'nombre',index:'nombre', width:80,editable:false },
-			{name:'cantidad',index:'cantidad', width:40,editable:false },
-			{name:'entregado',index:'entregado', width:40,editable:false },
-			{name:'entrega',index:'entrega', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true} }
-		],
+      url:'../solicitud/datEntrega.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
+      datatype: "json",
+      colNames:['C&oacute;digo','Art&iacute;culo','Autorizado','Entregado','Entrega'],
+      colModel:[
+         {name:'idarticulo',index:'idarticulo', width:20,editable:false },
+         {name:'nombre',index:'nombre', width:80,editable:false },
+         {name:'cantidad',index:'cantidad', width:40,editable:false },
+         {name:'entregado',index:'entregado', width:40,editable:false },
+         {name:'entrega',index:'entrega', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true} }
+      ],
     cellEdit: true,
-		rowNum: 40,
-		height: $('#center').height()*0.3,
-		width: $('#center').width()*0.8,
-		viewrecords: true,
+      rowNum: 40,
+      height: $('#center').height()*0.3,
+      width: $('#center').width()*0.8,
+      viewrecords: true,
     cellsubmit:'clientArray',
-		editurl:"#",
-		caption:"Art&iacute;culos solicitados",
+      editurl:"#",
+      caption:"Art&iacute;culos solicitados",
     afterSaveCell : function(rowid,name,val,iRow,iCol) {
           if(name == 'entrega') {
             var cant = jQuery("#list").jqGrid('getCell',rowid,iCol-2);
@@ -79,14 +79,14 @@ jQuery(document).ready(function(){
 
           }
     }
-/*		onSelectRow: function(id){
-			if(id && id!==lastsel){
-				jQuery('#list').jqGrid('restoreRow',lastsel);
-				lastsel=id;
-			}
+/*      onSelectRow: function(id){
+         if(id && id!==lastsel){
+            jQuery('#list').jqGrid('restoreRow',lastsel);
+            lastsel=id;
+         }
       jQuery('#list').jqGrid('editRow',id,true);
-		}
-*/		
+      }
+*/
    });
 
 

@@ -26,12 +26,13 @@ if ( !sesionValida($idSesion) ) return;
 // Obtener los datos
 $db = dbConnect("personal");
 $rs = $db->query( "CALL personal.datosFuncionario('$Cedula')" );
+$row = $rs->fetchObject();
+
 
 // Hay info ?
-if ( $rs->rowCount() )
+if ( $row )
 {
    // Obtener los datos
-   $row = $rs->fetchObject();
    $datosFuncionario['Legajo']    = $row->legajo;
    $datosFuncionario['pNombre']   = $row->pNombre;
    $datosFuncionario['sNombre']   = $row->sNombre;

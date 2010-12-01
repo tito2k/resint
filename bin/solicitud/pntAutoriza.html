@@ -1,46 +1,46 @@
-	<!-- =========================================================== -->
-	<!-- ==              Pantalla Autoriza Solicitud              == -->
-	<!-- =========================================================== -->
-	<script type="text/javascript" src="../../js/init_solicitud.js"></script>
-	<div id="autorizarsolicitud">
-		  <form id="frmSolicitud" action="../solicitud/prcAutoriza.php" method="POST">
-		  <table width="100%" cellspacing="20" border="0" cellpadding="0">
+   <!-- =========================================================== -->
+   <!-- ==              Pantalla Autoriza Solicitud              == -->
+   <!-- =========================================================== -->
+   <script type="text/javascript" src="../../js/init_solicitud.js"></script>
+   <div id="autorizarsolicitud">
+        <form id="frmSolicitud" action="../solicitud/prcAutoriza.php" method="POST">
+        <table width="100%" cellspacing="20" border="0" cellpadding="0">
       <tr>
          <td align="left"><span>Unidad Org. solicitante:</span></td>
          <td align="left" colspan="3"><span>{desOrigen}</span></td>
       </tr>
-			<tr>
-			   <td align="left"><span>Fecha:</span></td>
-			   <td colspan="3" align="left"><span>{fchInicio}</span></td>
-			</tr>
-			<tr>
-			   <td align="left"><span>Receptor: {tipoDestino}</span></td>
-			   <td colspan="3" align="left"><span>{idDestino}</span></td>
-			</tr>
-			<tr>
-			   <td align="left"><span>Almac&eacute;n:</span></td>
-			   <td align="left"><span>{desAlmacen}</span></td>
-			   <td align="left"><span>Operador:</span></td>
-			   <td align="left"><span>{idUsuario}</span></td>
-			</tr>
-			<tr align="center">
-					<td colspan="4">
-							<table id="list" class="scroll"></table>
-							<div id="pager" class="scroll" style="text-align:center;"></div>
-					</td>
-			</tr>
-			<tr>
-			   <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
-			   <textarea name="observaciones" id="observaciones" rows="10" cols="80" tabindex="50" class="tinymce">{observaciones}</textarea></td>
-			</tr>
-			<tr>
-			   <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
-			</tr>
-		  </table>
-		  <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
-		  <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
+         <tr>
+            <td align="left"><span>Fecha:</span></td>
+            <td colspan="3" align="left"><span>{fchInicio}</span></td>
+         </tr>
+         <tr>
+            <td align="left"><span>Receptor: {tipoDestino}</span></td>
+            <td colspan="3" align="left"><span>{idDestino}</span></td>
+         </tr>
+         <tr>
+            <td align="left"><span>Almac&eacute;n:</span></td>
+            <td align="left"><span>{desAlmacen}</span></td>
+            <td align="left"><span>Operador:</span></td>
+            <td align="left"><span>{idUsuario}</span></td>
+         </tr>
+         <tr align="center">
+               <td colspan="4">
+                     <table id="list" class="scroll"></table>
+                     <div id="pager" class="scroll" style="text-align:center;"></div>
+               </td>
+         </tr>
+         <tr>
+            <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
+            <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
+         </tr>
+         <tr>
+            <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
+         </tr>
+        </table>
+        <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
+        <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
       </form>
-	</div>
+   </div>
 
 <script type="text/javascript">
 
@@ -49,95 +49,107 @@ var lastsel;
 jQuery(document).ready(function(){
 
    jQuery("#list").jqGrid({
-		url:'../solicitud/datAutoriza.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
-		datatype: "json",
-		colNames:['C&oacute;digo','Art&iacute;culo','Cantidad','Aprueba','Autoriza',''],
-		colModel:[
-			{name:'idarticulo',index:'idarticulo', width:20,editable:false },
-			{name:'nombre',index:'nombre', width:80,editable:false },
-			{name:'cantidad',index:'cantidad', width:40,editable:false },
-			{name:'aprueba',index:'aprueba', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{required:true,number:true}},
-			{name:'autoriza',index:'autoriza', width:15,sortable:false,editoptions:{value:"SI:NO"},formatter: "checkbox", formatoptions: {disabled : false}, editable: true, edittype:"checkbox"},
+      url:'../solicitud/datAutoriza.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
+      datatype: "json",
+      colNames:['C&oacute;digo','Art&iacute;culo','Cantidad','Aprueba','Autoriza',''],
+      colModel:[
+         {name:'idarticulo',index:'idarticulo', width:20,editable:false },
+         {name:'nombre',index:'nombre', width:80,editable:false },
+         {name:'cantidad',index:'cantidad', width:40,editable:false },
+         {name:'aprueba',index:'aprueba', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{required:true,number:true}},
+         {name:'autoriza',index:'autoriza', width:15,sortable:false,editoptions:{value:"SI:NO"},formatter: "checkbox", formatoptions: {disabled : false}, editable: true, edittype:"checkbox"},
       {name:'info', search:false, index:'info',width:12,sortable:false}
-		],
-		rowNum: 40,
+      ],
+      rowNum: 40,
     cellEdit: true,
-		height: $('#center').height()*0.3,
-		width: $('#center').width()*0.8,
-		viewrecords: true,
+      height: $('#center').height()*0.3,
+      width: $('#center').width()*0.8,
+      viewrecords: true,
     cellsubmit:'clientArray',
-		editurl:"#",
-		caption:"Art&iacute;culos solicitados",
-		onSelectRow: function(id){
-			if(id && id!==lastsel){
-				jQuery('#list').jqGrid('restoreRow',lastsel);
-				jQuery('#list').jqGrid('editRow',id,true);
-				lastsel=id;
-			}
-		},
-    gridComplete: function() { 
-          var ids = jQuery("#list").jqGrid('getDataIDs'); 
+      editurl:"#",
+      caption:"Art&iacute;culos solicitados",
+      onSelectRow: function(id){
+         if(id && id!==lastsel){
+            jQuery('#list').jqGrid('restoreRow',lastsel);
+            jQuery('#list').jqGrid('editRow',id,true);
+            lastsel=id;
+         }
+      },
+    gridComplete: function() {
+          var ids = jQuery("#list").jqGrid('getDataIDs');
           var array = jQuery("#list").jqGrid('getRowData');
           var largo = array.length;
-          
+
           for (var i=0;i<largo;i++)
           {
             var linea = array[i];
             var idArticulo = linea.idarticulo;
-          
-            info = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' "+ 
-                   "onclick=\"infoRow(event,"+idArticulo+");\" />"; 
+
+            info = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' "+
+                   "onclick=\"infoRow(event,"+idArticulo+");\" />";
             jQuery("#list").jqGrid('setRowData',ids[i],{info:info});
           }
+
+          $('input:checkbox').change(validaCheck);
     },
     afterSaveCell : function(rowid,name,val,iRow,iCol) {
           if(name == 'aprueba') {
             var cant = jQuery("#list").jqGrid('getCell',rowid,iCol-1);
+       
             if (val > cant)
             {
               alert("La cantidad autorizada no puede superar la cantidad solicitada");
-              jQuery("#list").jqGrid('setRowData',rowid,{aprueba:cant});              
+              jQuery("#list").jqGrid('setRowData',rowid,{aprueba:cant});
             }
             else if (val < 0)
             {
               alert("No puede autorizar cantidades negativas");
-              jQuery("#list").jqGrid('setRowData',rowid,{aprueba:0});              
+              jQuery("#list").jqGrid('setRowData',rowid,{aprueba:0});
             }
-            
+            else if (val == 0)
+            {
+              jQuery("#list").jqGrid('setRowData',rowid,{autoriza:'NO'});             
+            }
+            else if (val > 0)
+            {
+               jQuery("#list").jqGrid('setRowData',rowid,{autoriza:'SI'});                          
+            }
           }
-    }		
+          $('input:checkbox').change(validaCheck);
+    }
    });
-      
+
 });
 
 function infoRow(event,idArticulo) {
   var posX = event.clientX - 330;
   var posY = event.clientY - 100;
-  
+
   $('#xtooltip').css({left: posX + 'px', top: posY + 'px'});
   $('#xtooltip').load('../tips/getArticulo.php',{idSesion:idSesion,idArticulo:idArticulo});
   $('#xtooltip').fadeIn(1500);
   $('#xtooltip').click(function(){$('#xtooltip').fadeOut(1000);
-                         });                         
-  $('#xtooltip').empty();  
-} 
-/*
-function validaAprueba(value, colname)
-{
-  var rowid = jQuery("#list").jqGrid('getGridParam','selrow'); 
+                         });
+  $('#xtooltip').empty();
+}
+
+function validaCheck()
+{  
+
+  var rowid = ((($(this).parent()).parent()).attr('id'));  
   var row = jQuery("#list").jqGrid('getRowData',rowid);
 
-  if (value > row.cantidad)
+  if (row.autoriza == 'SI')
   {
-    return [false,"No puede autorizar una cantidad mayor a la solicitada",""];
+    if (row.aprueba == 0)
+    {
+      jQuery("#list").jqGrid('setRowData',rowid,{aprueba:row.cantidad});                 
+    }
   }
-
-  if (value < 0)
+  else
   {
-    return [false,"No puede autorizar una cantidad menor a 0",""];
+      jQuery("#list").jqGrid('setRowData',rowid,{aprueba:0});                     
   }
-  
-  return [true,"",""];
 };
-*/ 
+
 </script>

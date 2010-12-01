@@ -25,12 +25,12 @@ if ( !sesionValida($idSesion) ) return;
 // Consulta
 $db = dbConnect("resint");
 $rs = $db->query( "CALL resint.datosVehiculo('$Matricula')" );
+$row = $rs->fetchObject();
 
 // Hay info ?
-if ( $rs->rowCount() )
+if ( $row )
 {
    // Obtener los datos
-   $row = $rs->fetchObject();
    $datosVehiculo['Tipo']   = $row->tipo;
    $datosVehiculo['Marca']  = $row->marca;
    $datosVehiculo['Modelo'] = $row->modelo;

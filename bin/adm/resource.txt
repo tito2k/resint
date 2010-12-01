@@ -732,3 +732,44 @@ Aca:SELECT 'pepito' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idsec
 					concat('idusuario=',char(39),'pepito',char(39),' AND idseccion=',s.idseccion) AS id 
 					FROM usuarioseccion us
 					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='pepito'
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin","admin","admin"]},{"id":"computos","cell":["computos","computos","computos","computos"]},{"id":"pepe","cell":["pepe","pepe","pepe","pepe"]},{"id":"pepito","cell":["pepito","pepito","pepito","pepito"]}]}
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'
+Aca:SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin'

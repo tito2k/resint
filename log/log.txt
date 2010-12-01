@@ -93,3 +93,1916 @@ SELECT *,u.idtransaccion as id FROM
 										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
 										WHERE  t.idorigen IN (10) and t.destino='V'
 										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100059 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100059 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idorigen IN (1,2,3) and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idorigen IN (1,2,3) and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idorigen IN (1,2,3) and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT idusuario,nombres,apellidos,idusuario AS id 
+                  FROM usuario ORDER BY idusuario asc LIMIT 0,20 ;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+DELETE FROM usuarioalmacen WHERE idusuario='admin' AND idseccion=35;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+DELETE FROM usuarioalmacen WHERE idusuario='admin' AND idseccion=35;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+INSERT INTO usuarioalmacen (idusuario,idalmacen) VALUES ('admin',81);
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+SELECT 'admin' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
+					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
+					FROM usuarioalmacen us
+					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='admin' ORDER BY idalmacen asc LIMIT 0,400 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100061 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100061 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100061 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100061 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2
+SELECT ta.idarticulo,a.nombre, ta.cantidad,ta.cantidad AS aprobar,'SI' AS autoriza, concat('idtransaccion=',ta.idtransaccion,' AND idarticulo=',ta.idarticulo) AS id FROM transaccionarticulo ta INNER JOIN articulo a ON a.idarticulo = ta.idarticulo WHERE ta.idtransaccion = 20100062 AND ta.idestado = 2 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3
+SELECT au.idarticulo,a.nombre, au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id FROM transaccionarticulo au LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad FROM transaccionarticulo WHERE idestado = 5 GROUP BY idarticulo) en ON au.idtransaccion = en.idtransaccion  AND au.idarticulo = en.idarticulo  INNER JOIN articulo a ON a.idarticulo = au.idarticulo WHERE au.idtransaccion = 20100062 AND au.idestado = 3 ORDER BY 1 asc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idalmacen IN (1,32,35,52,53,81) AND t.idestado > 1 and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;
+SELECT *,u.idtransaccion as id FROM
+										(SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Seccion' AS destino, s.descripcion AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN seccion s ON s.idseccion=t.iddestino
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idorigen IN (1,2,3) and t.destino='S'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Funcionario' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idorigen IN (1,2,3) and t.destino='F'
+									union
+										SELECT t.idtransaccion,
+														concat((t.idtransaccion - (t.idtransaccion DIV 10000) * 10000),'/',(t.idtransaccion DIV 10000)) AS nroSolicitud,
+														o.descripcion AS origen,
+														date_format(t.fechainicio,'%d/%m/%Y') AS Inicio,
+														'Vehiculo' AS destino, t.iddestino AS identificacion,
+														t.idestado AS estado, e.descripcion AS idestado, date_format(t.fechaactual,'%d/%m/%Y') AS Fecha, a.descripcion AS almacen
+										FROM transaccion t
+										INNER JOIN seccion o ON o.idseccion=t.idorigen
+										INNER JOIN seccion a ON a.idseccion=t.idalmacen
+										INNER JOIN estadotransaccion e ON e.idestado=t.idestado
+										WHERE  t.idorigen IN (1,2,3) and t.destino='V'
+										) u ORDER BY idtransaccion desc LIMIT 0,40 ;

@@ -1,97 +1,97 @@
-	<!-- =========================================================== -->
-	<!-- ==           Pantalla Ratificar Solicitud                == -->
-	<!-- =========================================================== -->
+   <!-- =========================================================== -->
+   <!-- ==           Pantalla Ratificar Solicitud                == -->
+   <!-- =========================================================== -->
     <script type="text/javascript" src="../../js/init_solicitud.js"></script>
-	<div id="ratificarSolicitud">
-	  <form id="frmSolicitud" action="../solicitud/prcRatifica.php" method="POST">
-	  <table width="100%" cellspacing="20" border="0" cellpadding="0">
+   <div id="ratificarSolicitud">
+     <form id="frmSolicitud" action="../solicitud/prcRatifica.php" method="POST">
+     <table width="100%" cellspacing="20" border="0" cellpadding="0">
     <tr>
        <td align="left"><span>Unidad Org.:</span></td>
        <td align="left" colspan="3"><span>{desOrigen}</span></td>
     </tr>
-		<tr>
-		   <td align="left"><span>Fecha:</span></td>
-		   <td colspan="3" align="left"><span>{fchInicio}</span></td>
-		</tr>
-		<tr>
-		   <td align="left"><span>{tipoDestino}:</span></td>
-		   <td colspan="3" align="left"><span>{idDestino}</span></td>
-		</tr>
-		<tr>
-		   <td align="left"><span>Almac&eacute;n:</span></td>
-		   <td align="left"><span>{desAlmacen}</span></td>
-		   <td align="left"><span>Operador:</span></td>
-		   <td align="left"><span>{idUsuario}</span></td>
-		</tr>
-		<tr align="center">
-				<td colspan="4">
-						<table id="list" class="scroll"></table>
-						<div id="pager" class="scroll" style="text-align:center;"></div>
-				</td>
-		</tr>
-		<tr>
-		   <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
-		   <textarea name="observaciones" id="observaciones" rows="10" cols="80" tabindex="50" class="tinymce">{observaciones}</textarea></td>
-		</tr>
-		<tr>
-		   <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
-		</tr>
-	  </table>
-	  	<input type="hidden" name="idsolicitud" id="idsolicitud" value="{idSolicitud}">
-	  	<input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
+      <tr>
+         <td align="left"><span>Fecha:</span></td>
+         <td colspan="3" align="left"><span>{fchInicio}</span></td>
+      </tr>
+      <tr>
+         <td align="left"><span>{tipoDestino}:</span></td>
+         <td colspan="3" align="left"><span>{idDestino}</span></td>
+      </tr>
+      <tr>
+         <td align="left"><span>Almac&eacute;n:</span></td>
+         <td align="left"><span>{desAlmacen}</span></td>
+         <td align="left"><span>Operador:</span></td>
+         <td align="left"><span>{idUsuario}</span></td>
+      </tr>
+      <tr align="center">
+            <td colspan="4">
+                  <table id="list" class="scroll"></table>
+                  <div id="pager" class="scroll" style="text-align:center;"></div>
+            </td>
+      </tr>
+      <tr>
+         <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
+         <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
+      </tr>
+      <tr>
+         <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
+      </tr>
+     </table>
+        <input type="hidden" name="idsolicitud" id="idsolicitud" value="{idSolicitud}">
+        <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
       <input type="hidden" name="almacen" id="almacen" value="{idAlmacen}">
-	  </form>
-	</div>
+     </form>
+   </div>
 
 <script type="text/javascript">
-$(document).ready(function() { 
- 	var lastsel;
+$(document).ready(function() {
+    var lastsel;
    jQuery("#list").jqGrid({
-		url:'../../bin/solicitud/editsolicitud.php?idSesion={idSesion}&idsolicitud={idSolicitud}&idestado={idEstado}',
-		datatype: "json",
-		colNames:['#','Art&iacute;culo','Cantidad'],
-		colModel:[
-			{name:'idarticulo',index:'idarticulo', width:6,editable:true,editrules:{required:true},editoptions:{readonly:true}},
-			{name:'nombre',index:'nombre', width:40,editable:true,editoptions:{dataInit:editarFila,size:20,maxlength:10}} ,
-			{name:'cantidad',index:'cantidad', width:40,editable:true,editrules:{required:true,number:true},editoptions:{size:10,maxlength:10}} 
-		],
-		rowNum: 40,
-		rowList: [40,80],
-		height: $('#center').height()*0.3,
-		width: $('#center').width()*0.8,
-		pager: '#pager',
-		sortname: 'idarticulo',
-		viewrecords: true,
-		sortorder: "asc" ,
-	 	shrinkToFit: true,
-		editurl:"#",
+      url:'../../bin/solicitud/editsolicitud.php?idSesion={idSesion}&idsolicitud={idSolicitud}&idestado={idEstado}',
+      datatype: "json",
+      colNames:['#','Art&iacute;culo','Cantidad'],
+      colModel:[
+         {name:'idarticulo',index:'idarticulo', width:6,editable:true,editrules:{required:true},editoptions:{readonly:true}},
+         {name:'nombre',index:'nombre', width:40,editable:true,editoptions:{dataInit:editarFila,size:20,maxlength:10}} ,
+         {name:'cantidad',index:'cantidad', width:40,editable:true,editrules:{required:true,number:true},editoptions:{size:10,maxlength:10}}
+      ],
+      rowNum: 40,
+      rowList: [40,80],
+      height: $('#center').height()*0.3,
+      width: $('#center').width()*0.8,
+      pager: '#pager',
+      sortname: 'idarticulo',
+      viewrecords: true,
+      sortorder: "asc" ,
+       shrinkToFit: true,
+      editurl:"#",
     cellEdit: true,
-		cellsubmit:'clientArray',
+      cellsubmit:'clientArray',
     afterSaveCell : function(rowid,name,val,iRow,iCol) {
           if(name == 'cantidad') {
             if (val < 0)
             {
               alert("No puede solicitar cantidades negativas");
-              jQuery("#list").jqGrid('setRowData',rowid,{cantidad:val});              
+              jQuery("#list").jqGrid('setRowData',rowid,{cantidad:val});
             }
-            
+
           }
-    }   
-		
+    }
+
    });
 
-	jQuery("#list").jqGrid('navGrid','#pager', 
-		{height:400,width:600,reloadAfterSubmit:false}, //options 
-		{reloadAfterSubmit:false,closeAfterEdit:true,afterSubmit:callBack}, // edit options 
-		{reloadAfterSubmit:false,closeAfterAdd:false, afterShowForm:function(formid){$('#nombre').focus();}}, // add options 
-		{reloadAfterSubmit:false}, // del options 
-		{} // search options 
-	);
+   jQuery("#list").jqGrid('navGrid','#pager',
+      {height:400,width:600,reloadAfterSubmit:false}, //options
+      {reloadAfterSubmit:false,closeAfterEdit:true,afterSubmit:callBack}, // edit options
+      {reloadAfterSubmit:false,closeAfterAdd:false, afterShowForm:function(formid){$('#nombre').focus();}}, // add options
+      {reloadAfterSubmit:false}, // del options
+      {} // search options
+   );
 
 // Hotkeys ////////////////////////////////////////////////////////////////////////
   $(document).bind('keyup','F9',function() {$('#add_list').trigger('click');});
 ///////////////////////////////////////////////////////////////////////////////////
-	
-	setAlmacen();
+
+   setAlmacen();
 });
  </script>
