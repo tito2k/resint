@@ -1,4 +1,11 @@
 // Tabla de colores para cada estado de una transacción
+var ETR_BORRADOR = 1;
+var ETR_RATIFICADA = 2;
+var ETR_AUTORIZADA = 3;
+var ETR_DENEGADA = 4;
+var ETR_ENTREGA_PARCIAL = 5;
+var ETR_ENTREGA_TOTAL = 6;
+
 var estadoTransaccion = new Array();
 estadoTransaccion['1'] = "c7d6eb";		// Borrador
 estadoTransaccion['2'] = "f7ed80";		// Ratificada
@@ -7,6 +14,8 @@ estadoTransaccion['4'] = "ededed";		// Denegada
 estadoTransaccion['5'] = "9ddacb";		// Parcialmente Entregada
 estadoTransaccion['6'] = "d9d9d9";		// Totalmente Entregada
 
+// Mantengo la bandeja desde donde vengo
+var bandejaActiva = 'SALIDA';
 
 function mensajeError(texto)
 {
@@ -19,6 +28,7 @@ function mensajeError(texto)
 										modal: true
 								};
   dialog.dialog(opciones);
+
 }
 
 function mensajeInfo(texto)

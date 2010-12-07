@@ -49,7 +49,7 @@ $opSecciones = "";
 foreach ( $row as $tpla )
 {
    $opSecciones .= '<OPTION value="' . $tpla['idSeccion'] . '">';
-   $opSecciones .= $tpla['Seccion'];
+   $opSecciones .= utf8_encode($tpla['Seccion']);
    $opSecciones .= '</OPTION>';
 }
 
@@ -67,7 +67,7 @@ $opAlmacenes = "";
 foreach ( $row as $tpla )
 {
    $opAlmacenes .= '<OPTION value="' . $tpla['idSeccion'] . '">';
-   $opAlmacenes .= $tpla['Seccion'];
+   $opAlmacenes .= utf8_encode($tpla['Seccion']);
    $opAlmacenes .= '</OPTION>';
 }
 

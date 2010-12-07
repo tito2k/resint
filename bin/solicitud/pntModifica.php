@@ -4,7 +4,7 @@
 
   :::::
 ::::
-::   000    Genera la Pantala para ratificar una Solicitud
+::   000    Genera la Pantala para modificar una Solicitud
 ::  00000
 ::   000    A partir del numero de Solicitud recibido recupera los datos
 ::          de la misma y los substituye en la plantilla HTML.
@@ -90,7 +90,7 @@ switch($row['tipoDestino'])
 }
 
 // Procesar el template y desplegar
-$pntNuevaSol = new fxl_template("pntRatifica.html");
+$pntNuevaSol = new fxl_template("pntModifica.html");
 $pntNuevaSol->assign("idSesion"     , $idSesion);
 $pntNuevaSol->assign("idSolicitud"  , $idSolicitud);
 $pntNuevaSol->assign("nroSolicitud" , $nroSolicitud);

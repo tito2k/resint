@@ -1,12 +1,12 @@
 /*
 
-:::::
+  :::::
 ::::
 ::  ***     resint.css
 ::  *****
 ::  ***     Define los estilos para la pagina principal y todos sus elementos.
 ::::        Clases e identificadores
-:::::
+  :::::
 
 */
 
@@ -32,11 +32,16 @@ div#foot    { margin-top: 10px; padding: 0px; }
 #subtitulo { font: 9pt Arial; color: gray }
 .subtitulo { font: 9pt Arial; color: gray }
 
-/* Bloque con informacion de la Sesion */
+/* Bloque con informacion */
 .nroTransaccion { font: 9pt Arial; color: gray }
+div#marcoDatos { border: solid 1px #CCCCCC; width: 97% }
+div#marcoDatos label { font: bold 9pt Arial; color: gray }
+div#marcoDatos input { font: 9pt Arial; color: black; border: solid 1px gray; }
+div#marcoDatos select { width: 100%; font: 9pt Arial; color: black; border: solid 1px gray; }
+div#filtro select { font: 9pt Arial; color: black; border: solid 1px gray; }
 
 /* Bloque con informacion de la Sesion */
-#infosesion { font: 9pt Arial; color: gray;  }
+#infosesion { font: 9pt Arial; color: gray; }
 #infosesion button { font: 8pt "Courier New"; color: #2D507E; border: solid 1px gray;}
 
 /* Imagenes y logos principales */
@@ -49,13 +54,13 @@ img#JPC { display: inline; margin-top: 0px; margin-left: 320px; padding: 0px; }
 
 /*
 
-  :::::
+    :::::
   ::::
   ::  ***     login.css
   ::  *****
   ::  ***     Define los estilos para el formulario de login.
   ::::        Identificadores y clases.
-  :::::
+    :::::
 
 */
 #ingreso { background: url(../img/loginback.png) no-repeat; width: 355px; height: 207px; }
@@ -68,13 +73,13 @@ img#JPC { display: inline; margin-top: 0px; margin-left: 320px; padding: 0px; }
 
 /*
 
-:::::
+  :::::
 ::::
 ::  ***     pulldown
 ::  *****
 ::  ***     Define los estilos para la barra de menu y los pulldown; asi como el contenedor.
 ::::        Identificadores.
-:::::
+  :::::
 
 */
 table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
@@ -82,13 +87,13 @@ table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
 
 /*
 
-:::::
+  :::::
 ::::
 ::  ***     Tips
 ::  *****
 ::  ***     Define los estilos para los tips emergentes a solicitud del usuario
 ::::        o disparados por algun evento.
-:::::
+  :::::
 
 */
 #xtooltip     { position: absolute; margin: 0px -0px; }
@@ -106,8 +111,18 @@ table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
 .tipEtiqueta { text-align: left; font: bold 9pt Arial; color: #2D507E; padding-right: 3px }
 .tipDato     { font: 9pt Arial; color: black }
 
-/* --------- Errores --------- */
 
+/*
+
+  :::::
+::::
+::  ***     Errores
+::  *****
+::  ***     Define los estilos para los mensajes de error "en linea".
+::::
+  :::::
+
+*/
 span.errorMessage {
   display: block;
   float: left;

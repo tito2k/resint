@@ -4,14 +4,14 @@
 
   :::::
 ::::
-::   000    Autoriza Solicitud
+::   000    Modifica Solicitud
 ::  00000
-::   000    Autoriza la solicitud a partir de los datos del formulario.
-::          grabando el seguimiento y los articulos recibidos.
+::   000    Modifica la solicitud a partir de los datos del formulario.
+::          grabando el seguimiento y los articulos recibidos, previa eliminación de los anteriores.
 ::
 ::          $idSesion         Identificador de sesion
-::          $idSolicitud      Numero de la Transaccion
-::          $datos            Articulos autorizados {id:valor,cant:valor}, ...
+;;          $idSolicitud      Numero de la Transaccion
+::          $datos            Articulos ratificados {id:valor,cant:valor}, ...
 ::          $observaciones    Observaciones ;-)
 ::
 ::          $articulos        Arreglo de articulos como objetos.
@@ -30,7 +30,7 @@ require_once("../../etc/globales.php");
 
 // Recuperar los datos
 $idSesion      = $_POST['idSesion'];
-$idSolicitud   = $_POST['idSolicitud'];
+$idSolicitud   = $_POST['idsolicitud'];
 $datos         = $_POST['datos'];
 $observaciones = $_POST['observaciones'];
 
@@ -45,9 +45,17 @@ if ( !sesionValida($idSesion) ) return;
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
-
 // Convertir los datos a un arreglo de objetos
-$articulos = json_decode(stripcslashes($datos));
+$articulosIn = json_decode(stripcslashes($datos));
+
+// Agrupar los articulos por si hay mas de una linea de alguno
+foreach ( $articulosIn as $unArticulo )
+{
+   if ( $articulos["$unArticulo->idarticulo"] )
+      $articulos["$unArticulo->idarticulo"]->cantidad += $unArticulo->cantidad;
+   else
+      $articulos["$unArticulo->idarticulo"] = $unArticulo;
+}
 
 // Obtener los datos del Usuario
 $datosUsuario = datosUsuario($idSesion);
@@ -57,11 +65,8 @@ $nivelAcceso = $datosUsuario['idNivel'];
 // El tipo de Transaccion
 $tipo = TRS_SOLICITUD;
 
-// El estado depende de que haya al menos un articulo autorizado
-$estado = ETR_DENEGADA;
-foreach ( $articulos as $renglon )
-   if ($renglon->autoriza == 'SI')
-      $estado = ETR_AUTORIZADA;
+// El estado queda en borrador
+$estado = ETR_BORRADOR;
 
 
           /*     ::::::::::::::::::::::::::::::::::::::::
@@ -73,6 +78,16 @@ foreach ( $articulos as $renglon )
 // Iniciar la Transaccion
 $db = dbConnect("resint");
 $db->beginTransaction();
+
+// Borramos los datos actuales
+$qs = "DELETE FROM transaccionarticulo WHERE idtransaccion=$idSolicitud";
+$db->exec($qs);
+
+$qs = "DELETE FROM seguimiento WHERE idtransaccion=$idSolicitud";
+$db->exec($qs);
+
+//$qs = "DELETE FROM transaccion WHERE idtransaccion=$idSolicitud";
+//$db->exec($qs);
 
 // Grabar el Seguimiento
 $qs = "INSERT INTO seguimiento
@@ -89,7 +104,8 @@ $db->exec($qs);
 foreach ( $articulos as $renglon )
 {
    $qs = "INSERT INTO transaccionarticulo
-          VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->aprueba)";
+          VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->cantidad)";
+
    $db->exec($qs);
 }
 
@@ -103,7 +119,7 @@ $db->commit();
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
-$mensaje = sprintf("%s %s",MSG_AUTORIZADA,nroSolicitud($idSolicitud));
+$mensaje = sprintf("%s %s",MSG_MODIFICADA,nroSolicitud($idSolicitud));
 
 // Devolver el resultado
 $dataSet['resultadoOperacion'] = TAREA_OK;

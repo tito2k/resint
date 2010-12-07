@@ -73,16 +73,18 @@ function sesionValida($idSesion)
 function datosUsuario($idSesion)
 {
    $db = dbConnect("talos");
-   $rs = $db->query( "CALL talos.datosUsuario('$idSesion','APLICACION')" );
+   $rs = $db->query( "CALL talos.datosUsuario('$idSesion','" . APLICACION . "')" );
    $row = $rs->fetchObject();
 
    $datosUsuario['idUsuario']   = $row->idUsuario;
-   $datosUsuario['Nombre']      = $row->Nombre;
+   $datosUsuario['pNombre']     = $row->pNombre;
+   $datosUsuario['sNombre']     = $row->sNombre;
+   $datosUsuario['pApellido']   = $row->pApellido;
+   $datosUsuario['sApellido']   = $row->sApellido;
+   $datosUsuario['horaInicio']  = $row->horaInicio;
    $datosUsuario['idNivel']     = $row->idNivel;
    $datosUsuario['nivelAcceso'] = $row->nivelAcceso;
-   $datosUsuario['horaInicio']  = $row->horaInicio;
-   $datosUsuario['idSeccion']   = $row->idSeccion;
-   $datosUsuario['descSeccion'] = $row->descSeccion;
+   $datosUsuario['documento']   = $row->documento;
 
    return ( $datosUsuario );
 }

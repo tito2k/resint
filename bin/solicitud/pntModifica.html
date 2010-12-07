@@ -1,9 +1,9 @@
    <!-- =========================================================== -->
-   <!-- ==           Pantalla Ratificar Solicitud                == -->
+   <!-- ==           Pantalla Modificar Solicitud                == -->
    <!-- =========================================================== -->
     <script type="text/javascript" src="../../js/init_solicitud.js"></script>
-   <div id="ratificarSolicitud">
-     <form id="frmSolicitud" action="../solicitud/prcRatifica.php" method="POST">
+   <div id="modificarSolicitud">
+     <form id="frmSolicitud" action="../solicitud/prcModifica.php" method="POST">
      <table width="100%" cellspacing="20" border="0" cellpadding="0">
     <tr>
        <td align="left"><span>Unidad Org.:</span></td>
@@ -44,7 +44,7 @@
 $(document).ready(function() {
     var lastsel;
    jQuery("#list").jqGrid({
-      url:'../../bin/solicitud/datRatifica.php?idSesion={idSesion}&idsolicitud={idSolicitud}&idestado={idEstado}',
+      url:'../../bin/solicitud/datModifica.php?idSesion={idSesion}&idsolicitud={idSolicitud}&idestado={idEstado}',
       datatype: "json",
       colNames:['#','Art&iacute;culo','Cantidad'],
       colModel:[

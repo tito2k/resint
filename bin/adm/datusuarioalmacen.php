@@ -17,8 +17,9 @@
        
       $sql_count = "SELECT COUNT(*) AS count FROM usuario;";
   
-      $sql_data = "SELECT idusuario,nombres,apellidos,idusuario AS id 
-                  FROM usuario";
+      $sql_data = "SELECT idusuario,concat(pnombre,' ', ifnull(snombre,'')) as nombres,
+													concat(papellido,' ',ifnull(sapellido,'')) AS apellidos,idusuario AS id 
+                   FROM usuario";
  
        $generica = new Generica('talos');
        $data = $generica->select($sql_count,$sql_data,'json');
@@ -38,9 +39,9 @@
       	$id = $_GET["id"];
 		global $conn;
 			 
-		$sql_count = "SELECT COUNT(*) AS count FROM usuarioalmacen";
+		$sql_count = "SELECT COUNT(*) AS count FROM usuarioalmacen WHERE idusuario='$id'";
 		$sql_data = "SELECT '$id' AS idusuario,s.descripcion AS idalmacen, (CASE WHEN us.idalmacen IS NOT NULL THEN 'Si' ELSE '' END) AS existe,
-					concat('idusuario=',char(39),'$id',char(39),' AND idseccion=',s.idseccion) AS id 
+					concat('idusuario=',char(39),'$id',char(39),' AND idalmacen=',s.idseccion) AS id 
 					FROM usuarioalmacen us
 					INNER JOIN seccion s ON us.idalmacen = s.idseccion AND us.idusuario='$id'";
 					

@@ -45,9 +45,17 @@ if ( !sesionValida($idSesion) ) return;
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
-
 // Convertir los datos a un arreglo de objetos
-$articulos = json_decode(stripcslashes($datos));
+$articulosIn = json_decode(stripcslashes($datos));
+
+// Agrupar los articulos por si hay mas de una linea de alguno
+foreach ( $articulosIn as $unArticulo )
+{
+   if ( $articulos["$unArticulo->idarticulo"] )
+      $articulos["$unArticulo->idarticulo"]->cantidad += $unArticulo->cantidad;
+   else
+      $articulos["$unArticulo->idarticulo"] = $unArticulo;
+}
 
 // Obtener los datos del Usuario
 $datosUsuario = datosUsuario($idSesion);

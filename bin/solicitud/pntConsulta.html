@@ -1,10 +1,9 @@
                <!-- =========================================================== -->
-               <!-- ==              Pantalla Entrega Solicitud               == -->
+               <!-- ==              Pantalla Consulta Solicitud               == -->
                <!-- =========================================================== -->
 
    <script type="text/javascript" src="../../js/init_solicitud.js"></script>
    <div id="entregarsolicitud">
-        <form id="frmSolicitud" action="../solicitud/prcEntrega.php" method="POST">
         <table width="100%" cellspacing="20" border="0" cellpadding="0">
       <tr>
          <td align="left"><span>Unidad Org.:</span></td>
@@ -21,8 +20,8 @@
          <tr>
             <td align="left"><span>Almac&eacute;n:</span></td>
             <td align="left"><span>{desAlmacen}</span></td>
-            <td align="left"><span>Operador:</span></td>
-            <td align="left"><span>{idUsuario}</span></td>
+            <td align="left"></td>
+            <td align="left"></td>
          </tr>
          <tr align="center">
                <td colspan="4">
@@ -33,57 +32,45 @@
             <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
             <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
          </tr>
-        </table>
+         </table>
         <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
         <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
-      </form>
    </div>
 
 <script type="text/javascript">
 
-var lastsel;
-
 jQuery(document).ready(function(){
 
    jQuery("#list").jqGrid({
-      url:'../solicitud/datEntrega.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
+      url:'../solicitud/datConsulta.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
       datatype: "json",
-      colNames:['C&oacute;digo','Art&iacute;culo','Autorizado','Entregado','Entrega'],
+      colNames:['C&oacute;digo','Art&iacute;culo','Cantidad','','Estado','Fecha'],
       colModel:[
-         {name:'idarticulo',index:'idarticulo', width:20,editable:false },
+         {name:'au.idarticulo',index:'au.idarticulo', width:20,editable:false },
          {name:'nombre',index:'nombre', width:80,editable:false },
          {name:'cantidad',index:'cantidad', width:40,editable:false },
-         {name:'entregado',index:'entregado', width:40,editable:false },
-         {name:'entrega',index:'entrega', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true,minValue:0} }
+         {name:'au.idestado',index:'au.idestado', width:40,editable:false, hidden:true },
+         {name:'e.descripcion',index:'e.descripcion', width:40,editable:false },
+         {name:'au.fecha',index:'au.fecha', width:40,editable:false }
       ],
-    cellEdit: true,
       rowNum: 40,
       height: $('#center').height()*0.3,
       width: $('#center').width()*0.8,
       viewrecords: true,
-    cellsubmit:'clientArray',
+      sortname: 'au.idestado,au.idarticulo',
       editurl:"#",
       caption:"Art&iacute;culos solicitados",
-    afterSaveCell : function(rowid,name,val,iRow,iCol) {
-          if(name == 'entrega') {
-            var cant = jQuery("#list").jqGrid('getCell',rowid,iCol-2);
-            var entr = jQuery("#list").jqGrid('getCell',rowid,iCol-1);
-            if (val > (cant-entr))
-            {
-              alert("La entrega no puede superar el saldo");
-              jQuery("#list").jqGrid('setRowData',rowid,{entrega:(cant-entr)});
-            }
-
+      loadComplete: function(xhr) { 
+        var mids = jQuery("#list").getDataIDs();
+        for (var i=0;i<mids.length;i=i+1) {
+          var cl=mids[i];
+          var state=jQuery("#list").getCell(cl,'au.idestado');
+          for (var l=0;l<10;l=l+1) { 
+            jQuery("#list").setCell(cl,l,'',{'background-color':estadoTransaccion[state]}); 
           }
-    }
-/*      onSelectRow: function(id){
-         if(id && id!==lastsel){
-            jQuery('#list').jqGrid('restoreRow',lastsel);
-            lastsel=id;
-         }
-      jQuery('#list').jqGrid('editRow',id,true);
-      }
-*/
+        }
+      }     
+      
    });
 
 

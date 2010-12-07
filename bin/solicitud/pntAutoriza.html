@@ -7,7 +7,12 @@
         <table width="100%" cellspacing="20" border="0" cellpadding="0">
       <tr>
          <td align="left"><span>Unidad Org. solicitante:</span></td>
-         <td align="left" colspan="3"><span>{desOrigen}</span></td>
+         <td align="left" colspan="3"><span>{desOrigen}</span> &nbsp; 
+           
+           <input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' "+
+                   onclick="infoSeccion('{idTransaccion}');" />
+           
+           </td>
       </tr>
          <tr>
             <td align="left"><span>Fecha:</span></td>
@@ -32,9 +37,6 @@
          <tr>
             <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
             <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
-         </tr>
-         <tr>
-            <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
          </tr>
         </table>
         <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">

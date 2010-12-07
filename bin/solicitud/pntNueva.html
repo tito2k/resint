@@ -4,74 +4,78 @@
                <script type="text/javascript" src="../../js/init_solicitud.js"></script>
                <div id="solicitud">
                   <form id="frmSolicitud" action="../solicitud/prcNueva.php" method="POST">
-                  <table border="1" width="100%" cellspacing="20" border="0" cellpadding="0">
-                    <tr>
-                       <td align="left"><label for="idorigen">Unidad Org.:</label></td>
-                       <td align="left" colspan="3"><select name="idOrigen" id="idorigen" tabindex="30">{secciones}</select></td>
-                    </tr>
-                    <tr>
-                       <td align="left"><label for="fecha">Fecha:</label></td>
-                       <td align="left"><input type="text" name="fecha" id="fecha" size="10" maxlength="10" tabindex="10" value="{fechaactual}"></td>
-                       <td align="left"><label for="destino">Destino:</label></td>
-                       <td align="left"><select name="destino" id="destino" tabindex="20">
-                                 <option value="S">Unidad Organizativa</option>
-                                 <option value="F">Funcionario</option>
-                                 <option value="V">Veh&iacute;culo</option>
-                                      </select>
-                       </td>
-                        </tr>
+                  <table border="0" width="100%" cellspacing="15" border="0" cellpadding="0">
+                        <tr><td align="center">
+                           <div id="marcoDatos">
 
-                        <tr><td colspan="4">
-                           <div id="seccion" class="oculta">
-                              <table border="1" width="100%">
-                                  <tr>
-                                    <td align="left" width="105px"><label for="idseccion">Secci&oacute;n:</label></td>
-                                    <td align="left"><select name="idSeccion" id="idseccion" tabindex="30">{secciones}</select></td>
-                                  </tr>
-                              </table>
+
+
+
+                           <table border="0" width="100%" cellspacing="5" border="0" cellpadding="0">
+                                <tr>
+                                   <td align="left"  width="15%"><label for="idorigen">Unidad Org.:</label></td>
+                                   <td align="left"  width="30%"><select name="idOrigen" id="idorigen" tabindex="30">{secciones}</select></td>
+                                   <td align="right" width="45%"><label for="fecha">Fecha:</label></td>
+                                   <td align="right" width="10%"><input type="text" name="fecha" id="fecha" size="10" maxlength="10" tabindex="10" value="{fechaactual}"></td>
+                                </tr>
+                                <tr>
+                                   <td align="left"><label for="destino">Destino:</label></td>
+                                   <td align="left"><select name="destino" id="destino" tabindex="20">
+                                             <option value="S">Unidad Organizativa</option>
+                                             <option value="F">Funcionario</option>
+                                             <option value="V">Veh&iacute;culo</option>
+                                                  </select>
+                                   </td>
+                                   <td colspan="2">
+                                       <div id="seccion" class="oculta">
+                                          <table border="0" width="100%">
+                                              <tr>
+                                                <td align="left"><select name="idSeccion" id="idseccion" tabindex="30">{secciones}</select></td>
+                                              </tr>
+                                          </table>
+                                       </div>
+                                       <div id ="funcionario" class="oculta">
+                                          <table border="0" width="100%">
+                                              <tr>
+                                                <td width="30%" align="left"><input type="text" name="idFuncionario" id="idfuncionario" validation="" size="10" maxlength="10" tabindex="30"></td>
+                                                <td align="right"><div id="ci" class="subtitulo"></div></td>
+                                              </tr>
+                                          </table>
+                                            </div>
+                                       <div id="vehiculo" class="oculta">
+                                          <table border="0" width="100%">
+                                              <tr>
+                                                <td align="left"><input type="text" name="idVehiculo" id="idvehiculo" validation="" size="10" maxlength="10" tabindex="30"></td>
+                                                <td align="right"><div id="matricula" class="subtitulo"></div></td>
+                                              </tr>
+                                          </table>
+                                            </div>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                    <td align="left"><label for="almacen">Almac&eacute;n:</label></td>
+                                    <td align="left"><select name="almacen" id="almacen" tabindex="30">{almacenes}</select></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                           </table>
+
+
+
                            </div>
-                           <div id ="funcionario" class="oculta">
-                              <table border="1" width="100%">
-                                  <tr>
-                                    <td align="left" width="105px"><label for="idfuncionario">Funcionario:</label></td>
-                                    <td align="left"><input type="text" name="idFuncionario" id="idfuncionario" validation="" resize="10" maxlength="10" tabindex="30"></td>
-                                    <td align="left"><div id="ci" class="subtitulo"></div></td>
-                                  </tr>
-                              </table>
-                                </div>
-                           <div id="vehiculo" class="oculta">
-                              <table border="1" width="100%">
-                                  <tr>
-                                    <td align="left" width="105px"><label for="idvehiculo">Veh&iacute;culo:</label></td>
-                                    <td align="left"><input type="text" name="idVehiculo" id="idvehiculo" validation="" size="10" maxlength="10" tabindex="30"></td>
-                                    <td align="left"><div id="matricula" class="subtitulo"></div></td>
-                                  </tr>
-                              </table>
-                                </div>
                         </td></tr>
 
-
-                        <tr>
-                                <td align="left"><label for="almacen">Almac&eacute;n:</label></td>
-                                <td colspan="3" align="left"><select name="almacen" id="almacen" tabindex="30">{almacenes}</select></td>
-                        </tr>
-
-
                         <tr align="center">
-                              <td colspan="4">
+                              <td>
                                     <table id="list" class="scroll"></table>
                                     <div id="pager" class="scroll" style="text-align:center;"></div>
                               </td>
                         </tr>
 
-                       <tr align="center">
-                          <td colspan="4"><label for="observaciones">Observaciones:</label><br>
-                          <textarea align="center" name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce"></textarea></td>
-                       </tr>
-
-                       <tr>
-                          <td colspan="4" align="right"><br><input type="submit" name="aceptarSolicitud" id="aceptarSolicitud" value="ACEPTAR" size="10" tabindex="60"></td>
-                       </tr>
+                        <tr align="center">
+                          <td><label for="observaciones">Observaciones:</label><br>
+                          <textarea align="center" name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce" style="width: 97%;"></textarea></td>
+                        </tr>
 
                   </table>
                   </form>
@@ -91,8 +95,8 @@ $(document).ready(function() {
       ],
       rowNum: 40,
       rowList: [40,80],
-      height: $('#center').height()*0.3,
-      width: $('#center').width()*0.8,
+      height: $('#center').height()*0.45,
+      width: $('#center').width()*0.90,
       pager: '#pager',
       sortname: 'idart',
       viewrecords: true,

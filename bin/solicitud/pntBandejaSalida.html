@@ -11,7 +11,7 @@ jQuery(document).ready(function(){
    jQuery("#list").jqGrid({
 		url:'../solicitud/datBandejaSalida.php?idSesion={idSesion}',
 		datatype: "json",
-		colNames:['','Solicitud','Origen','Inicio','Destino','Identificaci&oacute;n','','Estado','Fecha','Almac&eacute;n','',''],
+		colNames:['','Solicitud','Origen','Inicio','Destino','Identificaci&oacute;n','','Estado','Fecha','Almac&eacute;n','','',''],
 		colModel:[
 			{name:'_key_N_idtransaccion', hidden:true, search:false, index:'_key_N_idtransaccion', width:55,editable:false},
       {name:'_field_N_nrosolicitud', search:false, index:'_field_N_nrosolicitud', width:55,editable:false},
@@ -23,8 +23,9 @@ jQuery(document).ready(function(){
 			{name:'_field_D_idestado', index:'_field_D_idestado', width:80,editable:false,edittype:'select',editoptions:{value:"{_-ESTADOS-_}"}}, 
 			{name:'_field_D_fechaactual', search:false, index:'_field_D_fechaactual', width:70,align:'center'}, 
 			{name:'_field_D_almacen', search:false, index:'_field_D_almacen', width:80,editable:false},
-			{name:'edit', search:false, index:'edit',width:12,sortable:false},
-			{name:'view', search:false, index:'view',width:12,sortable:false}
+			{name:'view', search:false, index:'view',width:12,sortable:false},
+      {name:'edit', search:false, index:'edit',width:12,sortable:false},
+      {name:'next', search:false, index:'next',width:12,sortable:false}
 		],
 		rowNum: 40,
 		rowList: [40,80],
@@ -49,8 +50,9 @@ jQuery(document).ready(function(){
   				var idTransaccion = linea._key_N_idtransaccion;
   
   				ed = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -64px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"editRow("+idEstado+","+idTransaccion+");\" />"; 
-  				vi = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -128px -112px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"viewRow("+idEstado+","+idTransaccion+");\" />"; 
-  				jQuery("#list").jqGrid('setRowData',ids[i],{edit:ed,view:vi});				 
+  				vi = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"viewRow("+idTransaccion+");\" />"; 
+          nx = "<input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -32px -160px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' onclick=\"nextTask("+idEstado+","+idTransaccion+");\" />"; 
+  				jQuery("#list").jqGrid('setRowData',ids[i],{view:vi,edit:ed,next:nx});				 
   			}
   			$('.jqgrow').mouseover(function(e) {
           var rowId = $(this).attr('id');
@@ -117,7 +119,7 @@ function changeImage(obj,opt){
     
 }
 
-function editRow(idEstado,idTransaccion) { 
+function nextTask(idEstado,idTransaccion) { 
 	$.getJSON("../solicitud/getSiguiente.php",{idSesion:idSesion,idEstado:idEstado}, function(json) {
 		var func = json.url;
 		var tarea = json.idTarea;
@@ -127,11 +129,15 @@ function editRow(idEstado,idTransaccion) {
 		
 } 
 
-function viewRow(gr) { 
+function viewRow(idTransaccion) { 
+   consultaSolicitud(idTransaccion,409);   
+} 
 
-	alert('view:'+gr);
-   //$('#center').load('View.php?id='+gr);
-   
+function editRow(idEstado,idTransaccion) {
+   if (idEstado > ETR_BORRADOR)
+     mensajeError("Solo se pueden modificar solicitudes en estado Borrador");
+   else 
+     modificaSolicitud(idTransaccion,410);   
 } 
 
 </script>

@@ -96,14 +96,17 @@ $db->exec($qs);
 // Grabar la lista de articulos
 foreach ( $articulos as $renglon )
 {
-   $qs = "INSERT INTO transaccionarticulo
-          VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->entrega)";
-   $db->exec($qs);
+   if ( $renglon->entrega )
+   {
+      $qs = "INSERT INTO transaccionarticulo
+             VALUES (sysdate(),'$idSolicitud',$estado,$renglon->idarticulo,$renglon->entrega)";
+      $db->exec($qs);
 
-   // Debita el Stock
-   $qs = "UPDATE articulo SET stock = stock - $renglon->entrega
-          WHERE idarticulo = $renglon->idarticulo";
-   $db->exec($qs);
+      // Debita el Stock
+      $qs = "UPDATE articulo SET stock = stock - $renglon->entrega
+             WHERE idarticulo = $renglon->idarticulo";
+      $db->exec($qs);
+   }
 }
 
 // Finalizar Transaccion
@@ -153,7 +156,7 @@ if ( $solTerminada )
           SET idestado=$estado, fechaactual=sysdate()
           WHERE idtransaccion='$idSolicitud'";
    $db->exec($qs);
-
+   
    // Finalizar Transaccion
    $db->commit();
 }
@@ -165,11 +168,12 @@ if ( $solTerminada )
                ::::                                    ::::
                  ::::::::::::::::::::::::::::::::::::::::     */
 
-$msgNumSol = sprintf("%s %s",MSG_ENTREGA,nroSolicitud($idSolicitud));
+
+$msg = sprintf("%s %s",MSG_ENTREGA,nroSolicitud($idSolicitud));
 
 // Devolver el resultado
 $dataSet['resultadoOperacion'] = TAREA_OK;
-$dataSet['mensaje'] = $msgNumSol;
+$dataSet['mensaje'] = $msg;
 
 echo json_encode($dataSet);
 

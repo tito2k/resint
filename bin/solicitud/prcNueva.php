@@ -24,7 +24,8 @@
 ::          $datos            json de los articulos {id:valor,cant:valor}, ...
 ::          $observaciones    Observaciones ;-)
 ::
-::          $articulos        Arreglo de articulos como objetos.
+::          $articulosIn      Arreglo de articulos como objetos tal como viene.
+::          $articulos        Arreglo de articulos como objetos depurado.
 ::          $idSolicitud      Numero de Solicitud generado en la base.
 ::          $nivelAcceso      Privilegios del usuario
 ::          $idUsuario        Identificador del usuaro.
@@ -83,7 +84,16 @@ ereg( "([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})", $fecha, $regs );
 $fecha = "$regs[3]-$regs[2]-$regs[1]";
 
 // Convertir los datos a un arreglo de objetos
-$articulos = json_decode(stripcslashes($datos));
+$articulosIn = json_decode(stripcslashes($datos));
+
+// Agrupar los articulos por si hay mas de una linea de alguno
+foreach ( $articulosIn as $unArticulo )
+{
+   if ( $articulos["$unArticulo->idarticulo"] )
+      $articulos["$unArticulo->idarticulo"]->cantidad += $unArticulo->cantidad;
+   else
+      $articulos["$unArticulo->idarticulo"] = $unArticulo;
+}
 
 // Obtener los datos del Usuario
 $datosUsuario = datosUsuario($idSesion);
@@ -93,11 +103,8 @@ $nivelAcceso = $datosUsuario['idNivel'];
 // El tipo de Transaccion
 $tipo = TRS_SOLICITUD;
 
-// El estado depende del nivel del operador
-if ( $nivelAcceso < NA_ENCARGADO )
-   $estado = ETR_BORRADOR;
-else
-   $estado = ETR_RATIFICADA;
+// El estado
+$estado = ETR_BORRADOR;
 
 
           /*     ::::::::::::::::::::::::::::::::::::::::

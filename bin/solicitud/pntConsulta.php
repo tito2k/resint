@@ -4,7 +4,7 @@
 
   :::::
 ::::
-::   000    Genera la Pantala para ratificar una Solicitud
+::   000    Genera la Pantala para consultar articulos de una Solicitud
 ::  00000
 ::   000    A partir del numero de Solicitud recibido recupera los datos
 ::          de la misma y los substituye en la plantilla HTML.
@@ -16,7 +16,6 @@
 ::          $row['desOrigen']    Seccion donde se origino la solicitud
 ::          $row['tipoDestino']  Tipo del destino S | F | V
 ::          $row['idDestino']    idSeccion | CI | Matreicula
-::          $row['idAlmacen']    Identificador de la Seccion Proveedora
 ::          $row['desAlmacen']   Seccion Proveedora
 ::          $row['idEstado']     idEstado de la transaccion
 ::          $row['desEstado']    Descripcion del Estado
@@ -44,17 +43,13 @@ if ( !sesionValida($idSesion) ) return;
 $db  = dbConnect("resint");
 $qs  = "SELECT t.fechainicio AS fchInicio, t.destino AS tipoDestino,
                t.iddestino AS idDestino, t.observaciones AS Observaciones,
-               o.descripcion AS desOrigen, t.idalmacen AS idAlmacen, 
-               a.descripcion AS desAlmacen,
-               e.idestado AS idEstado, e.descripcion AS desEstado,
-               s.fecha AS fchActual, s.idusuario AS idUsuario
+               o.descripcion AS desOrigen, a.descripcion AS desAlmacen,
+               e.idestado AS idEstado, e.descripcion AS desEstado
          FROM transaccion t
          INNER JOIN seccion o ON t.idorigen=o.idseccion
          INNER JOIN seccion a ON t.idalmacen=a.idseccion
          INNER JOIN estadotransaccion e ON t.idestado=e.idestado
-         INNER JOIN seguimiento s ON t.idtransaccion=s.idtransaccion AND t.idestado=s.idestado
          WHERE t.idtransaccion=$idSolicitud";
-
 $rs  = $db->query($qs);
 $row = $rs->fetch(PDO::FETCH_ASSOC);
 
@@ -90,20 +85,17 @@ switch($row['tipoDestino'])
 }
 
 // Procesar el template y desplegar
-$pntNuevaSol = new fxl_template("pntRatifica.html");
+$pntNuevaSol = new fxl_template("pntConsulta.html");
 $pntNuevaSol->assign("idSesion"     , $idSesion);
 $pntNuevaSol->assign("idSolicitud"  , $idSolicitud);
 $pntNuevaSol->assign("nroSolicitud" , $nroSolicitud);
 $pntNuevaSol->assign("fchInicio"    , $fchInicio);
-$pntNuevaSol->assign("desOrigen"     , $row['desOrigen']);
+$pntNuevaSol->assign("idOrigen"     , $row['desOrigen']);
 $pntNuevaSol->assign("tipoDestino"  , $row['tipoDestino']);
 $pntNuevaSol->assign("idDestino"    , $row['idDestino']);
-$pntNuevaSol->assign("idAlmacen"    , $row['idAlmacen']);
 $pntNuevaSol->assign("desAlmacen"   , $row['desAlmacen']);
 $pntNuevaSol->assign("idEstado"     , $row['idEstado']);
 $pntNuevaSol->assign("desEstado"    , $row['desEstado']);
-$pntNuevaSol->assign("fchActual"    , $fchActual);
-$pntNuevaSol->assign("idUsuario"    , $row['idUsuario']);
 $pntNuevaSol->assign("observaciones", $row['Observaciones']);
 $pntNuevaSol->display();
 

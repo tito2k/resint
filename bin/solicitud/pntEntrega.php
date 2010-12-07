@@ -93,7 +93,7 @@ $pntNuevaSol->assign("idSesion"     , $idSesion);
 $pntNuevaSol->assign("idSolicitud"  , $idSolicitud);
 $pntNuevaSol->assign("nroSolicitud" , $nroSolicitud);
 $pntNuevaSol->assign("fchInicio"    , $fchInicio);
-$pntNuevaSol->assign("idOrigen"     , $row['desOrigen']);
+$pntNuevaSol->assign("desOrigen"     , $row['desOrigen']);
 $pntNuevaSol->assign("tipoDestino"  , $row['tipoDestino']);
 $pntNuevaSol->assign("idDestino"    , $row['idDestino']);
 $pntNuevaSol->assign("desAlmacen"   , $row['desAlmacen']);

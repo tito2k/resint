@@ -26,22 +26,15 @@ $datosUsuario = datosUsuario($idSesion);
 // Obtener las Secciones que puede representar este usuario
 $sql_count  = "SELECT COUNT(*) AS count FROM transaccionarticulo ";
 $sql_count .= "WHERE idtransaccion = " . $idSolicitud;
-$sql_count .= " AND cantidad > 0 ";
-$sql_count .= " AND (idestado = ".ETR_AUTORIZADA." OR idestado = ".ETR_ENTREGA_PARCIAL.") ";
 
-$qs  = "SELECT au.idarticulo,a.nombre, ";
-$qs .= "au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, ";
-$qs .= "concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id ";
-$qs .= "FROM transaccionarticulo au ";
-$qs .= "LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad ";
-$qs .= "FROM transaccionarticulo ";
-$qs .= "WHERE idestado = " . ETR_ENTREGA_PARCIAL . " AND idtransaccion = " . $idSolicitud;
-$qs .= 	" GROUP BY idtransaccion, idarticulo) en ON au.idtransaccion = en.idtransaccion ";
-$qs .= " AND au.idarticulo = en.idarticulo ";
-$qs .= " INNER JOIN articulo a ON a.idarticulo = au.idarticulo ";
-$qs .= "WHERE au.idtransaccion = " . $idSolicitud;
-$qs .= " AND au.cantidad > 0 ";
-$qs .= " AND au.idestado = " . ETR_AUTORIZADA;
+$qs = "SELECT au.idarticulo,a.nombre,";
+$qs .= " au.cantidad, au.idestado, e.descripcion,date_format(au.fecha,'%d/%m/%Y') as fecha,";
+$qs .= " uuid() AS id";
+$qs .= " FROM transaccionarticulo au ";
+$qs .= " INNER JOIN articulo a ON a.idarticulo = au.idarticulo";
+$qs .= " INNER JOIN estadotransaccion e ON e.idestado = au.idestado"; 
+$qs .= " WHERE au.idtransaccion = " . $idSolicitud;
+//$qs .= " ORDER BY au.idestado,au.idarticulo";
 
 wlog($qs);
 $generica = new Generica();
