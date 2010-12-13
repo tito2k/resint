@@ -1,41 +1,44 @@
-               <!-- =========================================================== -->
-               <!-- ==              Pantalla Consulta Solicitud               == -->
-               <!-- =========================================================== -->
+    <!-- =========================================================== -->
+    <!-- ==              Pantalla Consulta Solicitud               == -->
+    <!-- =========================================================== -->
 
-   <script type="text/javascript" src="../../js/init_solicitud.js"></script>
-   <div id="entregarsolicitud">
-        <table width="100%" cellspacing="20" border="0" cellpadding="0">
-      <tr>
-         <td align="left"><span>Unidad Org.:</span></td>
-         <td align="left" colspan="3"><span>{desOrigen}</span></td>
-      </tr>
-         <tr>
-            <td align="left"><span>Fecha:</span></td>
-            <td colspan="3" align="left"><span>{fchInicio}</span></td>
-         </tr>
-         <tr>
-            <td align="left"><span>{tipoDestino}:</span></td>
-            <td colspan="3" align="left"><span>{idDestino}</span></td>
-         </tr>
-         <tr>
-            <td align="left"><span>Almac&eacute;n:</span></td>
-            <td align="left"><span>{desAlmacen}</span></td>
-            <td align="left"></td>
-            <td align="left"></td>
-         </tr>
-         <tr align="center">
-               <td colspan="4">
-                     <table id="list" class="scroll"></table>
-               </td>
-         </tr>
-         <tr>
-            <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
-            <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
-         </tr>
-         </table>
-        <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
-        <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
-   </div>
+    <script type="text/javascript" src="../../js/init_solicitud.js"></script>
+    <div id="entregarsolicitud">
+      <table border="0" width="100%" cellspacing="15" border="0" cellpadding="0">
+        <tr><td align="center">
+          <div id="marcoDatos">
+            <table width="100%" cellspacing="5" border="0" cellpadding="0">
+              <tr>
+                <td align="left"><span class="label">Unidad Org.:</span></td>
+                <td align="left" colspan="3"><span class="input">{desOrigen}</span></td>
+                <td align="left"><span class="label">Fecha:</span></td>
+                <td colspan="3" align="left"><span class="input">{fchInicio}</span></td>
+              </tr>
+              <tr>
+                <td align="left"><span class="label">Receptor: {tipoDestino}</span></td>
+                <td colspan="3" align="left"><span class="input">{idDestino}</span></td>
+              </tr>
+              <tr>
+                <td align="left"><span class="label">Almac&eacute;n:</span></td>
+                <td align="left"><span class="input">{desAlmacen}</span></td>
+             </tr>
+            </table>
+          </div>
+        </td></tr>
+        <tr align="center">
+          <td colspan="4">
+            <table id="list" class="scroll"></table>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
+            <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea>
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
+      <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
+    </div>
 
 <script type="text/javascript">
 

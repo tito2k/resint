@@ -1,48 +1,50 @@
-   <!-- =========================================================== -->
-   <!-- ==              Pantalla Autoriza Solicitud              == -->
-   <!-- =========================================================== -->
-   <script type="text/javascript" src="../../js/init_solicitud.js"></script>
-   <div id="autorizarsolicitud">
-        <form id="frmSolicitud" action="../solicitud/prcAutoriza.php" method="POST">
-        <table width="100%" cellspacing="20" border="0" cellpadding="0">
-      <tr>
-         <td align="left"><span>Unidad Org. solicitante:</span></td>
-         <td align="left" colspan="3"><span>{desOrigen}</span> &nbsp; 
-           
-           <input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' "+
-                   onclick="infoSeccion(event,'{idSolicitud}');" />
-           
-           </td>
-      </tr>
-         <tr>
-            <td align="left"><span>Fecha:</span></td>
-            <td colspan="3" align="left"><span>{fchInicio}</span></td>
-         </tr>
-         <tr>
-            <td align="left"><span>Receptor: {tipoDestino}</span></td>
-            <td colspan="3" align="left"><span>{idDestino}</span></td>
-         </tr>
-         <tr>
-            <td align="left"><span>Almac&eacute;n:</span></td>
-            <td align="left"><span>{desAlmacen}</span></td>
-            <td align="left"><span>Operador:</span></td>
-            <td align="left"><span>{idUsuario}</span></td>
-         </tr>
-         <tr align="center">
-               <td colspan="4">
-                     <table id="list" class="scroll"></table>
-                     <div id="pager" class="scroll" style="text-align:center;"></div>
-               </td>
-         </tr>
-         <tr>
+    <!-- =========================================================== -->
+    <!-- ==              Pantalla Autoriza Solicitud              == -->
+    <!-- =========================================================== -->
+    <script type="text/javascript" src="../../js/init_solicitud.js"></script>
+    <div id="autorizarsolicitud">
+      <form id="frmSolicitud" action="../solicitud/prcAutoriza.php" method="POST">
+        <table border="0" width="100%" cellspacing="15" border="0" cellpadding="0">
+          <tr><td align="center">
+            <div id="marcoDatos">
+              <table width="100%" cellspacing="5" border="0" cellpadding="0">
+                <tr>
+                  <td align="left"><span class="label">Unidad Org. solicitante:</span></td>
+                  <td align="left"><span class="input">{desOrigen}</span> &nbsp;            
+                    <input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' "+
+                            onclick="infoSeccion(event,'{idSolicitud}');" />
+                  </td>
+                  <td align="left"><span class="label">Fecha:</span></td>
+                  <td colspan="3" align="left"><span class="input">{fchInicio}</span></td>
+                </tr>
+                <tr>
+                  <td align="left"><span class="label">Receptor: {tipoDestino}</span></td>
+                  <td colspan="3" align="left"><span class="input">{idDestino}</span></td>
+                </tr>
+                <tr>
+                  <td align="left"><span class="label"">Almac&eacute;n:</span></td>
+                  <td align="left"><span class="input">{desAlmacen}</span></td>
+                  <td align="left"><span class="label">Operador:</span></td>
+                  <td align="left"><span class="input">{idUsuario}</span></td>
+                </tr>
+              </table>
+            </div>
+          </td></tr>
+          <tr align="center">
+            <td colspan="4">
+              <table id="list" class="scroll"></table>
+              <div id="pager" class="scroll" style="text-align:center;"></div>
+            </td>
+          </tr>
+          <tr>
             <td colspan="4" align="center"><label for="observaciones">Observaciones:</label><br>
-            <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
-         </tr>
+              <textarea name="observaciones" id="observaciones" rows="10" cols="40" tabindex="50" class="tinymce">{observaciones}</textarea></td>
+          </tr>
         </table>
         <input type="hidden" name="idSolicitud" id="idsolicitud" value="{idSolicitud}">
         <input type="hidden" name="nrosolicitud" id="nrosolicitud" value="{nroSolicitud}">
       </form>
-   </div>
+    </div>
 
 <script type="text/javascript">
 

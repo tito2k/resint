@@ -39,6 +39,8 @@ div#marcoDatos label { font: bold 9pt Arial; color: gray }
 div#marcoDatos input { font: 9pt Arial; color: black; border: solid 1px gray; }
 div#marcoDatos select { width: 100%; font: 9pt Arial; color: black; border: solid 1px gray; }
 div#filtro select { font: 9pt Arial; color: black; border: solid 1px gray; }
+.label { font: bold 9pt Arial; color: gray }
+.input { font: 9pt Arial; color: black; }
 
 /* Bloque con informacion de la Sesion */
 #infosesion { font: 9pt Arial; color: gray; }
