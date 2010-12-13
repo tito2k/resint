@@ -11,13 +11,13 @@ jQuery(document).ready(function(){
    jQuery("#list").jqGrid({
 		url:'../solicitud/datBandejaSalida.php?idSesion={idSesion}',
 		datatype: "json",
-		colNames:['','Solicitud','Origen','Inicio','Destino','Identificaci&oacute;n','','Estado','Fecha','Almac&eacute;n','','',''],
+		colNames:['','Solicitud','Origen','Inicio','Destino','Destino','','Estado','Fecha','Almac&eacute;n','','',''],
 		colModel:[
 			{name:'_key_N_idtransaccion', hidden:true, search:false, index:'_key_N_idtransaccion', width:55,editable:false},
       {name:'_field_N_nrosolicitud', search:false, index:'_field_N_nrosolicitud', width:55,editable:false},
       {name:'_field_D_origen', search:false, index:'_field_D_origen', width:80,editable:false},
 			{name:'_field_D_fechainicio', search:false, index:'_field_D_fechainicio', width:70,align:'center',editable:false}, 
-			{name:'_field_D_destino', search:false, index:'_field_D_destino', width:70,editable:true,editoptions:{size:40,maxlength:45}}, 
+			{name:'_field_D_destino', hidden:true, search:false, index:'_field_D_destino', width:70,editable:true,editoptions:{size:40,maxlength:45}}, 
       {name:'_field_D_identificacion', search:false, index:'_field_D_identificacion', width:80,editable:true,editoptions:{size:40,maxlength:45}},
 			{name:'_field_D_estado', hidden:true, search:false, index:'_field_D_estado', width:80,editable:true}, 
 			{name:'_field_D_idestado', index:'_field_D_idestado', width:80,editable:false,edittype:'select',editoptions:{value:"{_-ESTADOS-_}"}}, 
@@ -36,7 +36,7 @@ jQuery(document).ready(function(){
 		viewrecords: true,
 		sortorder: "desc",
  		shrinkToFit: true,
-		editurl:"../../lib/generica.php?tabla={_-TABLE-_}",
+		editurl:"../solicitud/prcElimina.php?idSesion={idSesion}",
 		caption:"{_-CAPTION-_}",
 	  	gridComplete: function() { 
   		 	var ids = jQuery("#list").jqGrid('getDataIDs'); 
@@ -58,7 +58,7 @@ jQuery(document).ready(function(){
           var rowId = $(this).attr('id');
           var row = $('#list').jqGrid('getRowData',rowId);
 
-          $('#topright').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_estado,idSolicitud:row._key_N_idtransaccion});
+          $('#diagramaEstado').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_estado,idSolicitud:row._key_N_idtransaccion});
         });
 	  	},
 	  	loadComplete: function(xhr) { 
@@ -74,10 +74,10 @@ jQuery(document).ready(function(){
    });
 
 	jQuery("#list").jqGrid('navGrid','#pager', 
-		{edit:false,del:false,add:false,search:false,height:400,width:600,reloadAfterSubmit:false,view:true}, //options 
+		{edit:false,del:true,add:false,search:false,height:400,width:600,reloadAfterSubmit:false,view:true}, //options 
 		{}, // edit options 
 		{}, // add options 
-		{}, // del options 
+		{height:150,width:500,afterSubmit:processCallback}, // del options 
 		{multipleSearch:false}, // search options 
 		{navkeys: [true,38,40], height:250,jqModal:false,closeOnEscape:true} // view options 
 
@@ -94,7 +94,7 @@ jQuery(document).ready(function(){
 
 });
 
-function callBack(response,postData) {
+function processCallback(response,postData) {
 
 	var success = true;
 	var message = "";

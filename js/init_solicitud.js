@@ -60,9 +60,15 @@ $(document).ready(function() {
       });
 // //////////////////////////////////////////////////////////////
 
-
 $('select#almacen').bind("change",null,setAlmacen);
 
+	if (idTarea == IDT_AUTORIZA)
+	{
+		$('#td_denegar').load('../../bin/solicitud/pntBotonDenegar.html',
+				function(){
+					$('#denegar').click(denegarSolicitud);
+		});
+	}
 });
 
 function setAlmacen()
@@ -117,10 +123,6 @@ function formSuccess(responseText, statusText, xhr, $form)
 {
    var retorno = $.parseJSON(responseText);
    mensajeInfo(retorno.mensaje);
-   $('#topleft').empty();
-   $('#topright').empty();
-   $('#center').empty();
-   $('#bottomright').empty();
    cargarBandejaActiva();
 };
 
@@ -221,4 +223,11 @@ function mostrarCampo()
          $('#idvehiculo').attr('validation','required');
          break;
    }
+}
+
+function denegarSolicitud()
+{
+	$('#frmSolicitud').attr('action','../solicitud/prcDeniega.php');
+	procesaGrilla();
+
 }

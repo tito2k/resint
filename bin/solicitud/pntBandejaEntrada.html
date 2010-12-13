@@ -11,20 +11,20 @@ jQuery(document).ready(function(){
    jQuery("#list").jqGrid({
 		url:'../solicitud/datBandejaEntrada.php?idSesion={idSesion}',
 		datatype: "json",
-		colNames:['','Solicitud','Origen','Inicio','Destino','Identificaci&oacute;n','','Estado','Fecha','Almac&eacute;n','',''],
+		colNames:['','Solicitud','Origen','Inicio','Destino','Destino','','Estado','Fecha','Almac&eacute;n','',''],
 		colModel:[
 			{name:'_key_N_idtransaccion', hidden:true, search:false, index:'_key_N_idtransaccion', width:55,editable:false},
       {name:'_field_N_nrosolicitud', search:false, index:'_field_N_nrosolicitud', width:55,editable:false},
       {name:'_field_D_origen', search:false, index:'_field_D_origen', width:80,editable:false},
 			{name:'_field_D_fechainicio', search:false, index:'_field_D_fechainicio', width:70,align:'center',editable:false}, 
-			{name:'_field_D_destino', search:false, index:'_field_D_destino', width:70,editable:true,editoptions:{size:40,maxlength:45}}, 
+			{name:'_field_D_destino', hidden:true, search:false, index:'_field_D_destino', width:70,editable:true,editoptions:{size:40,maxlength:45}}, 
       {name:'_field_D_identificacion', search:false, index:'_field_D_identificacion', width:80,editable:true,editoptions:{size:40,maxlength:45}},
 			{name:'_field_D_estado', hidden:true, search:false, index:'_field_D_estado', width:80,editable:true}, 
 			{name:'_field_D_idestado', index:'_field_D_idestado', width:80,editable:false,edittype:'select',editoptions:{value:"{_-ESTADOS-_}"}}, 
 			{name:'_field_D_fechaactual', search:false, index:'_field_D_fechaactual', width:70,align:'center'}, 
 			{name:'_field_D_almacen', search:false, index:'_field_D_almacen', width:80,editable:false},
-			{name:'edit', search:false, index:'edit',width:12,sortable:false},
-			{name:'view', search:false, index:'view',width:12,sortable:false}
+			{name:'view', search:false, index:'view',width:12,sortable:false},
+      {name:'edit', search:false, index:'edit',width:12,sortable:false}
 		],
 		rowNum: 40,
 		rowList: [40,80],
@@ -35,7 +35,7 @@ jQuery(document).ready(function(){
 		viewrecords: true,
 		sortorder: "desc",
  		shrinkToFit: true,
-		editurl:"../../lib/generica.php?tabla={_-TABLE-_}",
+		editurl:"#",
 		caption:"{_-CAPTION-_}",
 	  	gridComplete: function() { 
   		 	var ids = jQuery("#list").jqGrid('getDataIDs'); 
@@ -56,7 +56,7 @@ jQuery(document).ready(function(){
           var rowId = $(this).attr('id');
           var row = $('#list').jqGrid('getRowData',rowId);
 
-          $('#topright').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_estado,idSolicitud:row._key_N_idtransaccion});
+          $('#diagramaEstado').load('../../bin/solicitud/getDiagrama.php',{idSesion:idSesion,idEstado:row._field_D_estado,idSolicitud:row._key_N_idtransaccion});
         });
 	  	},
 	  	loadComplete: function(xhr) { 
@@ -124,6 +124,9 @@ function editRow(idEstado,idTransaccion) {
 		var tarea = json.idTarea;
 		var llamada = func.substr(0,func.length-2) + "("+idTransaccion+","+tarea+")";
 		eval(llamada);
+
+    // seteo la variable global
+		idTarea = tarea;
 	});   
 		
 } 

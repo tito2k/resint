@@ -384,7 +384,7 @@ class Generica {
         else if (substr($k,4,3) == '_D_') 
             $sql = "SELECT GetDate() AS clave;";
         else if (substr($k,4,3) == '_U_') 
-            $sql = "SELECT NewId() AS clave;";
+            $sql = "SELECT uuid() AS clave;";	// versión para mySQL
 
         $res = mysql_query($sql, $conn);
 

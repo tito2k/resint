@@ -10,7 +10,7 @@
          <td align="left" colspan="3"><span>{desOrigen}</span> &nbsp; 
            
            <input style='background-image: url(../../css/images/ui-icons_3383bb_256x240.png);background-position: -16px -144px;height:18px;width:18px; border:none; cursor:hand; background-color: transparent;' type='button' onmouseover='javascript: changeImage(this,1);' onmouseout='javascript: changeImage(this,0);' "+
-                   onclick="infoSeccion('{idTransaccion}');" />
+                   onclick="infoSeccion(event,'{idSolicitud}');" />
            
            </td>
       </tr>
@@ -153,5 +153,17 @@ function validaCheck()
       jQuery("#list").jqGrid('setRowData',rowid,{aprueba:0});                     
   }
 };
+
+function infoSeccion(event,idSolicitud) {
+  var posX = event.clientX - 330;
+  var posY = event.clientY - 100;
+
+  $('#xtooltip').css({left: posX + 'px', top: posY + 'px'});
+  $('#xtooltip').load('../tips/getArticuloParaSeccion.php',{idSesion:idSesion,idSolicitud:idSolicitud});
+  $('#xtooltip').fadeIn(1500);
+  $('#xtooltip').click(function(){$('#xtooltip').fadeOut(1000);
+                         });
+  $('#xtooltip').empty();
+}
 
 </script>

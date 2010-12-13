@@ -867,3 +867,205 @@ Aca:SELECT 'admin' AS idusuario,s.descripcion AS idseccion, (CASE WHEN us.idsecc
 					concat('idusuario=',char(39),'admin',char(39),' AND idseccion=',s.idseccion) AS id 
 					FROM usuarioseccion us
 					INNER JOIN seccion s ON us.idseccion = s.idseccion AND us.idusuario='admin'
+Array
+(
+    [_] => 1292090479399
+    [_search] => false
+    [nd] => 1292090479398
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090484561
+    [_search] => false
+    [nd] => 1292090484560
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090890520
+    [_search] => false
+    [nd] => 1292090890519
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090905634
+    [_search] => false
+    [nd] => 1292090905633
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090909548
+    [_search] => false
+    [nd] => 1292090909547
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idsector
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090913307
+    [_search] => false
+    [nd] => 1292090913306
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idfamilia
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090917984
+    [_search] => false
+    [nd] => 1292090917983
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090921641
+    [_search] => false
+    [nd] => 1292090921641
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292090926950
+    [_search] => false
+    [nd] => 1292090926950
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idnivel
+    [sord] => asc
+)
+
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin ","admin ","admin"]},{"id":"computos","cell":["computos","computos ","computos ","computos"]},{"id":"pepe","cell":["pepe","pepe ","pepe ","pepe"]},{"id":"pepito","cell":["pepito","pepito ","pepito ","pepito"]}]}
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin ","admin ","admin"]},{"id":"computos","cell":["computos","computos ","computos ","computos"]},{"id":"pepe","cell":["pepe","pepe ","pepe ","pepe"]},{"id":"pepito","cell":["pepito","pepito ","pepito ","pepito"]}]}
+Array
+(
+    [_] => 1292091210766
+    [_search] => false
+    [nd] => 1292091210765
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292091216736
+    [_search] => false
+    [nd] => 1292091216735
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292091302445
+    [_search] => false
+    [nd] => 1292091302444
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idproveedor
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292091312956
+    [_search] => false
+    [nd] => 1292091312956
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idseccion
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292091316598
+    [_search] => false
+    [nd] => 1292091316597
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idsector
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292091325443
+    [_search] => false
+    [nd] => 1292091325442
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idfamilia
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292091329705
+    [_search] => false
+    [nd] => 1292091329705
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idtarea
+    [sord] => asc
+)
+
+Array
+(
+    [_] => 1292091333878
+    [_search] => false
+    [nd] => 1292091333877
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idnivel
+    [sord] => asc
+)
+
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin ","admin ","admin"]},{"id":"computos","cell":["computos","computos ","computos ","computos"]},{"id":"pepe","cell":["pepe","pepe ","pepe ","pepe"]},{"id":"pepito","cell":["pepito","pepito ","pepito ","pepito"]}]}
+{"page":"1","total":1,"records":"4","rows":[{"id":"admin","cell":["admin","admin ","admin ","admin"]},{"id":"computos","cell":["computos","computos ","computos ","computos"]},{"id":"pepe","cell":["pepe","pepe ","pepe ","pepe"]},{"id":"pepito","cell":["pepito","pepito ","pepito ","pepito"]}]}
+Array
+(
+    [_] => 1292091351734
+    [_search] => false
+    [nd] => 1292091351734
+    [rows] => 40
+    [page] => 1
+    [sidx] => _key_N_idnivel
+    [sord] => asc
+)
+

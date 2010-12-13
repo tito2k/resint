@@ -14,6 +14,11 @@ estadoTransaccion['4'] = "ededed";		// Denegada
 estadoTransaccion['5'] = "9ddacb";		// Parcialmente Entregada
 estadoTransaccion['6'] = "d9d9d9";		// Totalmente Entregada
 
+// Constantes de los IDs de tarea
+var IDT_AUTORIZA = 407;
+var IDT_BANDEJA_SALIDA = 403;
+var IDT_BANDEJA_ENTRADA = 408;
+
 // Mantengo la bandeja desde donde vengo
 var bandejaActiva = 'SALIDA';
 
