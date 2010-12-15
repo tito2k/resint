@@ -93,6 +93,23 @@ jQuery(document).ready(function(){
 
 });
 
+//$('#avisoNotificacion').click(console.info("hice click"));
+
+function infoNotificaciones(event) {
+  
+  var posX = event.clientX - 350;
+  var posY = event.clientY + 0;
+
+  $('#xtooltip').css({left: posX + 'px', top: posY + 'px'});
+  $('#xtooltip').load('../tips/getNotificacion.php',{idSesion:idSesion});
+  $('#xtooltip').fadeIn(1500);
+  $('#xtooltip').click(function(){$('#xtooltip').fadeOut(1000);
+                         });  
+  $('#xtooltip').empty();                         
+  console.info("entre al click");
+}
+
+
 function callBack(response,postData) {
 
 	var success = true;

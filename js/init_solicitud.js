@@ -114,9 +114,12 @@ function callBack(response,postData) {
 
 function validaForm(formData, jqForm, options)
 {
-//   if (validate(formData, jqForm, options))
-//      return (cantTuplas>0);
-   return(validate(formData, jqForm, options));
+	datos = $('#datos').val();
+
+	if (datos.length > 0)
+		return(validate(formData, jqForm, options));
+	else
+		return false;
 };
 
 function formSuccess(responseText, statusText, xhr, $form)
@@ -186,10 +189,14 @@ function procesaGrilla()
       mensajeError("Tiene una línea de la grilla en edición");
       return false;
    }
-   $('#datos').attr("value",datos);
    if (cantTuplas>0)
    {
+      $('#datos').attr("value",datos);
       $('#frmSolicitud').submit();
+   }
+   else
+   {
+	   return false;
    }
 };
 

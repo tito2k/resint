@@ -258,7 +258,7 @@ function validate(formData, jqForm, options) {
 
 	if (!validForm) {
 		alert("Se encontraron errores");
-		location.hash = '#formy';
+		location.hash = '#form';
 	}
   return validForm;
 	

@@ -31,6 +31,7 @@ $sql_count .= " AND (idestado = ".ETR_AUTORIZADA." OR idestado = ".ETR_ENTREGA_P
 
 $qs  = "SELECT au.idarticulo,a.nombre, ";
 $qs .= "au.cantidad,ifnull(en.cantidad,0) AS entregado,au.cantidad - ifnull(en.cantidad,0) AS entregar, ";
+$qs .= "a.stock, a.stockminimo, ";
 $qs .= "concat('idtransaccion=',au.idtransaccion,' AND idarticulo=',au.idarticulo) AS id ";
 $qs .= "FROM transaccionarticulo au ";
 $qs .= "LEFT JOIN (SELECT idtransaccion, idarticulo, SUM(cantidad) AS cantidad ";

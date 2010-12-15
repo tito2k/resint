@@ -217,7 +217,7 @@ function bandejaEntrada()
 	{	
 		bandejaActiva = 'ENTRADA';
 		$('#diagramaEstado').empty();		
-		$('#notificacion').load('../../bin/frontend/getAdvertencias.php',{idSesion:idSesion});
+		$('#notificacion').load('../../bin/frontend/getAvisoNotificacion.php',{idSesion:idSesion});
 		$('#topleft').load('../../bin/frontend/getTitulo.php',{idSesion:idSesion,idTarea:idTarea});
 		$('#center').load('../../bin/solicitud/pntBandejaEntrada.php',{idSesion:idSesion});
 		$('#bottomright').load('../../bin/solicitud/pntBotonesBandeja.html');		

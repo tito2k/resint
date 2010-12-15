@@ -4,7 +4,7 @@
 
   <script type="text/javascript" src="../../js/init_solicitud.js"></script>
   <div id="entregarsolicitud">
-    <form id="frmSolicitud" action="../solicitud/prcEntrega.php" method="POST">
+    <form id="frmSolicitud" action="../solicitud/prcEntrega.php" method="POST" onsubmit="javascript:return false;">
       <table border="0" width="100%" cellspacing="15" border="0" cellpadding="0">
         <tr><td align="center">
           <div id="marcoDatos">
@@ -52,13 +52,15 @@ jQuery(document).ready(function(){
    jQuery("#list").jqGrid({
       url:'../solicitud/datEntrega.php?idSesion={idSesion}&idSolicitud={idSolicitud}&idestado={idEstado}',
       datatype: "json",
-      colNames:['C&oacute;digo','Art&iacute;culo','Autorizado','Entregado','Entrega'],
+      colNames:['C&oacute;digo','Art&iacute;culo','Autorizado','Entregado','Entrega','',''],
       colModel:[
          {name:'idarticulo',index:'idarticulo', width:20,editable:false },
          {name:'nombre',index:'nombre', width:80,editable:false },
          {name:'cantidad',index:'cantidad', width:40,editable:false },
          {name:'entregado',index:'entregado', width:40,editable:false },
-         {name:'entrega',index:'entrega', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true,minValue:0} }
+         {name:'entrega',index:'entrega', width:40,editable:true,editoptions:{size:10,maxlength:10},editrules:{number:true,minValue:0} },
+         {name:'stock',index:'stock', width:40,editable:false },
+         {name:'minimo',index:'minimo', width:40,editable:false }
       ],
     cellEdit: true,
       rowNum: 40,
@@ -70,14 +72,32 @@ jQuery(document).ready(function(){
       caption:"Art&iacute;culos solicitados",
     afterSaveCell : function(rowid,name,val,iRow,iCol) {
           if(name == 'entrega') {
-            var cant = jQuery("#list").jqGrid('getCell',rowid,iCol-2);
-            var entr = jQuery("#list").jqGrid('getCell',rowid,iCol-1);
+            var cant = parseFloat(jQuery("#list").jqGrid('getCell',rowid,iCol-2));
+            var entr = parseFloat(jQuery("#list").jqGrid('getCell',rowid,iCol-1));
+            var stock = parseFloat(jQuery("#list").jqGrid('getCell',rowid,iCol+1));
+            var minimo = parseFloat(jQuery("#list").jqGrid('getCell',rowid,iCol+2));
+
             if (val > (cant-entr))
             {
               alert("La entrega no puede superar el saldo");
               jQuery("#list").jqGrid('setRowData',rowid,{entrega:(cant-entr)});
             }
-
+            else
+            {
+              if (stock < val)
+              {
+                alert("Solo hay "+stock+" artículos en stock");
+                jQuery("#list").jqGrid('setRowData',rowid,{entrega:(stock)});              
+              }
+              else
+              {
+                if ((stock-val) <= minimo)
+                {
+                  alert("Este artículo queda en stock mínimo");
+                  jQuery("#list").jqGrid('setRowData',rowid,{entrega:val});
+                }                
+              }
+            }
           }
     }
 /*      onSelectRow: function(id){

@@ -12,7 +12,7 @@
 
 /* El cuerpo principal y los elementos basicos */
 html,body { margin:0; padding:0; background: #2D507E }
-body      { font: 10pt Arial, "Bitstream Vera Sans", sans-serif }
+body      { font: 10pt Arial, FreeSans }
 form      { margin: 10px 10px }
 p         { margin:10px 10px; text-align: justify; line-height:1.4 }
 
@@ -28,12 +28,13 @@ div#footer  { background: url(../img/thinfooter.png); height: 24px; }
 div#foot    { margin-top: 10px; padding: 0px; }
 
 /* Titulo y subtitulo de cada tarea */
-#titulo { font: 16pt "Times New Roman", serif; color: gray }
-#subtitulo { font: 9pt Arial; color: gray }
-.subtitulo { font: 9pt Arial; color: gray }
+#titulo { font: 16pt "Times New Roman", FreeSerif; color: gray }
+#subtitulo { font: 9pt Arial, FreeSans; color: gray }
+.titulo { font: 16pt "Times New Roman", FreeSerif; color: gray }
+.subtitulo { font: 9pt Arial, FreeSans; color: gray }
 
 /* Bloque con informacion */
-.nroTransaccion { font: 9pt Arial; color: gray }
+.nroTransaccion { font: 9pt Arial, FreeSans; color: gray }
 div#marcoDatos { border: solid 1px #CCCCCC; width: 97% }
 div#marcoDatos label { font: bold 9pt Arial; color: gray }
 div#marcoDatos input { font: 9pt Arial; color: black; border: solid 1px gray; }
@@ -43,7 +44,7 @@ div#filtro select { font: 9pt Arial; color: black; border: solid 1px gray; }
 .input { font: 9pt Arial; color: black; }
 
 /* Bloque con informacion de la Sesion */
-#infosesion { font: 9pt Arial; color: gray; }
+#infosesion { font: 9pt Arial, FreeSans; color: gray; }
 #infosesion button { font: 8pt "Courier New"; color: #2D507E; border: solid 1px gray;}
 
 /* Imagenes y logos principales */
@@ -67,10 +68,10 @@ img#JPC { display: inline; margin-top: 0px; margin-left: 320px; padding: 0px; }
 */
 #ingreso { background: url(../img/loginback.png) no-repeat; width: 355px; height: 207px; }
 #ingreso { padding-top: 30px; }
-#ingreso label { font: 10pt "Arial Narrow"; color: gray; }
+#ingreso label { font: 10pt Arial, FreeSans; color: gray; }
 #ingreso input { font: 10pt "Courier New"; color: #2D507E; border: solid 1px gray;}
-#ingreso h2 { font: bold 16pt Arial, sans-serif; color: gray;  }
-#ingreso h3 { font: bold 12pt Arial, sans-serif; color: gray;  }
+#ingreso h2 { font: bold 16pt Arial, FreeSans; color: gray;  }
+#ingreso h3 { font: bold 12pt Arial, FreeSans; color: gray;  }
 
 
 /*
@@ -101,6 +102,21 @@ table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
 #xtooltip     { position: absolute; margin: 0px -0px; }
 .tipCloseBtn { position: absolute; top: 25px; right: 35px; }
 .TipArticulo { width: 300px; }
+.TipSeccion  { width: 450px; }
+#lstArticulos  { border: solid 1px gray; }
+#lstArticulos th {
+   background: url(../img/tips/headerBack.png);
+   text-align: center;
+   font: bold 9pt Arial, FreeSans;
+   color: #2D507E;
+   border: solid 1px gray;
+}
+#lstArticulos td {
+   background: #E7C58F;
+   font: 9pt Arial, FreeSans;
+   color: black;
+   border: solid 1px gray;
+}
 
 /* Las imagenes del marco */
 .tipCenterTop        { background: url(../img/tips/tipTop.png); }
@@ -110,9 +126,15 @@ table#menu_horizontal { clear: left; width: 100%; margin-top: 78px; }
 .tipCenterBottom     { background: url(../img/tips/tipBottom.png); }
 
 /* Los datos */
-.tipEtiqueta { text-align: left; font: bold 9pt Arial; color: #2D507E; padding-right: 3px }
-.tipDato     { font: 9pt Arial; color: black }
+.tipEtiqueta { text-align: left; font: bold 9pt Arial, FreeSans; color: #2D507E; padding-right: 3px }
+.tipDato     { font: 9pt Arial, FreeSans; color: black }
 
+/* Notificacion */
+.unaNotificacion {
+   color: blue;
+   border: solid 1px gray;
+   background: #FFFFE0;
+}
 
 /*
 
